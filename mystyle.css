@@ -26,7 +26,7 @@ body {
 }
 
 .avatar img {
-    padding-left: 870px;
+    padding-left: 270px;
 }
 
 .categories {
@@ -61,44 +61,53 @@ body {
 }
 
 div.search {
-padding-left: 15px;
-border-style: hidden;
-  width: 100%;
-  display:flex;
-  align-items: center;
- align-content: space-between;
+    padding-left: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 40px; 
 }
 
-div.search input[type=text]{
+div.search input[type=text] {
     border-style: hidden;
     border-color: beige;
     border-radius: 15px 0 0 15px;
-    height: 30px;
+    height: 30px; 
     width: 350px;
     font-size: 16px;
+    box-sizing: border-box; 
+    transition: all 0.2s; 
 }
-div.search input[type=submit]{
+
+
+div.search input[type=submit] {
     border-style: hidden;
     border-color: beige;
     border-radius: 0 15px 15px 0;
-    height: 32px;
-    width:60px;
+    height: 30px;
+    width: 60px;
     background-color: #ffcc00;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight:700;
+    text-align: center;
 }
 
-div.search ::placeholder{
+
+div.search ::placeholder {
     color: black;
+}
+
+div.search input[type="text"]:focus::placeholder {
+    color: transparent; 
+}
+
+div.search input[type=text]:focus {
+    outline: none; 
     
 }
 
-div.search :hover {
-    border-color: black;
-    border-style:none;
-}
-
-div.offers h1{
-padding: 50px 55px;
+div.offers img{
+padding: 70px 50px;
 
 }
 
@@ -115,3 +124,22 @@ footer.footer{
 .social-media{
     padding:0 6px;
 }
+
+div.signin a{
+    color: #ffcc00;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+div.signin{
+    padding-left: 700px;
+}
+
+
+
+
+
+
+
+
+
