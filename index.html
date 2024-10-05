@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="/myStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .category-container {
+        margin: 40px 0; /* Increased vertical margin for spacing between categories */
+    }
+    .category-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .product-flex {
+        display: flex;
+        overflow-x: auto;
+        padding: 10px;
+        gap: 10px; /* Space between cards */
+    }
+    .product-card {
+        border: 1px solid #ffffff;
+        padding: 10px;
+        text-align: center;
+        min-width: 200px; /* Minimum width for each card */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0); 
+        min-width: 250px;
+    }
+    
+    </style>
 </head>
-<body >
+<body>
     <table class="header" border="0">
         <tr>
             <td class="logo"><img src="/images/e-store.png" height="150px" width="150px" alt="e-store"></td>
             <td class="language"><h4>en</h4></td>
-            <td ><div class="search"><input type="text"placeholder='anything in your mind?'><input type="submit" value="Search" ></div></td>
+            <td>
+                <div class="search">
+                    <input type="text" placeholder='anything in your mind?'>
+                    <input type="submit" value="Search">
+                </div>
+            </td>
             <td>
                 <div style="padding-left: 30px; text-align: center;">
                     <a href="#"><img src="/images/shopping-cart-3.png" alt="CART" style="color: #FFCC00;"></a><br>
@@ -21,7 +49,7 @@
             <td>
                 <div style="padding-left: 30px; padding-top: 0px; text-align: center;"> 
                     <a href="#"><img src="/images/like-2.png" alt="WishList" style="color: #FFCC00;"></a><br>
-                    <b style="color:#FFCC00; font-size: 15px; ">WishList</b>
+                    <b style="color:#FFCC00; font-size: 15px;">WishList</b>
                 </div>
             </td>
             <td>
@@ -35,45 +63,160 @@
         <tr>
             <td width="18%"></td>
             <td class="c-item"><h4><a href="">Home appliances</a></h4></td>
-            <td class="c-item"><h4><a href="">digital cards</a></h4></td>
-            <td class="c-item"><h4><a href="">cameras</a></h4></td>
-            <td class="c-item"><h4><a href="">games consoles</a></h4></td>
+            <td class="c-item"><h4><a href="">Digital cards</a></h4></td>
+            <td class="c-item"><h4><a href="">Cameras</a></h4></td>
+            <td class="c-item"><h4><a href="">Games consoles</a></h4></td>
         </tr>
     </table>
     <div class="offers">
-      <img src="/images/offers.png"  height="300px"  alt="offers">
+        <img src="/images/offers.png" height="300px" alt="offers">
     </div>
+
+    <!-- Product Display for Each Category -->
+    <div class="category-container" style="padding-bottom: 150px;">
+        <div class="category-title">Home Appliances</div>
+        <div class="product-flex" id="homeappliances-container"></div>
+    </div>
+
+    <div class="category-container" style="padding-bottom: 150px;">
+        <div class="category-title">Digital Cards</div>
+        <div class="product-flex" id="digitalCards-container"></div>
+    </div>
+
+    <div class="category-container" style="padding-bottom: 150px;">
+        <div class="category-title">Cameras</div>
+        <div class="product-flex" id="cameras-container"></div>
+    </div>
+
+    <div class="category-container" style="padding-bottom: 0px;">
+        <div class="category-title">Games Consoles</div>
+        <div class="product-flex" id="gamesConsoles-container"></div>
+    </div>
+
+    <div class="space"></div>
+
+    <script>
+        // Global arrays to hold products for each category
+        const homeappliances_discount = [
+{ id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20 },
+{ id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25 },
+{ id: 3, oldPrice: 90, newPrice: 70, imageUrl: 'https://via.placeholder.com/150?text=Product+3', discount: 22.22 },
+{ id: 4, oldPrice: 200, newPrice: 160, imageUrl: 'https://via.placeholder.com/150?text=Product+4', discount: 20 },
+{ id: 5, oldPrice: 75, newPrice: 60, imageUrl: 'https://via.placeholder.com/150?text=Product+5', discount: 20 },
+{ id: 6, oldPrice: 120, newPrice: 90, imageUrl: 'https://via.placeholder.com/150?text=Product+6', discount: 25 },
+{ id: 7, oldPrice: 55, newPrice: 50, imageUrl: 'https://via.placeholder.com/150?text=Product+7', discount: 9.09 },
+{ id: 8, oldPrice: 300, newPrice: 240, imageUrl: 'https://via.placeholder.com/150?text=Product+8', discount: 20 },
+{ id: 9, oldPrice: 85, newPrice: 65, imageUrl: 'https://via.placeholder.com/150?text=Product+9', discount: 23.53 },
+{ id: 10, oldPrice: 110, newPrice: 88, imageUrl: 'https://via.placeholder.com/150?text=Product+10', discount: 20 }
+];
+const digitalCards_discount = [
+{ id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20 },
+{ id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25 },
+{ id: 3, oldPrice: 90, newPrice: 70, imageUrl: 'https://via.placeholder.com/150?text=Product+3', discount: 22.22 },
+{ id: 4, oldPrice: 200, newPrice: 160, imageUrl: 'https://via.placeholder.com/150?text=Product+4', discount: 20 },
+{ id: 5, oldPrice: 75, newPrice: 60, imageUrl: 'https://via.placeholder.com/150?text=Product+5', discount: 20 },
+{ id: 6, oldPrice: 120, newPrice: 90, imageUrl: 'https://via.placeholder.com/150?text=Product+6', discount: 25 },
+{ id: 7, oldPrice: 55, newPrice: 50, imageUrl: 'https://via.placeholder.com/150?text=Product+7', discount: 9.09 },
+{ id: 8, oldPrice: 300, newPrice: 240, imageUrl: 'https://via.placeholder.com/150?text=Product+8', discount: 20 },
+{ id: 9, oldPrice: 85, newPrice: 65, imageUrl: 'https://via.placeholder.com/150?text=Product+9', discount: 23.53 },
+{ id: 10, oldPrice: 110, newPrice: 88, imageUrl: 'https://via.placeholder.com/150?text=Product+10', discount: 20 }
+];
+const cameras_discount = [
+{ id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20 },
+{ id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25 },
+{ id: 3, oldPrice: 90, newPrice: 70, imageUrl: 'https://via.placeholder.com/150?text=Product+3', discount: 22.22 },
+{ id: 4, oldPrice: 200, newPrice: 160, imageUrl: 'https://via.placeholder.com/150?text=Product+4', discount: 20 },
+{ id: 5, oldPrice: 75, newPrice: 60, imageUrl: 'https://via.placeholder.com/150?text=Product+5', discount: 20 },
+{ id: 6, oldPrice: 120, newPrice: 90, imageUrl: 'https://via.placeholder.com/150?text=Product+6', discount: 25 },
+{ id: 7, oldPrice: 55, newPrice: 50, imageUrl: 'https://via.placeholder.com/150?text=Product+7', discount: 9.09 },
+{ id: 8, oldPrice: 300, newPrice: 240, imageUrl: 'https://via.placeholder.com/150?text=Product+8', discount: 20 },
+{ id: 9, oldPrice: 85, newPrice: 65, imageUrl: 'https://via.placeholder.com/150?text=Product+9', discount: 23.53 },
+{ id: 10, oldPrice: 110, newPrice: 88, imageUrl: 'https://via.placeholder.com/150?text=Product+10', discount: 20 }
+];
+const gamesConsloes_discount = [
+{ id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20 },
+{ id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25 },
+{ id: 3, oldPrice: 90, newPrice: 70, imageUrl: 'https://via.placeholder.com/150?text=Product+3', discount: 22.22 },
+{ id: 4, oldPrice: 200, newPrice: 160, imageUrl: 'https://via.placeholder.com/150?text=Product+4', discount: 20 },
+{ id: 5, oldPrice: 75, newPrice: 60, imageUrl: 'https://via.placeholder.com/150?text=Product+5', discount: 20 },
+{ id: 6, oldPrice: 120, newPrice: 90, imageUrl: 'https://via.placeholder.com/150?text=Product+6', discount: 25 },
+{ id: 7, oldPrice: 55, newPrice: 50, imageUrl: 'https://via.placeholder.com/150?text=Product+7', discount: 9.09 },
+{ id: 8, oldPrice: 300, newPrice: 240, imageUrl: 'https://via.placeholder.com/150?text=Product+8', discount: 20 },
+{ id: 9, oldPrice: 85, newPrice: 65, imageUrl: 'https://via.placeholder.com/150?text=Product+9', discount: 23.53 },
+{ id: 10, oldPrice: 110, newPrice: 88, imageUrl: 'https://via.placeholder.com/150?text=Product+10', discount: 20 }
+];
+
+
+        // Function to display products in a specified container
+        function displayProducts(productArray, containerId) {
+            const productContainer = document.getElementById(containerId);
+            productContainer.innerHTML = ''; // Clear previous products
+
+            productArray.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+                    <h3>Product ${product.id}</h3>
+                    <p class="old-price">$${product.oldPrice.toFixed(2)}</p>
+                    <p class="new-price">$${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
+                    <button onclick="addToWishlist(${product.id})">Add to Wishlist</button>
+                    <button onclick="buyProduct(${product.id})">Buy</button>
+                `;
+                productContainer.appendChild(productCard);
+            });
+        }
+
+        // Function to display all products in their respective categories
+        function displayAllProducts() {
+            displayProducts(homeappliances_discount, 'homeappliances-container');
+            displayProducts(digitalCards_discount, 'digitalCards-container');
+            displayProducts(cameras_discount, 'cameras-container');
+            displayProducts(gamesConsloes_discount, 'gamesConsoles-container');
+        }
+
+        // Functions for button actions
+        function addToWishlist(productId) {
+            alert(`Product ${productId} added to wishlist!`);
+        }
+
+        function buyProduct(productId) {
+            alert(`Product ${productId} purchased!`);
+        }
+
+        // Initialize by displaying all products
+        displayAllProducts();
+    </script>
+    
     <footer class="footer">
         <table border="0">
-               <tr>
-               <td>
-                    <td class="logo"><img src="/images/e-store.png" height="150px" width="150px" alt="e-store"></td>
-               </td>
-              <div>
+            <tr>
+                <td class="logo"><img src="/images/e-store.png" height="150px" width="150px" alt="e-store"></td>
                 <td><h3>Find Us</h3></td>
                 <td>
-                    <div class="social-media" height="20px" width="20px"><img src="/images/social-media/twitter (1).png" alt="X"></div>
+                    <div class="social-media"><img src="/images/social-media/twitter (1).png" alt="X"></div>
                 </td>
                 <td>
-                    <div class="social-media" height="20px" width="20px"><img src="/images/social-media/facebook (1).png" alt="facebook"></div>
+                    <div class="social-media"><img src="/images/social-media/facebook (1).png" alt="facebook"></div>
                 </td>
                 <td>
-                    <div class="social-media" height="20px" width="20px"><img src="/images/social-media/tik-tok (1).png" alt="tiktok"></div>
+                    <div class="social-media"><img src="/images/social-media/tik-tok (1).png" alt="tiktok"></div>
                 </td>
                 <td>
-                    <div class="social-media" height="20px" width="20px"><img src="/images/social-media/instagram (1).png" alt="instagram"></div>
+                    <div class="social-media"><img src="/images/social-media/instagram (1).png" alt="instagram"></div>
                 </td>
                 <td><div style="width:100px;"></div></td>
-                <td><h3>E-mail: </h3></td><td><a href="mailto:mestores@modern-electronics.com" style="text-decoration: none; color:#FFCC00;">mestores@modern-electronics.com</a></td>
+                <td><h3>E-mail: </h3></td>
+                <td><a href="mailto:mestores@modern-electronics.com" style="text-decoration: none; color:#FFCC00;">mestores@modern-electronics.com</a></td>
                 <td><div style="width:100px;"></div></td>
-                <td><h3>Call Center: </h3></td><td><h4>8001207669</h4></td>
+                <td><h3>Call Center: </h3></td>
+                <td><h4>8001207669</h4></td>
                 <td><div style="width:100px;"></div></td>
-                <td> <h3>About Us</h3></td>
-              </div>
+                <td><h3>About Us</h3></td>
             </tr>
-  
-            </table>
-          
+        </table>
     </footer>
 </body>
-</html>     
+</html>
+
+

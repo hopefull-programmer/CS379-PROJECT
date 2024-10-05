@@ -137,7 +137,83 @@ div.signin{
 
 
 
+.carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+#product-container {
+    display: flex;
+    overflow-x: auto; /* Allows horizontal scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling effect */
+    width: 80%; /* Set a fixed width for the container */
+    margin: 20px 10px; /* Adds space around the product container */
+    white-space: nowrap; /* Prevents items from wrapping */
+}
+
+.product-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px; /* Adds spacing between cards */
+    min-width: 210px; /* Minimum width for product cards */
+    text-align: center;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: grey;
+}
+
+.new-price {
+    font-weight: bold;
+    color: red;
+}
+
+button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.nav-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 10px; /* Space between buttons and product container */
+}
+
+.nav-button:hover {
+    background-color: #0056b3;
+}
+
+.category-container {
+    margin: 20px 0;
+}
+.flexbox {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    gap: 100px; /* Space between cards */
+}
 
 
 
