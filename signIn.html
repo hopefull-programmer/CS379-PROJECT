@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/myStyle-signin.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+</head>
+<body>
+    <center>
+        <div class="sign-in">
+            <img src="/images/e-store-2.png" alt="logo">
+            <form action="">
+                <div class="signin-field">
+                    <p style="margin:0;text-align: left;font-weight: 600;color: #FFCC00; font-size: 18px;">UserName </p>  
+                    <input type="text" name="username" placeholder="Enter user name" required>
+                </div>
+                <div class="signin-field" >
+                <div style="width: 700px;"><p style="margin:0; text-align:left; font-weight:600;color: #FFCC00;font-size: 18px;">Password<a href="#" style="padding-left:200px; text-decoration: none;color:#007bff; font-size: 15px; font-weight: 100;">Forgot Password?</a></p></div>
+                    <input type="password" name="password" placeholder="Enter password" required><br>
+                    <h4 style="text-align: left; padding-bottom: 0px; color: #FFCC00;font-size: 18px;">choose your account type</h4>
+                    <div class="usertype"> 
+                        <label>
+                            <input type="radio" name="userType" value="administrator"> 
+                            <h4> &nbsp;Administrator</h4>
+                        </label>
+                        <label>
+                            <input type="radio" name="userType" value="user"> 
+                            <h4> &nbsp;User</h4>
+                        </label>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" style="font-size: 20px;">Sign In</button>
+                <div class="links">
+                    dont have an account? <a href="#">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </center>
+    
+</body>
+</html>
