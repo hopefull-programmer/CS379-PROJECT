@@ -2,72 +2,56 @@
 <html lang="en">
 <head>
     <title>Games Consoles</title>
-    <link rel="stylesheet" type="text/css" href="/mystyle-main.css">
+    <link rel="stylesheet" type="text/css" href="CSS/mystyle-main.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .category-container {
-            margin: 40px 0;
-        }
-        .category-title {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .product-flex {
-            display: flex;
-            overflow-x: auto;
-            padding: 10px;
-            gap: 10px;
-        }
-        .product-card {
-            border: 1px solid #ffffff;
-            padding: 10px;
-            text-align: center;
-            min-width: 200px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
-            min-width: 250px;
-        }
-    </style>
+ 
 </head>
 <body>
-    <table class="header" border="0">
-        <tr>
-            <td class="logo"><img src="/images/e-store.png"  alt="e-store"></td>
-            <td>
-                <div class="search">
-                    <input type="text" placeholder='anything in your mind?'>
-                    <input type="submit" value="Search">
-                </div>
-            </td>
-            <td>
-                <div style="padding-left: 30px; text-align: center;">
-                    <a href="#"><img src="/images/shopping-cart-3.png" alt="CART" style="color: #FFCC00;"></a><br>
-                    <b style="color:#FFCC00; font-size: 15px;">Cart</b>
-                </div>
-            </td>
-            <td>
-                <div style="padding-left: 30px; padding-top: 0px; text-align: center;"> 
-                    <a href="#"><img src="/images/like-2.png" alt="WishList" style="color: #FFCC00;"></a><br>
-                    <b style="color:#FFCC00; font-size: 15px;">WishList</b>
-                </div>
-            </td>
-            <td style="width: 100%;"></td>
-            <td>
-                <div class="signin">
-                    <a href="/signIn.html">Sign In</a>
-                </div>
-            </td>
-        </tr>
-    </table>
+    <header>
+        <table class="header" border="0">
+            <tr>
+                <td class="logo"><a href="index.html"><img src="images/e-store-2.png"  alt="e-store"></a></td>
+                <td>
+                    <div class="search">
+                        <input type="text" placeholder='search...'>
+                        <button type="submit"><img src="images/search-solid.svg" alt="search"></button>
+                    </div>
+                </td>
+                <td>
+                    <div style="padding-left: 30px; text-align: center; position: relative;">
+                        <a href="cart.html">
+                            <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
+                            Cart <div id="cart-count" class="cart-count" style="display: none;"><script>totalProductsInCart</script></div>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div style="padding-left: 30px; padding-top: 0px; text-align: center;"> 
+                        <a href="wishlist.html"><img src="images/like-2.png" alt="WishList" ><br>WishList</a>
+                        
+                    </div>
+                </td>
+                <td>
+                    <div class="signin">
+                        <a href="signIn.html">Sign In</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </header>
 
-    <table class="categories" border="0">
-        <tr>
-            <td width="18%"></td>
-            <td class="c-item"><h4><a href="">Home appliances</a></h4></td>
-            <td class="c-item"><h4><a href="">Digital cards</a></h4></td>
-            <td class="c-item"><h4><a href="">Cameras</a></h4></td>
-            <td class="c-item"><h4><a href="/GC-category.html">Games consoles</a></h4></td>
-        </tr>
-    </table>
+    <div class="nav-container">
+        <nav>
+            <table class="categories" border="0">
+                <tr>
+                    <td class="c-item"><h4><a href="">Home Appliances</a></h4></td>
+                    <td class="c-item"><h4><a href="">TV's</a></h4></td>
+                    <td class="c-item"><h4><a href="">Cameras</a></h4></td>
+                    <td class="c-item"><h4><a href="GC-category.html">Games Consoles</a></h4></td>
+                </tr>
+            </table>
+        </nav>
+    </div>
 
     <div class="category-container">
         <div class="category-title">Games Consoles</div>
@@ -77,46 +61,95 @@
     <footer class="footer">
         <table border="0">
             <tr>
-                <td class="logo-f"><img src="/images/e-store.png" height="150px" width="150px" alt="e-store"></td>
-                <td><h3>Find Us</h3></td>
+               <div>
+                <td class="logo-f"><img src="images/e-store-2.png" height="150px" width="150px" alt="e-store"></td>
+               </div>
+                <div class="footer-element">
+                    <td><h3>Find Us</h3></td>
                 <td>
-                    <div class="social-media"><img src="/images/social-media/twitter (1).png" alt="X"></div>
+                    <div class="social-media"><img src="images/social-media/twitter (1).png" alt="X"></div>
                 </td>
                 <td>
-                    <div class="social-media"><img src="/images/social-media/facebook (1).png" alt="facebook"></div>
+                    <div class="social-media"><img src="images/social-media/facebook (1).png" alt="facebook"></div>
                 </td>
                 <td>
-                    <div class="social-media"><img src="/images/social-media/tik-tok (1).png" alt="tiktok"></div>
+                    <div class="social-media"><img src="images/social-media/tik-tok (1).png" alt="tiktok"></div>
                 </td>
                 <td>
-                    <div class="social-media"><img src="/images/social-media/instagram (1).png" alt="instagram"></div>
+                    <div class="social-media"><img src="images/social-media/instagram (1).png" alt="instagram"></div>
                 </td>
-                <td><div style="width:100px;"></div></td>
-                <td><h3>E-mail: </h3></td>
-                <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#FFCC00;"><h3>myEmail@example.com</h3></a></td>
-                <td><div style="width:100px;"></div></td>
-                <td><h3>Call Center: </h3></td>
-                <td><h3 style="color:#FFCC00;">8001207669</h3></td>
-                <td><div style="width:100px;"></div></td>
-                <td><h3 style="color:#FFCC00;">About Us</h3></td>
+                </div>
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3>E-mail: </h3></td>
+                    <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#FFCC00;"><h3>myEmail@example.com</h3></a></td>
+                </div></td>
+               
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3>Call Center: </h3></td>
+                    <td><h3 style="color:#FFCC00;">8001207669</h3></td>
+                </div></td>
+               
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3 style="color:#FFCC00;">About Us</h3></td>
+                </div></td>
+                
             </tr>
         </table>
     </footer>
 
     <script>
-        const gamesConsoles_discount = [
-            { id: 1, oldPrice: 400, newPrice: 350, imageUrl: 'https://via.placeholder.com/150?text=Console+1', discount: 12.5 },
-            { id: 2, oldPrice: 500, newPrice: 450, imageUrl: 'https://via.placeholder.com/150?text=Console+2', discount: 10 },
-            { id: 3, oldPrice: 600, newPrice: 540, imageUrl: 'https://via.placeholder.com/150?text=Console+3', discount: 10 },
-            { id: 4, oldPrice: 700, newPrice: 630, imageUrl: 'https://via.placeholder.com/150?text=Console+4', discount: 10 },
-            { id: 5, oldPrice: 800, newPrice: 720, imageUrl: 'https://via.placeholder.com/150?text=Console+5', discount: 10 },
-        ];
+        // Global arrays to hold products for each category
+
+        let totalProductsInCart = 0;
+
+// Function to update the cart count in the UI and localStorage
+function updateCartIcon() {
+    const cartIcon = document.getElementById('cart-count'); // Get the cart count element
+    if (totalProductsInCart > 0) {
+        cartIcon.textContent = totalProductsInCart; // Update the text content
+        cartIcon.style.display = 'block'; // Show the cart count
+    } else {
+        cartIcon.style.display = 'none'; // Hide the cart count if there are no products
+    }
+}
+
+
+// Function to add products to the cart
+function buyProduct(productId) {
+    totalProductsInCart++; // Increment the total products in cart
+    updateCartIcon(); // Update the cart icon
+    alert(`Product ${productId} purchased!`);
+}
+
+
+const gamesConsloes_discount = [
+{ id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20 },
+{ id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25 },
+{ id: 3, oldPrice: 90, newPrice: 70, imageUrl: 'https://via.placeholder.com/150?text=Product+3', discount: 22.22 },
+{ id: 4, oldPrice: 200, newPrice: 160, imageUrl: 'https://via.placeholder.com/150?text=Product+4', discount: 20 },
+{ id: 5, oldPrice: 75, newPrice: 60, imageUrl: 'https://via.placeholder.com/150?text=Product+5', discount: 20 },
+{ id: 6, oldPrice: 120, newPrice: 90, imageUrl: 'https://via.placeholder.com/150?text=Product+6', discount: 25 },
+{ id: 7, oldPrice: 55, newPrice: 50, imageUrl: 'https://via.placeholder.com/150?text=Product+7', discount: 9.09 },
+{ id: 8, oldPrice: 300, newPrice: 240, imageUrl: 'https://via.placeholder.com/150?text=Product+8', discount: 20 },
+{ id: 9, oldPrice: 85, newPrice: 65, imageUrl: 'https://via.placeholder.com/150?text=Product+9', discount: 23.53 },
+{ id: 10, oldPrice: 110, newPrice: 88, imageUrl: 'https://via.placeholder.com/150?text=Product+10', discount: 20 },
+{ id: 11, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20 },
+{ id: 12, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25 },
+{ id: 13, oldPrice: 90, newPrice: 70, imageUrl: 'https://via.placeholder.com/150?text=Product+3', discount: 22.22 },
+{ id: 14, oldPrice: 200, newPrice: 160, imageUrl: 'https://via.placeholder.com/150?text=Product+4', discount: 20 },
+{ id: 15, oldPrice: 75, newPrice: 60, imageUrl: 'https://via.placeholder.com/150?text=Product+5', discount: 20 },
+{ id: 16, oldPrice: 120, newPrice: 90, imageUrl: 'https://via.placeholder.com/150?text=Product+6', discount: 25 },
+{ id: 17, oldPrice: 55, newPrice: 50, imageUrl: 'https://via.placeholder.com/150?text=Product+7', discount: 9.09 },
+{ id: 18, oldPrice: 300, newPrice: 240, imageUrl: 'https://via.placeholder.com/150?text=Product+8', discount: 20 },
+{ id: 19, oldPrice: 85, newPrice: 65, imageUrl: 'https://via.placeholder.com/150?text=Product+9', discount: 23.53 },
+{ id: 20, oldPrice: 110, newPrice: 88, imageUrl: 'https://via.placeholder.com/150?text=Product+10', discount: 20 }
+];
+
 
         // Function to display products in a specified container
         function displayProducts(productArray, containerId) {
             const productContainer = document.getElementById(containerId);
             productContainer.innerHTML = ''; // Clear previous products
-
             productArray.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
@@ -125,11 +158,17 @@
                     <h3>Product ${product.id}</h3>
                     <p class="old-price">$${product.oldPrice.toFixed(2)}</p>
                     <p class="new-price">$${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
-                    <button onclick="addToWishlist(${product.id})">Add to Wishlist</button>
-                    <button onclick="buyProduct(${product.id})">Buy</button>
+                    <div style="display:flex;">
+                         <button onclick="addToWishlist(${product.id})" style="border-radius:50px;"><i class="fa-solid fa-heart"></i></button>
+                    <button onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">Add to Cart &nbsp<i class="fa-sharp fa-solid fa-cart-plus"></i></button>
+                        </div>
                 `;
                 productContainer.appendChild(productCard);
             });
+        }
+        // Function to display all products in their respective categories
+        function displayAllProducts() {
+            displayProducts(gamesConsloes_discount, 'gamesConsoles-container');
         }
 
         // Functions for button actions
@@ -137,12 +176,20 @@
             alert(`Product ${productId} added to wishlist!`);
         }
 
-        function buyProduct(productId) {
-            alert(`Product ${productId} purchased!`);
-        }
 
-        // Initialize by displaying games consoles products
-        displayProducts(gamesConsoles_discount, 'gamesConsoles-container');
+
+        // Initialize by displaying all products
+       
+       // Global variable to keep track of products in cart
+
+
+       
+
+// Function to update the cart count in the UI and localStorage
+
+
+// Initialize by displaying all products
+displayAllProducts();   
     </script>
 </body>
 </html>

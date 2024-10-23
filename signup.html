@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="/myStyle-signin.css">
+    <link rel="stylesheet" type="text/css" href="css/myStyle-signin.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
+    <title>Sign Up</title>
 </head>
 <body>
+    <div id="hiddenMessage"> Your Account Has Been Made Successfully!</div>
     <center>
         <div class="sign-in">
-            <img src="/images/e-store-2.png" alt="logo">
-            <form action="">
+            <img src="images/e-store-2.png" alt="logo">
+            <form action="signIn.html" id="myForm">
                 <div class="signin-field">
                     <p style="margin:0;text-align: left;font-weight: 600;color: #FFCC00; font-size: 18px;">UserName </p>  
                     <input type="text" name="username" placeholder="Enter username" required>
@@ -26,11 +27,24 @@
                 <br>
                 <button type="submit" style="font-size: 20px;">Sign Up</button>
                 <div class="links">
-                   Do you have an account? <a href="/signin.html">Sign In</a>
+                   Do you have an account? <a href="signin.html">Sign In</a>
                 </div>
             </form>
         </div>
     </center>
-    
+    <script>
+        // Get the form and the hidden message element
+        const form = document.getElementById('myForm');
+        const hiddenMessage = document.getElementById('hiddenMessage');
+
+        // Add event listener to handle form submission
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            hiddenMessage.style.display = 'block'; // Show the alert message
+            setTimeout(function() {
+                window.location.href = 'signIn.html'; // Redirect to index.html
+            }, 5000); // Redirect after 5 seconds
+        });
+    </script>
 </body>
 </html>

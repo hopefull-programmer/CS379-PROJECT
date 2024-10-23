@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="css/mystyle-main.css">
+<link rel="stylesheet" href="css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <table class="header" border="0">
+            <tr>
+                <td class="logo"><a href="index.html"><img src="images/e-store-2.png"  alt="e-store"></a></td>
+                <td>
+                    <div class="search">
+                        <input type="text" placeholder='search...'>
+                        <button type="submit"><img src="images/search-solid.svg" alt="search"></button>
+                    </div>
+                </td>
+               <td>
+                <div style="padding-left: 30px; text-align: center; position: relative;">
+                    <a href="cart.html">
+                        <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
+                        Cart <div id="cart-count" class="cart-count" style="display: none;"><script>totalProductsInCart</script></div>
+                    </a>
+                </div>
+                </td>
+                
+                
+                <td>
+                    <div style="padding-left: 30px; padding-top: 0px; text-align: center;"> 
+                        <a href="#"><img src="images/like-2.png" alt="WishList" ><br>WishList</a>
+                        
+                    </div>
+                </td>
+                <td>
+                    <div class="signin">
+                        <a href="signIn.html">Sign In</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </header>
+
+    <div><h2>WishList</h2></div>
+    
+    <div class="cart">
+        <div class="cart-container">
+            <div id="cart-items"></div>      
+        </div>
+    </div>
+
+    <script>
+        const cartProducts = [
+            { id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20, quantity: 1 },
+            { id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25, quantity: 1 },
+        ];
+
+        function displayProducts(productArray) {
+            const productContainer = document.getElementById('cart-items');
+            productContainer.innerHTML = ''; // Clear previous products
+            let total = 0;
+            let totalItems = 0; // Variable to hold total items count
+
+            productArray.forEach(product => {
+                total += product.newPrice * product.quantity;
+                totalItems += product.quantity; // Increment total items
+                
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+                    <div class="cart-product-details">
+                        <div class="product-name"><h3>Product ${product.id}</h3></div>
+                        <div id="product-price">
+                            <p class="old-price">${product.oldPrice.toFixed(2)}</p>
+                            <p class="new-price">${product.newPrice.toFixed(2)}</p>
+                            <div class="product-quantity">
+                                <button class="remove" onclick="removeFromCart(${product.id})"><img src="images/delete.png" alt="Remove" style="width: 15px; height: 15px;"></button>
+                                <button class="increase" onclick="increaseQuantity(${product.id})">Add To Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productContainer.appendChild(productCard);
+            });
+
+            document.getElementById('total-price').textContent = `$${total.toFixed(2)}`;
+            document.getElementById('total-items-count').textContent = totalItems; // Update the total items count
+        }
+
+        function increaseQuantity(productId) {
+            const product = cartProducts.find(item => item.id === productId);
+            if (product) {
+                product.quantity++;
+                displayProducts(cartProducts); // Refresh the cart display
+            }
+        }
+
+        function decreaseQuantity(productId) {
+            const product = cartProducts.find(item => item.id === productId);
+            if (product && product.quantity > 1) {
+                product.quantity--;
+                displayProducts(cartProducts); // Refresh the cart display
+            }
+        }
+
+        function removeFromCart(productId) {
+            const index = cartProducts.findIndex(item => item.id === productId);
+            if (index !== -1) {
+                cartProducts.splice(index, 1); // Remove the product from the array
+                displayProducts(cartProducts); // Refresh the cart display
+            }
+        }
+
+        // Initialize by displaying all products
+        displayProducts(cartProducts);
+    </script>
+    
+    <footer class="footer">
+        <table border="0">
+            <tr>
+               <div>
+                <td class="logo-f"><img src="images/e-store-2.png" height="150px" width="150px" alt="e-store"></td>
+               </div>
+                <div class="footer-element">
+                    <td><h3>Find Us</h3></td>
+                <td>
+                    <div class="social-media"><img src="images/social-media/twitter (1).png" alt="X"></div>
+                </td>
+                <td>
+                    <div class="social-media"><img src="images/social-media/facebook (1).png" alt="facebook"></div>
+                </td>
+                <td>
+                    <div class="social-media"><img src="images/social-media/tik-tok (1).png" alt="tiktok"></div>
+                </td>
+                <td>
+                    <div class="social-media"><img src="images/social-media/instagram (1).png" alt="instagram"></div>
+                </td>
+                </div>
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3>E-mail: </h3></td>
+                    <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#FFCC00;"><h3>myEmail@example.com</h3></a></td>
+                </div></td>
+               
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3>Call Center: </h3></td>
+                    <td><h3 style="color:#FFCC00;">8001207669</h3></td>
+                </div></td>
+               
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3 style="color:#FFCC00;">About Us</h3></td>
+                </div></td>
+                
+            </tr>
+        </table>
+    </footer>
+</body>
+</html>

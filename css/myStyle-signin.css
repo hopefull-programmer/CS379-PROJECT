@@ -106,7 +106,9 @@ div.signin-field input{
     flex: 1;
     margin: 0 10px;
     min-width: 300px;
+
 }
+
 table {
     width: 100%;
 }
@@ -174,9 +176,22 @@ input {
 }
 
 .payment-methods img{
-    margin: 0px 15px;
+    margin:  0 15px 0 15px;
     width: 50px;
     height: 50px;
 }
 
 
+
+
+#hiddenMessage {
+    display: none; /* Initially hidden */
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    text-align: center; /* Center the text */
+    background-color: dodgerblue;
+    opacity:0.7 ;
+    color: white;
+    font-weight:600;
+}

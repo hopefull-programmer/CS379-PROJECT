@@ -1,43 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="/myStyle-signin.css">
+    <link rel="stylesheet" type="text/css" href="css/myStyle-signin.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
 </head>
 <body>
     <center>
+        <div id="hiddenMessage" style="display: none; color: #FFCC00; font-size: 18px;"></div>
         <div class="sign-in">
-            <img src="/images/e-store-2.png" alt="logo">
-            <form action="">
+            <img src="images/e-store-2.png" alt="logo">
+            <form id="signin-form" onsubmit="handleSignIn(event)">
                 <div class="signin-field">
-                    <p style="margin:0;text-align: left;font-weight: 600;color: #FFCC00; font-size: 18px;">UserName </p>  
+                    <p style="margin:0;text-align: left;font-weight: 600;color: #FFCC00; font-size: 18px;">UserName</p>  
                     <input type="text" name="username" placeholder="Enter user name" required>
                 </div>
-                <div class="signin-field" >
-                <div style="width: 700px;"><p style="margin:0; text-align:left; font-weight:600;color: #FFCC00;font-size: 18px;">Password<a href="forgotpass.html" style="padding-left:200px; text-decoration: none;color:#007bff; font-size: 15px; font-weight: 100;">Forgot Password?</a></p></div>
+                <div class="signin-field">
+                    <div style="width: 700px;">
+                        <p style="margin:0; text-align:left; font-weight:600;color: #FFCC00;font-size: 18px;">
+                            Password<a href="forgotpass.html" style="padding-left:200px; text-decoration: none;color:#007bff; font-size: 15px; font-weight: 100;">Forgot Password?</a>
+                        </p>
+                    </div>
                     <input type="password" name="password" placeholder="Enter password" required><br>
-                    <h4 style="text-align: left; padding-bottom: 0px; color: #FFCC00;font-size: 18px;">choose your account type</h4>
+                    <h4 style="text-align: left; padding-bottom: 0px; color: #FFCC00;font-size: 18px;">Choose your account type</h4>
                     <div class="usertype"> 
                         <label>
                             <input type="radio" name="userType" value="administrator"> 
-                            <h4> &nbsp;Administrator</h4>
+                            <h4>&nbsp;Administrator</h4>
                         </label>
                         <label>
                             <input type="radio" name="userType" value="user"> 
-                            <h4> &nbsp;User</h4>
+                            <h4>&nbsp;User</h4>
                         </label>
                     </div>
                 </div>
                 <br>
                 <button type="submit" style="font-size: 20px;">Sign In</button>
                 <div class="links">
-                    dont have an account? <a href="/signup.html">Sign Up</a>
+                    Don't have an account? <a href="signup.html">Sign Up</a>
                 </div>
             </form>
         </div>
     </center>
     
+    <script>
+        function handleSignIn(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+            
+            const form = document.getElementById('signin-form');
+            const username = form.username.value; // Get the username
+            const isSuccess=true;                                                              // Replace this with actual sign-in logic
+
+            if (isSuccess) {
+                // Store the successful sign-in status in localStorage
+                localStorage.setItem('isSignedIn', 'true');
+                
+                // Display the welcome message
+                const hiddenMessage = document.getElementById('hiddenMessage');
+                hiddenMessage.innerText = "Welcome " + username + "!";
+                hiddenMessage.style.display = 'block'; // Show the alert message
+                
+                // Redirect to index.html after 5 seconds
+                setTimeout(function() {
+                    window.location.href = 'index.html'; // Redirect to index.html
+                }, 5000); // Redirect after 5 seconds
+            }
+        }
+    </script>
 </body>
 </html>

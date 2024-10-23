@@ -2,74 +2,62 @@
 <html lang="en">
 <head>
     <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="/mystyle-main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .category-container {
-        margin: 40px 0; /* Increased vertical margin for spacing between categories */
-    }
-    .category-title {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-    .product-flex {
-        display: flex;
-        overflow-x: auto;
-        padding: 10px;
-        gap: 10px; /* Space between cards */
-    }
-    .product-card {
-        border: 1px solid #ffffff;
-        padding: 10px;
-        text-align: center;
-        min-width: 200px; /* Minimum width for each card */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0); 
-        min-width: 250px;
-    }
-    
-    </style>
+    <link rel="stylesheet" href="css/mystyle-main.css">
+<link rel="stylesheet" href="css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <table class="header" border="0">
-        <tr>
-            <td class="logo"><img src="/images/e-store.png"  alt="e-store"></td>
-            <td>
-                <div class="search">
-                    <input type="text" placeholder='anything in your mind?'>
-                    <input type="submit" value="Search">
+    <header>
+        <table class="header" border="0">
+            <tr>
+                <td class="logo"><a href="#"><img src="images/e-store-2.png"  alt="e-store"></a></td>
+                <td>
+                    <div class="search">
+                        <input type="text" placeholder='search...'>
+                        <button type="submit"><img src="images/search-solid.svg" alt="search"></button>
+                    </div>
+                </td>
+               <td>
+                <div style="padding-left: 30px; text-align: center; position: relative;">
+                    <a href="cart.html">
+                        <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
+                        Cart <div id="cart-count" class="cart-count" style="display: none;"><script>totalProductsInCart</script></div>
+                    </a>
                 </div>
-            </td>
-            <td>
-                <div style="padding-left: 30px; text-align: center;">
-                    <a href="#"><img src="/images/shopping-cart-3.png" alt="CART" style="color: #FFCC00;"></a><br>
-                    <b style="color:#FFCC00; font-size: 15px;">Cart</b>
-                </div>
-            </td>
-            <td>
-                <div style="padding-left: 30px; padding-top: 0px; text-align: center;"> 
-                    <a href="#"><img src="/images/like-2.png" alt="WishList" style="color: #FFCC00;"></a><br>
-                    <b style="color:#FFCC00; font-size: 15px;">WishList</b>
-                </div>
-            </td>
-            <td style="width: 100%;"></td>
-            <td>
-                <div class="signin">
-                    <a href="/signIn.html">Sign In</a>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <table class="categories" border="0">
-        <tr>
-            <td width="18%"></td>
-            <td class="c-item"><h4><a href="">Home appliances</a></h4></td>
-            <td class="c-item"><h4><a href="">Digital cards</a></h4></td>
-            <td class="c-item"><h4><a href="">Cameras</a></h4></td>
-            <td class="c-item"><h4><a href="/GC-category.html">Games consoles</a></h4></td>
-        </tr>
-    </table>
+                </td>
+                
+                
+                <td>
+                    <div style="padding-left: 30px; padding-top: 0px; text-align: center;"> 
+                        <a href="wishlist.html"><img src="images/like-2.png" alt="WishList" ><br>WishList</a>
+                        
+                    </div>
+                </td>
+                <td>
+                    <div class="signin">
+                     <a href="signIn.html" id="signin-link">Sign In</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </header>
+    <div class="nav-container">
+        <nav>
+            <table class="categories" border="0">
+                <tr>
+                    <td class="c-item"><h4><a href="">Home Appliances</a></h4></td>
+                    <td class="c-item"><h4><a href="">TV's</a></h4></td>
+                    <td class="c-item"><h4><a href="">Cameras</a></h4></td>
+                    <td class="c-item"><h4><a href="GC-category.html">Games Consoles</a></h4></td>
+                </tr>
+            </table>
+        </nav>
+    </div>
     <div class="offers">
-        <img src="/images/offers.png" height="300px" alt="offers">
+        <img src="images/offers.png" height="300px" alt="offers">
     </div>
 
     <!-- Product Display for Each Category -->
@@ -96,7 +84,28 @@
     <div class="space"></div>
 
     <script>
-        // Global arrays to hold products for each category
+
+        let totalProductsInCart = 0;
+
+// Function to update the cart count in the UI and localStorage
+function updateCartIcon() {
+    const cartIcon = document.getElementById('cart-count'); // Get the cart count element
+    if (totalProductsInCart > 0) {
+        cartIcon.textContent = totalProductsInCart; // Update the text content
+        cartIcon.style.display = 'block'; // Show the cart count
+    } else {
+        cartIcon.style.display = 'none'; // Hide the cart count if there are no products
+    }
+}
+
+
+// Function to add products to the cart
+function buyProduct(productId) {
+    totalProductsInCart++; // Increment the total products in cart
+    updateCartIcon(); // Update the cart icon
+    alert(`Product ${productId} purchased!`);
+}
+
         const homeappliances_discount = [
 { id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20 },
 { id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25 },
@@ -160,8 +169,11 @@ const gamesConsloes_discount = [
                     <h3>Product ${product.id}</h3>
                     <p class="old-price">$${product.oldPrice.toFixed(2)}</p>
                     <p class="new-price">$${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
-                    <button onclick="addToWishlist(${product.id})">Add to Wishlist</button>
-                    <button onclick="buyProduct(${product.id})">Buy</button>
+                    <div style="display:flex;">
+                         <button onclick="addToWishlist(${product.id})" style="border-radius:50px;"><i class="fa-solid fa-heart"></i></button>
+                    <button onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">Add to Cart &nbsp<i class="fa-sharp fa-solid fa-cart-plus"></i></button>
+                        </div>
+                   
                 `;
                 productContainer.appendChild(productCard);
             });
@@ -180,45 +192,72 @@ const gamesConsloes_discount = [
             alert(`Product ${productId} added to wishlist!`);
         }
 
-        function buyProduct(productId) {
-            alert(`Product ${productId} purchased!`);
-        }
+
 
         // Initialize by displaying all products
-        displayAllProducts();
-        
+       
+       // Global variable to keep track of products in cart
+
+
+       
+
+// Function to update the cart count in the UI and localStorage
+
+
+// Initialize by displaying all products
+displayAllProducts();
+
         
     </script>
     
     <footer class="footer">
         <table border="0">
             <tr>
-                <td class="logo-f"><img src="/images/e-store.png" height="150px" width="150px" alt="e-store"></td>
-                <td><h3>Find Us</h3></td>
+               <div>
+                <td class="logo-f"><img src="images/e-store-2.png" height="150px" width="150px" alt="e-store"></td>
+               </div>
+                <div class="footer-element">
+                    <td><h3>Find Us</h3></td>
                 <td>
-                    <div class="social-media"><img src="/images/social-media/twitter (1).png" alt="X"></div>
+                    <div class="social-media"><img src="images/social-media/twitter (1).png" alt="X"></div>
                 </td>
                 <td>
-                    <div class="social-media"><img src="/images/social-media/facebook (1).png" alt="facebook"></div>
+                    <div class="social-media"><img src="images/social-media/facebook (1).png" alt="facebook"></div>
                 </td>
                 <td>
-                    <div class="social-media"><img src="/images/social-media/tik-tok (1).png" alt="tiktok"></div>
+                    <div class="social-media"><img src="images/social-media/tik-tok (1).png" alt="tiktok"></div>
                 </td>
                 <td>
-                    <div class="social-media"><img src="/images/social-media/instagram (1).png" alt="instagram"></div>
+                    <div class="social-media"><img src="images/social-media/instagram (1).png" alt="instagram"></div>
                 </td>
-                <td><div style="width:100px;"></div></td>
-                <td><h3>E-mail: </h3></td>
-                <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#FFCC00;"><h3>myEmail@example.com</h3></a></td>
-                <td><div style="width:100px;"></div></td>
-                <td><h3>Call Center: </h3></td>
-                <td><h3 style="color:#FFCC00;">8001207669</h3></td>
-                <td><div style="width:100px;"></div></td>
-                <td><h3 style="color:#FFCC00;">About Us</h3></td>
+                </div>
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3>E-mail: </h3></td>
+                    <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#FFCC00;"><h3>myEmail@example.com</h3></a></td>
+                </div></td>
+               
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3>Call Center: </h3></td>
+                    <td><h3 style="color:#FFCC00;">8001207669</h3></td>
+                </div></td>
+               
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3 style="color:#FFCC00;">About Us</h3></td>
+                </div></td>
+                
             </tr>
         </table>
     </footer>
 </body>
 </html>
 
+<script>
+     const isSignedIn = localStorage.getItem('isSignedIn');
 
+if (isSignedIn) {
+    // Update the sign-in link to a profile picture
+    const signinLink = document.getElementById('signin-link');
+    signinLink.innerHTML = ' <img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">';
+    signinLink.href = 'profile.html'; // Change this to the desired profile page
+}
+</script>
