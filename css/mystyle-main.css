@@ -9,17 +9,26 @@ body {
 
 .header {
     margin: 0;
-    padding-top: 10px;
+    padding: 0px 30px; 
     background-color: #0e6bd6;
     display: flex; 
     align-items: center;
-    justify-content: start;
+    justify-content: space-between;
     height: auto;
     width: auto;
     color: #00e1ff; 
     font-size: 17px;
-    
+    width: 100%;
 }
+
+
+/* Ensure items are spaced properly */
+/* Align items vertically */
+
+.header td {
+    padding: 0 15px; /* Adjust padding for header items */
+}
+
 
 .header a{
     text-decoration: none;
@@ -199,9 +208,15 @@ position:relative;
     scroll-behavior: smooth; /* Smooth scrolling effect */
     width: 80%; /* Set a fixed width for the container */
     margin: 20px 10px; /* Adds space around the product container */
-    white-space: nowrap; /* Prevents items from wrapping */
+    white-space: nowrap; /* Allow horizontal scrolling */
+   /* Prevents items from wrapping */
 }
 
+.product-container {
+    padding: 10px; 
+    overflow-x: auto; 
+    display: flex;
+}
 .product-card {
     background: rgb(255, 255, 255);
     border-radius: 5px;
@@ -403,4 +418,36 @@ min-width: 40px;
 .decrease{
 background-color: darkgrey;
 min-width: 40px;
+}
+
+.signout {
+    display: none; /* Hidden by default */
+    position: absolute; /* Position it relative to the avatar */
+    top: 60px; /* Adjust as needed */
+    left: -10px; /* Adjust as needed */
+    width: 120px; /* Width of the sign-out button */
+}
+
+
+#avatar-link img {
+    transition: opacity 0.3s; /* Smooth transition */
+}
+
+#avatar-link:hover img {
+    opacity: 0.7; /* Change opacity on hover */
+}
+
+.signout {
+    display: none; /* Initially hidden */
+}
+
+#avatar-link:hover + .signout {
+    display: block; /* Show on hover over the avatar */
+}
+#signout-button {
+    transition: opacity 0.3s; /* Smooth transition */
+}
+
+#signout-button:hover {
+    opacity: 0.7; /* Change opacity on hover */
 }

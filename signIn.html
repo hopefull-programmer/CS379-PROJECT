@@ -26,11 +26,11 @@
                     <h4 style="text-align: left; padding-bottom: 0px; color: #FFCC00;font-size: 18px;">Choose your account type</h4>
                     <div class="usertype"> 
                         <label>
-                            <input type="radio" name="userType" value="administrator"> 
+                            <input type="radio" name="userType" value="administrator" > 
                             <h4>&nbsp;Administrator</h4>
                         </label>
                         <label>
-                            <input type="radio" name="userType" value="user"> 
+                            <input type="radio" name="userType" value="user" > 
                             <h4>&nbsp;User</h4>
                         </label>
                     </div>
@@ -47,26 +47,44 @@
     <script>
         function handleSignIn(event) {
             event.preventDefault(); // Prevent the form from submitting normally
-            
+    
             const form = document.getElementById('signin-form');
             const username = form.username.value; // Get the username
-            const isSuccess=true;                                                              // Replace this with actual sign-in logic
-
-            if (isSuccess) {
+            const password = form.password.value; // Get the password
+    
+            // Predefined username and password for validation
+            const validUsername = 'user'; // Replace with your actual username
+            const validPassword = '123'; // Replace with your actual password
+    
+            // Check if the entered username and password match the predefined ones
+            if (username === validUsername && password === validPassword) {
                 // Store the successful sign-in status in localStorage
                 localStorage.setItem('isSignedIn', 'true');
                 
-                // Display the welcome message
+                // Display welcome message
                 const hiddenMessage = document.getElementById('hiddenMessage');
-                hiddenMessage.innerText = "Welcome " + username + "!";
-                hiddenMessage.style.display = 'block'; // Show the alert message
+                hiddenMessage.innerText = `Welcome, ${username}!`;
+                hiddenMessage.style.display = 'block'; // Show the welcome message
                 
-                // Redirect to index.html after 5 seconds
+                // Redirect to index.html after a short delay
                 setTimeout(function() {
                     window.location.href = 'index.html'; // Redirect to index.html
-                }, 5000); // Redirect after 5 seconds
+                }, 2500); // Adjust as necessary
+            } else {
+               
+                // Handle unsuccessful login
+                const hiddenMessage = document.getElementById('hiddenMessage');
+                hiddenMessage.innerText = "Invalid username or password.";
+                hiddenMessage.style.position = 'relative'; 
+                hiddenMessage.style.display = 'block'; 
+                setTimeout(function(){
+                        hiddenMessage.style.display = 'none';// Show the welcome message
+               },2500)// Show the alert message
             }
         }
     </script>
+    
+    
+    
 </body>
 </html>

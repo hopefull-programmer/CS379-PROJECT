@@ -6,9 +6,12 @@
 <link rel="stylesheet" href="css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
+<style>
 
+</style>
 <body>
     <header>
         <table class="header" border="0">
@@ -28,17 +31,22 @@
                     </a>
                 </div>
                 </td>
-                
-                
                 <td>
                     <div style="padding-left: 30px; padding-top: 0px; text-align: center;"> 
                         <a href="wishlist.html"><img src="images/like-2.png" alt="WishList" ><br>WishList</a>
-                        
                     </div>
                 </td>
-                <td>
-                    <div class="signin">
-                     <a href="signIn.html" id="signin-link">Sign In</a>
+                <td style="text-align: right; padding-right: 30px; position: relative; left: 770px;">
+                    <div style="display: flex; align-items: center; justify-content: flex-end; position: relative; width: 100%;">
+                        <a href="#" id="avatar-link" style="margin-right: 10px;">
+                            <img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">
+                        </a>
+                        <div class="signout" style="display: none; position: absolute; top: 60px; left: -10px;width: 120px;">
+                            <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
+                                <h3 style="margin: 0;">Sign Out</h3>
+                                <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
+                            </button>
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -63,24 +71,23 @@
     <!-- Product Display for Each Category -->
     <div class="category-container" style="padding-bottom: 150px;">
         <div class="category-title">Home Appliances</div>
-        <div class="product-flex" id="homeappliances-container"></div>
+        <div id="homeappliances-container" class="product-container"></div>
     </div>
 
     <div class="category-container" style="padding-bottom: 150px;">
-        <div class="category-title">Digital Cards</div>
-        <div class="product-flex" id="digitalCards-container"></div>
+        <div class="category-title">TV's</div>
+        <div id="digitalCards-container" class="product-container"></div>
     </div>
 
     <div class="category-container" style="padding-bottom: 150px;">
         <div class="category-title">Cameras</div>
-        <div class="product-flex" id="cameras-container"></div>
+        <div id="cameras-container" class="product-container"></div>
     </div>
 
     <div class="category-container" style="padding-bottom: 0px;">
         <div class="category-title">Games Consoles</div>
-        <div class="product-flex" id="gamesConsoles-container"></div>
+        <div id="gamesConsoles-container" class="product-container"></div>
     </div>
-
     <div class="space"></div>
 
     <script>
@@ -173,7 +180,6 @@ const gamesConsloes_discount = [
                          <button onclick="addToWishlist(${product.id})" style="border-radius:50px;"><i class="fa-solid fa-heart"></i></button>
                     <button onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">Add to Cart &nbsp<i class="fa-sharp fa-solid fa-cart-plus"></i></button>
                         </div>
-                   
                 `;
                 productContainer.appendChild(productCard);
             });
@@ -198,7 +204,18 @@ const gamesConsloes_discount = [
        
        // Global variable to keep track of products in cart
 
+       document.getElementById('avatar-link').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    const signoutDiv = document.querySelector('.signout');
+    signoutDiv.style.display = signoutDiv.style.display === 'none' ? 'flex' : 'none'; // Toggle visibility
+});
 
+// Sign out functionality
+document.getElementById('signout-button').addEventListener('click', function() {
+    localStorage.setItem('isSignedIn', 'false'); // Update sign-in status
+    alert('You have signed out.'); // Alert user
+    updateSignInUI(); // Update UI after signing out
+});
        
 
 // Function to update the cart count in the UI and localStorage
@@ -252,12 +269,22 @@ displayAllProducts();
 </html>
 
 <script>
-     const isSignedIn = localStorage.getItem('isSignedIn');
+    // Check the sign-in status on page load
+    const isSignedIn = localStorage.getItem('isSignedIn');
 
-if (isSignedIn) {
-    // Update the sign-in link to a profile picture
-    const signinLink = document.getElementById('signin-link');
-    signinLink.innerHTML = ' <img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">';
-    signinLink.href = 'profile.html'; // Change this to the desired profile page
-}
+    // Reset sign-in status when the page is being unloaded
+
+    // Update UI based on sign-in status
+    function updateSignInUI() {
+        const signinLink = document.getElementById('signin-link');
+        if (isSignedIn === 'true') {
+            signinLink.innerHTML = '<img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">';
+            signinLink.href = 'profile.html'; // Change to the desired profile page
+        } else {
+            signinLink.textContent = 'Sign In'; // Ensure default text is displayed if not signed in
+        }
+    }
+
+    // Call the function to update the UI
+    updateSignInUI();
 </script>
