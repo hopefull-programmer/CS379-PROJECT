@@ -60,21 +60,23 @@ color: #4790df;
 
 
 .c-item {
-padding: 0 70px
+padding: 0 70px;
+margin: 0;
 }
 
-.c-item a {
-    color: aliceblue; 
-    font-size: 18px; 
-    text-decoration: none; 
+.c-item img {
     padding: 10px; 
-    transition: color 0.2s ease;
-   
+    height: 30px;
+    width: 30px;
 }
 
-.c-item a:hover {
-    color: #00e1ff;
+td.c-item{
+    color: #ffffff;
+    font-size: 13px; 
+    text-align: center;
+    text-decoration: none;
 }
+
 
 div.search {
     padding-left: 15px;
@@ -250,8 +252,10 @@ div.signin a{
 
 .category-title {
     font-size: 24px;
-    margin-bottom: 10px;
+    margin: 30px 0 30px 40px ;
 }
+
+
 .product-flex {
     overflow-x: auto;
     padding: 10px;
@@ -486,27 +490,49 @@ background-color: darkgrey;
 min-width: 40px;
 }
 
-.ad-slider img {
-    width: 100%; /* Adjust width as needed */
-    height: 30%; /* Maintain aspect ratio */
-    transition: opacity 1s;
-    display: block;
-    margin: 0 auto; /* Center the image */
-}
-
 .ad-slider {
     position: relative;
-    width: 100%;
+    width: 80%;
     overflow: hidden;
+    margin: 20px 0;
+    height: 70%; /* Set height based on your image's aspect ratio */
 }
 
 #ad-image {
-    width: auto;
-    height: auto;
-    transition: opacity ease-in;
+    width: 100%; /* Make image fill the width of the container */
+    height: 70%; /* Set height to fill the container *//* Ensure the image covers the container */
+    transition: opacity 1s;
+    object-fit: fill;
+    display: block; /* Ensure block display */
+    margin: 0 auto; /* Center the image */
+}
+
+.button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#prev-ad {
+    left: 10px; /* Position left button */
+}
+
+#next-ad {
+    right: 10px; /* Position right button */
 }
 .category-images {
     margin: 20px 0;
+}
+
+.category-item a{
+    text-decoration: none;
+    color:#007bff;
+    font-size: 20px;
 }
 
 .category-item img {

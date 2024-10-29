@@ -62,39 +62,38 @@
         <nav>
             <table class="categories" border="0">
                 <tr>
-                    <td class="c-item"><h4><a href="">Home Appliances</a></h4></td>
-                    <td class="c-item"><h4><a href="">TV's</a></h4></td>
-                    <td class="c-item"><h4><a href="">Cameras</a></h4></td>
-                    <td class="c-item"><h4><a href="GC-category.html">Games Consoles</a></h4></td>
+                    <td class="c-item"><img src="images/delivery-van.png" alt=""><br><b>Free Delivery</b></td>
+                    <td class="c-item"><img src="images/return.png" alt=""><br><b>Free Return</b></td>
+                    <td class="c-item"><img src="images/fast-delivery.png" alt=""><br><b>Fast Delivery</b></td>
                 </tr>
             </table>
         </nav>
     </div>
-    <div class="ad-slider" style="position: relative; width: 100%; overflow: hidden; margin: 20px 0;">
-        <img id="ad-image" src="https://via.placeholder.com/600x300?text=Ad+1" alt="Advertisement" style="width: 80%; height: auto; transition: opacity 1s; display: block; margin: 0 auto;">
-        <div style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">
-            <button id="prev-ad" style="background-color: rgba(0, 0, 0, 0.5); color: white; border: none; border-radius: 5px; padding: 10px;">&lt;</button>
+    <div class="ad-slider">
+        <img id="ad-image" src="https://via.placeholder.com/600x300?text=Ad+1" alt="Advertisement">
+        <div id="prev-ad" class="button">
+            <button>&lt;</button>
         </div>
-        <div style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">
-            <button id="next-ad" style="background-color: rgba(0, 0, 0, 0.5); color: white; border: none; border-radius: 5px; padding: 10px;">&gt;</button>
+        <div id="next-ad" class="button">
+            <button>&gt;</button>
         </div>
     </div>
     <div class="category-images" style="display: flex; justify-content: space-around; margin: 20px 0;">
         <div class="category-item" style="text-align: center;">
-            <img src="https://via.placeholder.com/150?text=Home+Appliances" alt="Home Appliances" style="border-radius: 50%; width: 150px; height: 150px;">
-            <h4>Home Appliances</h4>
+            <a href="HA.html"><img src="https://via.placeholder.com/150?text=Home+Appliances" alt="Home Appliances" style="border-radius: 50%; width: 150px; height: 150px;">
+                <h4>Home Appliances</h4></a>
         </div>
         <div class="category-item" style="text-align: center;">
-            <img src="https://via.placeholder.com/150?text=TVs" alt="TVs" style="border-radius: 50%; width: 150px; height: 150px;">
-            <h4>TVs</h4>
+           <a href="TV.html"> <img src="https://via.placeholder.com/150?text=TVs" alt="TVs" style="border-radius: 50%; width: 150px; height: 150px;">
+            <h4>TVs</h4></a>
         </div>
         <div class="category-item" style="text-align: center;">
-            <img src="https://via.placeholder.com/150?text=Cameras" alt="Cameras" style="border-radius: 50%; width: 150px; height: 150px;">
-            <h4>Cameras</h4>
+            <a href="Cameras-category.html"><img src="https://via.placeholder.com/150?text=Cameras" alt="Cameras" style="border-radius: 50%; width: 150px; height: 150px;">
+                <h4>Cameras</h4></a>
         </div>
         <div class="category-item" style="text-align: center;">
-            <img src="https://via.placeholder.com/150?text=Games+Consoles" alt="Games Consoles" style="border-radius: 50%; width: 150px; height: 150px;">
-            <h4>Games Consoles</h4>
+           <a href="GC-category.html"> <img src="https://via.placeholder.com/150?text=Games+Consoles" alt="Games Consoles" style="border-radius: 50%; width: 150px; height: 150px;">
+            <h4>Games Consoles</h4></a>
         </div>
     </div>
  
@@ -360,10 +359,10 @@ displayAllProducts();
 </script>
 <script>
    const adImages = [
-    "images/ad's/ad-1-e.jpg",
-    "images/ad's/ad-2-e.jpg",
-    "images/ad's/ad-3-e.jpg",
-    "images/ad's/ad-4-e.jpg",
+    "images/ad's/ad-1-2e.jpg",
+    "images/ad's/ad-2-e2.png",
+    "images/ad's/ad-3-2e.jpg",
+    "images/ad's/ad-4-2e.jpg",
 ];
 
 let currentAdIndex = 0;
