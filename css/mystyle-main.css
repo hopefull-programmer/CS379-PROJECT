@@ -22,8 +22,7 @@ body {
 }
 
 
-/* Ensure items are spaced properly */
-/* Align items vertically */
+
 
 .header td {
     padding: 0 15px; /* Adjust padding for header items */
@@ -155,7 +154,6 @@ padding: 70px 50px;
     top: -10px; /* Adjust as needed */
     right: -10px; /* Adjust as needed */
     background-color: rgb(255, 230, 0); /* Change to your preferred color */
-    color: white;
     border-radius: 50%; /* Makes it circular */
     width: 20px; /* Width of the circle */
     height: 20px; /* Height of the circle */
@@ -164,6 +162,22 @@ padding: 70px 50px;
     justify-content: center;
     font-size: 14px; 
     color: black;/* Font size */
+}
+
+.wishList-count {
+    position: absolute;
+    top: -10px; /* Adjust as needed */
+    right: -10px; /* Adjust as needed */
+    background-color:rgb(255, 230, 0); /* Change to your preferred color */
+    color: black;
+    border-radius: 50%; /* Makes it circular */
+    width: 20px; /* Width of the circle */
+    height: 20px; /* Height of the circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px; 
+    /* Font size */
 }
 
 
@@ -177,10 +191,62 @@ div.signin a{
     font-size: 20px;
 }
 
-div.signin{
-  left: 950px;
-position:relative;
+.signout {
+    display: none; /* Hidden by default */
+    position: absolute; /* Position it relative to the avatar */
+    top: 60px; /* Adjust as needed */
+    left: -10px; /* Adjust as needed */
+    width: 120px; /* Width of the sign-out button */
 }
+
+
+#avatar-link img {
+    transition: opacity 0.3s; /* Smooth transition */
+}
+
+#avatar-link:hover img {
+    opacity: 0.7; /* Change opacity on hover */
+}
+
+.signout {
+    display: none; /* Initially hidden */
+}
+
+#avatar-link:hover + .signout {
+    display: block; /* Show on hover over the avatar */
+}
+#signout-button {
+    transition: opacity 0.3s; /* Smooth transition */
+}
+
+#signout-button:hover {
+    opacity: 0.7; /* Change opacity on hover */
+}
+
+.signin-out {
+    display: flex; /* Ensure the content is centered */
+    align-items: center; /* Vertically center the items */
+    justify-content: center; /* Horizontally center the items */
+      text-align: center;                     /* Transition for scaling */
+    border-radius: 5px; /* Optional: Adds rounded corners */
+    padding: 5px; /* Add padding for better interaction */
+}
+
+.signin-out a {
+    text-decoration: none;
+    color: #00e1ff; /* Original text color */
+    transition: color 0.2s ease; /* Transition for text color */
+}
+
+ .signin-out a:hover {
+    color: #0088cc;
+}
+
+.signin-out img{
+    width: 30px;
+    height: 30px;
+}
+
 
 .category-title {
     font-size: 24px;
@@ -293,10 +359,6 @@ footer.footer table{
     justify-content: space-around;
 }
 
-.cart-element{
-    width: auto;
-    height: 180px;
-}
 
 .shipping-fee{
     display: flex;
@@ -312,13 +374,13 @@ footer.footer table{
 .cart-container {
     display: flex; /* Use Flexbox to arrange children in a row */
     justify-content: space-between;
-      /* Space between the two sections */
 }
 
 #cart-summary {
     flex: 1; /* Allow the summary to take up space */
     margin-right: 50px;
-    border: 2px solid #ccc;
+    border: 3px solid #ccc;
+    border-radius:10px ;
     padding:  20px ;
     max-width: 400px; 
      color: rgb(37, 37, 37);
@@ -327,7 +389,7 @@ footer.footer table{
 #cart-items {
     flex: 2; /* Allow the items to take up more space */ /* Optional border for better visibility */
     padding: 10px; /* Padding for better layout */
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 5px; 
 }
 
 .cart h2 {
@@ -335,7 +397,11 @@ footer.footer table{
 }
 
 .cart-element {
+    width: auto;
+    height: 180px;
+    border: 3px solid #ccc;
     margin-bottom: 20px;
+    
 }
 
 .total-price{
@@ -420,34 +486,34 @@ background-color: darkgrey;
 min-width: 40px;
 }
 
-.signout {
-    display: none; /* Hidden by default */
-    position: absolute; /* Position it relative to the avatar */
-    top: 60px; /* Adjust as needed */
-    left: -10px; /* Adjust as needed */
-    width: 120px; /* Width of the sign-out button */
+.ad-slider img {
+    width: 100%; /* Adjust width as needed */
+    height: 30%; /* Maintain aspect ratio */
+    transition: opacity 1s;
+    display: block;
+    margin: 0 auto; /* Center the image */
 }
 
-
-#avatar-link img {
-    transition: opacity 0.3s; /* Smooth transition */
+.ad-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
-#avatar-link:hover img {
-    opacity: 0.7; /* Change opacity on hover */
+#ad-image {
+    width: auto;
+    height: auto;
+    transition: opacity ease-in;
+}
+.category-images {
+    margin: 20px 0;
 }
 
-.signout {
-    display: none; /* Initially hidden */
+.category-item img {
+    border-radius: 50%; /* Makes the images round */
+    transition: transform 0.3s;
 }
 
-#avatar-link:hover + .signout {
-    display: block; /* Show on hover over the avatar */
-}
-#signout-button {
-    transition: opacity 0.3s; /* Smooth transition */
-}
-
-#signout-button:hover {
-    opacity: 0.7; /* Change opacity on hover */
+.category-item img:hover {
+    transform: scale(1.05); /* Scale effect on hover */
 }

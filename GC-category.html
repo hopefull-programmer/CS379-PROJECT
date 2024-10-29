@@ -47,23 +47,31 @@
                 </div>
                 </td>
                 <td>
-                    <div style="padding-left: 30px; padding-top: 0px; text-align: center;"> 
-                        <a href="wishlist.html"><img src="images/like-2.png" alt="WishList" ><br>WishList</a>
+                    <div style="padding-left: 30px; text-align: center; position: relative;">
+                        <a href="wishlist.html">
+                            <img src="images/like-2.png" alt="wishList" style="width: 30px; height: 30px;"><br>
+                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"><script>totalProductsInWishList</script></div>
+                        </a>
                     </div>
                 </td>
-                <td style="text-align: right; padding-right: 30px; position: relative; left: 770px;">
-                    <div style="display: flex; align-items: center; justify-content: flex-end; position: relative; width: 100%;">
-                        <a href="#" id="avatar-link" style="margin-right: 10px;">
+                <td>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; position: relative; width: 100%; margin:auto;">
+                        <a href="#" id="avatar-link" style="margin-right: 10px; display: none;">
                             <img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">
                         </a>
-                        <div class="signout" style="display: none; position: absolute; top: 60px; left: -10px;width: 120px;">
+                        <div class="signin-out">
+                            <a href="signin.html" id="signin-link">
+                                <img src="images/signin-av.png" alt="sign in"><br>Sign In
+                            </a>
+                        </div>
+                        <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
                             <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
                                 <h3 style="margin: 0;">Sign Out</h3>
                                 <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
                             </button>
                         </div>
                     </div>
-                </td>
+                </td>  
             </tr>
         </table>
     </header>
@@ -79,6 +87,27 @@
                 </tr>
             </table>
         </nav>
+    </div>
+    <div class="ad-slider" style="position: relative; width: 100%; overflow: hidden; margin: 20px 0;">
+        <img id="ad-image" src="https://via.placeholder.com/600x300?text=Ad+1" alt="Advertisement" style="width: 100%; height: auto; transition: opacity 1s;">
+    </div>
+    <div class="category-images" style="display: flex; justify-content: space-around; margin: 20px 0;">
+        <div class="category-item" style="text-align: center;">
+            <img src="https://via.placeholder.com/150?text=Home+Appliances" alt="Home Appliances" style="border-radius: 50%; width: 150px; height: 150px;">
+            <h4>Home Appliances</h4>
+        </div>
+        <div class="category-item" style="text-align: center;">
+            <img src="https://via.placeholder.com/150?text=TVs" alt="TVs" style="border-radius: 50%; width: 150px; height: 150px;">
+            <h4>TVs</h4>
+        </div>
+        <div class="category-item" style="text-align: center;">
+            <img src="https://via.placeholder.com/150?text=Cameras" alt="Cameras" style="border-radius: 50%; width: 150px; height: 150px;">
+            <h4>Cameras</h4>
+        </div>
+        <div class="category-item" style="text-align: center;">
+            <img src="https://via.placeholder.com/150?text=Games+Consoles" alt="Games Consoles" style="border-radius: 50%; width: 150px; height: 150px;">
+            <h4>Games Consoles</h4>
+        </div>
     </div>
 
     <div class="category-container">
@@ -109,16 +138,16 @@
                 </div>
                 <td><div  class="footer-element" style="width:100px;">
                     <td><h3>E-mail: </h3></td>
-                    <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#FFCC00;"><h3>myEmail@example.com</h3></a></td>
+                    <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#00e1ff;"><h3>myEmail@example.com</h3></a></td>
                 </div></td>
                
                 <td><div  class="footer-element" style="width:100px;">
                     <td><h3>Call Center: </h3></td>
-                    <td><h3 style="color:#FFCC00;">8001207669</h3></td>
+                    <td><h3 style="color:#00e1ff;">8001207669</h3></td>
                 </div></td>
                
                 <td><div  class="footer-element" style="width:100px;">
-                    <td><h3 style="color:#FFCC00;">About Us</h3></td>
+                    <td><h3 style="color:#00e1ff;">About Us</h3></td>
                 </div></td>
                 
             </tr>
@@ -129,6 +158,7 @@
         // Global arrays to hold products for each category
 
         let totalProductsInCart = 0;
+        let totalProductsInWishList = 0;
 
 // Function to update the cart count in the UI and localStorage
 function updateCartIcon() {
@@ -142,10 +172,44 @@ function updateCartIcon() {
 }
 
 
+
+function addWishList(productId) {
+    totalProductsInWishList++; // Increment the total products in wishlist
+    updateWishListIcon(); // Update the wishlist icon
+
+    // Change the heart icon to "like-solid"
+    const heartButton = document.querySelector(`#wish[data-product-id="${productId}"]`);
+    if (heartButton) {
+        heartButton.innerHTML = '<i class="fa-solid fa-heart" style="color: red;"></i>'; // Change to solid heart
+    }
+
+    alert(`Product ${productId} added to WishList!`);
+}
+
+function updateWishListIcon() {
+    const wishListIcon = document.getElementById('wishList-count'); // Get the cart count element
+    if (totalProductsInWishList > 0) {
+        wishListIcon.textContent = totalProductsInWishList; // Update the text content
+        wishListIcon.style.display = 'block'; // Show the cart count
+    } else {
+        wishListIcon.style.display = 'none'; // Hide the cart count if there are no products
+    }
+}
+
+
+
 // Function to add products to the cart
 function buyProduct(productId) {
     totalProductsInCart++; // Increment the total products in cart
     updateCartIcon(); // Update the cart icon
+
+    // Change the button text to "Added"
+    const buyButton = document.querySelector(`#buy[data-product-id="${productId}"]`);
+    if (buyButton) {
+        buyButton.textContent = "Added";
+        buyButton.disabled = true; // Optionally disable the button
+    }
+
     alert(`Product ${productId} purchased!`);
 }
 
@@ -182,15 +246,19 @@ const gamesConsloes_discount = [
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 productCard.innerHTML = `
-                    <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
-                    <h3>Product ${product.id}</h3>
-                    <p class="old-price">$${product.oldPrice.toFixed(2)}</p>
-                    <p class="new-price">$${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
-                    <div style="display:flex;">
-                         <button onclick="addToWishlist(${product.id})" style="border-radius:50px;"><i class="fa-solid fa-heart"></i></button>
-                    <button onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">Add to Cart &nbsp<i class="fa-sharp fa-solid fa-cart-plus"></i></button>
-                        </div>
-                `;
+    <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+    <h3>Product ${product.id}</h3>
+    <p class="old-price">$${product.oldPrice.toFixed(2)}</p>
+    <p class="new-price">$${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
+    <div style="display:flex;">
+        <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
+            <i class="fa-regular fa-heart"></i>
+        </button>
+        <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
+            Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
+        </button>
+    </div>
+`;
                 productContainer.appendChild(productCard);
             });
         }
@@ -227,9 +295,11 @@ document.getElementById('avatar-link').addEventListener('click', function(event)
 
 // Sign out functionality
 document.getElementById('signout-button').addEventListener('click', function() {
-    localStorage.removeItem('isSignedIn');
-    alert('You have signed out.');
+    localStorage.setItem('isSignedIn', 'false'); // Update sign-in status
+    alert('You have signed out.'); // Alert user
     updateSignInUI(); // Update UI after signing out
+    const signoutDiv = document.querySelector('.signout');
+    signoutDiv.style.display = 'none'; // Hide the sign-out button
 });
        
     </script>
@@ -246,14 +316,19 @@ document.getElementById('signout-button').addEventListener('click', function() {
 
     // Update UI based on sign-in status
     function updateSignInUI() {
-        const signinLink = document.getElementById('signin-link');
-        if (isSignedIn === 'true') {
-            signinLink.innerHTML = '<img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">';
-            signinLink.href = 'profile.html'; // Change to the desired profile page
-        } else {
-            signinLink.textContent = 'Sign In'; // Ensure default text is displayed if not signed in
-        }
+    const isSignedIn = localStorage.getItem('isSignedIn');
+    const avatarLink = document.getElementById('avatar-link');
+    const signinLink = document.getElementById('signin-link');
+
+    if (isSignedIn === 'true') {
+        avatarLink.style.display = 'block'; // Show the avatar
+        signinLink.style.display = 'none';   // Hide the sign-in link
+        avatarLink.href = 'profile.html';    // Change to the desired profile page
+    } else {
+        avatarLink.style.display = 'none';    // Hide the avatar
+        signinLink.style.display = 'block';    // Show the sign-in link
     }
+}
 
     // Call the function to update the UI
     updateSignInUI();

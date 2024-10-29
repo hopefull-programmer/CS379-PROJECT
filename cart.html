@@ -26,23 +26,31 @@
                 </div>
                 </td>
                 <td>
-                    <div style="padding-left: 30px; padding-top: 0px; text-align: center;"> 
-                        <a href="wishlist.html"><img src="images/like-2.png" alt="WishList" ><br>WishList</a>
+                    <div style="padding-left: 30px; text-align: center; position: relative;">
+                        <a href="wishlist.html">
+                            <img src="images/like-2.png" alt="wishList" style="width: 30px; height: 30px;"><br>
+                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"><script>totalProductsInWishList</script></div>
+                        </a>
                     </div>
                 </td>
-                <td style="text-align: right; padding-right: 30px; position: relative; left: 770px;">
-                    <div style="display: flex; align-items: center; justify-content: flex-end; position: relative; width: 100%;">
-                        <a href="#" id="avatar-link" style="margin-right: 10px;">
+                <td>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; position: relative; width: 100%; margin:auto;">
+                        <a href="#" id="avatar-link" style="margin-right: 10px; display: none;">
                             <img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">
                         </a>
-                        <div class="signout" style="display: none; position: absolute; top: 60px; left: -10px;width: 120px;">
+                        <div class="signin-out">
+                            <a href="signin.html" id="signin-link">
+                                <img src="images/signin-av.png" alt="sign in"><br>Sign In
+                            </a>
+                        </div>
+                        <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
                             <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
                                 <h3 style="margin: 0;">Sign Out</h3>
                                 <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
                             </button>
                         </div>
                     </div>
-                </td>
+                </td>  
             </tr>
         </table>
     </header>
@@ -96,16 +104,16 @@
                 </div>
                 <td><div  class="footer-element" style="width:100px;">
                     <td><h3>E-mail: </h3></td>
-                    <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#FFCC00;"><h3>myEmail@example.com</h3></a></td>
+                    <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#00e1ff;"><h3>myEmail@example.com</h3></a></td>
                 </div></td>
                
                 <td><div  class="footer-element" style="width:100px;">
                     <td><h3>Call Center: </h3></td>
-                    <td><h3 style="color:#FFCC00;">8001207669</h3></td>
+                    <td><h3 style="color:#00e1ff;">8001207669</h3></td>
                 </div></td>
                
                 <td><div  class="footer-element" style="width:100px;">
-                    <td><h3 style="color:#FFCC00;">About Us</h3></td>
+                    <td><h3 style="color:#00e1ff;">About Us</h3></td>
                 </div></td>
                 
             </tr>
@@ -188,11 +196,12 @@
 
 // Sign out functionality
 document.getElementById('signout-button').addEventListener('click', function() {
-    localStorage.setItem('isSignedIn', 'false');
-    alert('You have signed out.');
+    localStorage.setItem('isSignedIn', 'false'); // Update sign-in status
+    alert('You have signed out.'); // Alert user
     updateSignInUI(); // Update UI after signing out
-});
-       
+    const signoutDiv = document.querySelector('.signout');
+    signoutDiv.style.display = 'none'; // Hide the sign-out button
+});  
     </script>
 </body>
 </html>
@@ -205,14 +214,19 @@ document.getElementById('signout-button').addEventListener('click', function() {
 
     // Update UI based on sign-in status
     function updateSignInUI() {
-        const signinLink = document.getElementById('signin-link');
-        if (isSignedIn === 'true') {
-            signinLink.innerHTML = '<img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">';
-            signinLink.href = 'profile.html'; // Change to the desired profile page
-        } else {
-            signinLink.textContent = 'Sign In'; // Ensure default text is displayed if not signed in
-        }
+    const isSignedIn = localStorage.getItem('isSignedIn');
+    const avatarLink = document.getElementById('avatar-link');
+    const signinLink = document.getElementById('signin-link');
+
+    if (isSignedIn === 'true') {
+        avatarLink.style.display = 'block'; // Show the avatar
+        signinLink.style.display = 'none';   // Hide the sign-in link
+        avatarLink.href = 'profile.html';    // Change to the desired profile page
+    } else {
+        avatarLink.style.display = 'none';    // Hide the avatar
+        signinLink.style.display = 'block';    // Show the sign-in link
     }
+}
 
     // Call the function to update the UI
     updateSignInUI();
