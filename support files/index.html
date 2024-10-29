@@ -46,12 +46,12 @@
                             <a href="signin.html" id="signin-link">
                                 <img src="images/signin-av.png" alt="sign in"><br>Sign In
                             </a>
-                        </div>
-                        <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
-                            <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
-                                <h3 style="margin: 0;">Sign Out</h3>
-                                <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
-                            </button>
+                            <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
+                                <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
+                                    <h3 style="margin: 0;">Sign Out</h3>
+                                    <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </td>              
@@ -69,15 +69,18 @@
             </table>
         </nav>
     </div>
-    <div class="ad-slider">
-        <img id="ad-image" src="https://via.placeholder.com/600x300?text=Ad+1" alt="Advertisement">
-        <div id="prev-ad" class="button">
-            <button>&lt;</button>
-        </div>
-        <div id="next-ad" class="button">
-            <button>&gt;</button>
+    <div class="slider-container">
+        <div class="ad-slider">
+            <img id="ad-image" src="https://via.placeholder.com/600x300?text=Ad+1" alt="Advertisement">
+            <div id="prev-ad" class="button">
+                <button><b>&lt;</b></button>
+            </div>
+            <div id="next-ad" class="button">
+                <button><b>&gt;</b></button>
+            </div>
         </div>
     </div>
+    
     <div class="category-images" style="display: flex; justify-content: space-around; margin: 20px 0;">
         <div class="category-item" style="text-align: center;">
             <a href="HA.html"><img src="https://via.placeholder.com/150?text=Home+Appliances" alt="Home Appliances" style="border-radius: 50%; width: 150px; height: 150px;">
@@ -268,7 +271,7 @@ const gamesConsloes_discount = [
 
        document.getElementById('avatar-link').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link behavior
-    const signoutDiv = document.querySelector('.signout');
+    const signoutDiv = document.querySelector('.signin-out div'); // Select the sign-out button's container
     signoutDiv.style.display = signoutDiv.style.display === 'none' ? 'flex' : 'none'; // Toggle visibility
 });
 
@@ -278,7 +281,7 @@ document.getElementById('signout-button').addEventListener('click', function() {
     alert('You have signed out.'); // Alert user
     updateSignInUI(); // Update UI after signing out
     const signoutDiv = document.querySelector('.signout');
-    signoutDiv.style.display = 'none'; // Hide the sign-out button
+    document.getElementById('signout-container').style.display = 'none'; // Hide the sign-out button
 });
        
 

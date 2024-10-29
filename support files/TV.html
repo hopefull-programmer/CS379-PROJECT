@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Games Consoles</title>
+    <title>TV'S</title>
     <link rel="stylesheet" type="text/css" href="CSS/mystyle-main.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -63,12 +63,12 @@
                             <a href="signin.html" id="signin-link">
                                 <img src="images/signin-av.png" alt="sign in"><br>Sign In
                             </a>
-                        </div>
-                        <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
-                            <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
-                                <h3 style="margin: 0;">Sign Out</h3>
-                                <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
-                            </button>
+                            <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
+                                <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
+                                    <h3 style="margin: 0;">Sign Out</h3>
+                                    <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </td>  
@@ -87,16 +87,19 @@
             </table>
         </nav>
     </div>
-   
-    <div class="ad-slider" style="position: relative; width: 100%; overflow: hidden; margin: 20px 0;">
-        <img id="ad-image" src="https://via.placeholder.com/600x300?text=Ad+1" alt="Advertisement" style="width: 80%; height: auto; transition: opacity 1s; display: block; margin: 0 auto;">
-        <div style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);">
-            <button id="prev-ad" style="background-color: rgba(0, 0, 0, 0.5); color: white; border: none; border-radius: 5px; padding: 10px;">&lt;</button>
-        </div>
-        <div style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);">
-            <button id="next-ad" style="background-color: rgba(0, 0, 0, 0.5); color: white; border: none; border-radius: 5px; padding: 10px;">&gt;</button>
+    <div class="slider-container">
+        <div class="ad-slider">
+            <img id="ad-image" src="https://via.placeholder.com/600x300?text=Ad+1" alt="Advertisement">
+            <div id="prev-ad" class="button">
+                <button><b>&lt;</b></button>
+            </div>
+            <div id="next-ad" class="button">
+                <button><b>&gt;</b></button>
+            </div>
         </div>
     </div>
+
+
     <div class="category-images" style="display: flex; justify-content: space-around; margin: 20px 0;">
         <div class="category-item" style="text-align: center;">
             <a href="HA.html"><img src="https://via.placeholder.com/150?text=Home+Appliances" alt="Home Appliances" style="border-radius: 50%; width: 150px; height: 150px;">
@@ -117,7 +120,7 @@
     </div>
 
     <div class="category-container">
-        <div class="category-title">Games Consoles</div>
+        <div class="category-title">TV's</div>
         <div class="product-flex" id="gamesConsoles-container"></div>
     </div>
 
@@ -295,7 +298,7 @@ displayAllProducts();
 
 document.getElementById('avatar-link').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link behavior
-    const signoutDiv = document.querySelector('.signout');
+    const signoutDiv = document.querySelector('.signin-out div'); // Select the sign-out button's container
     signoutDiv.style.display = signoutDiv.style.display === 'none' ? 'flex' : 'none'; // Toggle visibility
 });
 
@@ -305,7 +308,7 @@ document.getElementById('signout-button').addEventListener('click', function() {
     alert('You have signed out.'); // Alert user
     updateSignInUI(); // Update UI after signing out
     const signoutDiv = document.querySelector('.signout');
-    signoutDiv.style.display = 'none'; // Hide the sign-out button
+    document.getElementById('signout-container').style.display = 'none'; // Hide the sign-out button
 });
        
     </script>
@@ -341,60 +344,60 @@ document.getElementById('signout-button').addEventListener('click', function() {
 </script>
 
 <script>
-    const adImages = [
-     "images/ad's/ad-1-e.jpg",
-     "images/ad's/ad-2-e.jpg",
-     "images/ad's/ad-3-e.jpg",
-     "images/ad's/ad-4-e.jpg",
- ];
- 
- let currentAdIndex = 0;
- let adInterval = 5000; // Time in milliseconds
- let adTimeout; // Variable to hold the timeout ID
- 
- function changeAdImage() {
-     currentAdIndex = (currentAdIndex + 1) % adImages.length; // Cycle through the images
-     const adImage = document.getElementById('ad-image');
-     adImage.style.opacity = 0; // Fade out
- 
-     setTimeout(() => {
-         adImage.src = adImages[currentAdIndex]; // Change the image
-         adImage.style.opacity = 1; // Fade in
-     }, 1000); // Delay for fade effect
- }
- 
- function startAdInterval() {
-     adTimeout = setInterval(changeAdImage, adInterval);
- }
- 
- function stopAdInterval() {
-     clearInterval(adTimeout);
- }
- 
- // Change the ad image when the next button is clicked
- document.getElementById('next-ad').addEventListener('click', () => {
-     stopAdInterval(); // Stop the interval
-     changeAdImage();  // Change the ad immediately
-     adInterval = 8000; // Set longer interval
-     startAdInterval(); // Restart the interval
- });
- 
- // Change the ad image when the previous button is clicked
- document.getElementById('prev-ad').addEventListener('click', () => {
-     stopAdInterval(); // Stop the interval
-     currentAdIndex = (currentAdIndex - 1 + adImages.length) % adImages.length; // Go to previous ad
-     const adImage = document.getElementById('ad-image');
-     adImage.style.opacity = 0; // Fade out
- 
-     setTimeout(() => {
-         adImage.src = adImages[currentAdIndex]; // Change the image
-         adImage.style.opacity = 1; // Fade in
-     }, 1000); // Delay for fade effect
- 
-     adInterval = 8000; // Set longer interval
-     startAdInterval(); // Restart the interval
- });
- 
- // Initial start of the ad interval
- startAdInterval();
- </script>
+   const adImages = [
+    "images/ad's/ad-1-2e.jpg",
+    "images/ad's/ad-2-e2.png",
+    "images/ad's/ad-3-2e.jpg",
+    "images/ad's/ad-4-2e.jpg",
+];
+
+let currentAdIndex = 0;
+let adInterval = 5000; // Time in milliseconds
+let adTimeout; // Variable to hold the timeout ID
+
+function changeAdImage() {
+    currentAdIndex = (currentAdIndex + 1) % adImages.length; // Cycle through the images
+    const adImage = document.getElementById('ad-image');
+    adImage.style.opacity = 0; // Fade out
+
+    setTimeout(() => {
+        adImage.src = adImages[currentAdIndex]; // Change the image
+        adImage.style.opacity = 1; // Fade in
+    }, 1000); // Delay for fade effect
+}
+
+function startAdInterval() {
+    adTimeout = setInterval(changeAdImage, adInterval);
+}
+
+function stopAdInterval() {
+    clearInterval(adTimeout);
+}
+
+// Change the ad image when the next button is clicked
+document.getElementById('next-ad').addEventListener('click', () => {
+    stopAdInterval(); // Stop the interval
+    changeAdImage();  // Change the ad immediately
+    adInterval = 8000; // Set longer interval
+    startAdInterval(); // Restart the interval
+});
+
+// Change the ad image when the previous button is clicked
+document.getElementById('prev-ad').addEventListener('click', () => {
+    stopAdInterval(); // Stop the interval
+    currentAdIndex = (currentAdIndex - 1 + adImages.length) % adImages.length; // Go to previous ad
+    const adImage = document.getElementById('ad-image');
+    adImage.style.opacity = 0; // Fade out
+
+    setTimeout(() => {
+        adImage.src = adImages[currentAdIndex]; // Change the image
+        adImage.style.opacity = 1; // Fade in
+    }, 1000); // Delay for fade effect
+
+    adInterval = 8000; // Set longer interval
+    startAdInterval(); // Restart the interval
+});
+
+// Initial start of the ad interval
+startAdInterval();
+</script>
