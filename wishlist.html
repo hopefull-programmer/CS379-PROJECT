@@ -132,20 +132,7 @@
         // Initialize by displaying all products
         displayProducts(cartProducts);
 
-       document.getElementById('avatar-link').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default link behavior
-    const signoutDiv = document.querySelector('.signin-out div'); // Select the sign-out button's container
-    signoutDiv.style.display = signoutDiv.style.display === 'none' ? 'flex' : 'none'; // Toggle visibility
-});
 
-// Sign out functionality
-document.getElementById('signout-button').addEventListener('click', function() {
-    localStorage.setItem('isSignedIn', 'false'); // Update sign-in status
-    alert('You have signed out.'); // Alert user
-    updateSignInUI(); // Update UI after signing out
-    const signoutDiv = document.querySelector('.signout');
-    document.getElementById('signout-container').style.display = 'none'; // Hide the sign-out button
-}); 
     </script>
     
     <footer class="footer">
@@ -210,6 +197,20 @@ document.getElementById('signout-button').addEventListener('click', function() {
     }
 }
 
+document.getElementById('avatar-link').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    const signoutDiv = document.querySelector('.signin-out div'); // Select the sign-out button's container
+    signoutDiv.style.display = signoutDiv.style.display === 'none' ? 'flex' : 'none'; // Toggle visibility
+});
+
+// Sign out functionality
+document.getElementById('signout-button').addEventListener('click', function() {
+    localStorage.setItem('isSignedIn', 'false'); // Update sign-in status
+    alert('You have signed out.'); // Alert user
+    updateSignInUI(); // Update UI after signing out
+    const signoutDiv = document.querySelector('.signout');
+    document.getElementById('signout-container').style.display = 'none'; // Hide the sign-out button
+}); 
     // Call the function to update the UI
     updateSignInUI();
 </script>
