@@ -31,7 +31,7 @@
     <header>
         <table class="header" border="0">
             <tr>
-                <td class="logo"><a href="index.html"><img src="images/e-store-2.png"  alt="e-store"></a></td>
+                <td class="logo"><a href="index.html"><img src="images/logov2.png"  alt="e-store"></a></td>
                 <td>
                     <div class="search">
                         <input type="text" placeholder='search...'>
@@ -166,18 +166,22 @@
     <script>
         // Global arrays to hold products for each category
 
-        let totalProductsInCart = 0;
-        let totalProductsInWishList = 0;
+        let totalProductsInCart = parseInt(localStorage.getItem('totalProductsInCart')) || 0;
+let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
 
 // Function to update the cart count in the UI and localStorage
 function updateCartIcon() {
     const cartIcon = document.getElementById('cart-count'); // Get the cart count element
-    if (totalProductsInCart > 0) {
-        cartIcon.textContent = totalProductsInCart; // Update the text content
-        cartIcon.style.display = 'block'; // Show the cart count
-    } else {
-        cartIcon.style.display = 'none'; // Hide the cart count if there are no products
-    }
+    cartIcon.textContent = totalProductsInCart > 0 ? totalProductsInCart : ''; // Update the text content
+    cartIcon.style.display = totalProductsInCart > 0 ? 'block' : 'none'; // Show or hide cart count
+    localStorage.setItem('totalProductsInCart', totalProductsInCart); // Save to localStorage
+}
+
+function updateWishListIcon() {
+    const wishListIcon = document.getElementById('wishList-count'); // Get the wishlist count element
+    wishListIcon.textContent = totalProductsInWishList > 0 ? totalProductsInWishList : ''; // Update the text content
+    wishListIcon.style.display = totalProductsInWishList > 0 ? 'block' : 'none'; // Show or hide wishlist count
+    localStorage.setItem('totalProductsInWishList', totalProductsInWishList); // Save to localStorage
 }
 
 
@@ -195,15 +199,6 @@ function addWishList(productId) {
     alert(`Product ${productId} added to WishList!`);
 }
 
-function updateWishListIcon() {
-    const wishListIcon = document.getElementById('wishList-count'); // Get the cart count element
-    if (totalProductsInWishList > 0) {
-        wishListIcon.textContent = totalProductsInWishList; // Update the text content
-        wishListIcon.style.display = 'block'; // Show the cart count
-    } else {
-        wishListIcon.style.display = 'none'; // Hide the cart count if there are no products
-    }
-}
 
 
 
@@ -295,6 +290,8 @@ const gamesConsloes_discount = [
 
 // Initialize by displaying all products
 displayAllProducts();  
+updateCartIcon();
+updateWishListIcon();
 
 document.getElementById('avatar-link').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link behavior

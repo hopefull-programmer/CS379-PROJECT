@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="css/mystyle-main.css">
+</head>
+<body>
+    <header>
+        <table class="header" border="0">
+            <tr>
+                <td class="logo"><a href="#"><img src="images/logov2.png"  alt="e-store"></a></td>
+                <td>
+                    <div class="search">
+                        <input type="text" placeholder='search...'>
+                        <button type="submit"><img src="images/search-solid.svg" alt="search"></button>
+                    </div>
+                </td>
+               <td>
+                <div style="padding-left: 30px; text-align: center; position: relative;">
+                    <a href="cart.html">
+                        <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
+                        Cart <div id="cart-count" class="cart-count" style="display: none;"><script>totalProductsInCart</script></div>
+                    </a>
+                </div>
+                </td>
+                <td>
+                    <div style="padding-left: 30px; text-align: center; position: relative;">
+                        <a href="wishlist.html">
+                            <img src="images/like-2.png" alt="wishList" style="width: 30px; height: 30px;"><br>
+                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"><script>totalProductsInWishList</script></div>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; position: relative; width: 100%; margin:auto;">
+                        <a href="#" id="avatar-link" style="margin-right: 10px; display: none;">
+                            <img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">
+                        </a>
+                        <div class="signin-out">
+                            <a href="signin.html" id="signin-link">
+                                <img src="images/signin-av.png" alt="sign in"><br>Sign In
+                            </a>
+                            <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
+                                <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
+                                    <h3 style="margin: 0;">Sign Out</h3>
+                                    <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </td>              
+            </tr>
+        </table>
+    </header>
+     <div class="nav-container">
+        <nav>
+            <table class="categories" border="0">
+                <tr>
+                    <td class="c-item"><img src="images/delivery-van.png" alt=""><br><b>Free Delivery</b></td>
+                    <td class="c-item"><img src="images/return.png" alt=""><br><b>Free Return</b></td>
+                    <td class="c-item"><img src="images/fast-delivery.png" alt=""><br><b>Fast Delivery</b></td>
+                </tr>
+            </table>
+        </nav>
+    </div>
+
+    <div id="product-detail-container"></div> <!-- Container for product details -->
+
+    <script>
+        const products = [
+            { id: 1, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/gs-products/ps5.webp', discount: 20 },
+            { id: 2, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/gs-products/ps5-pro.jpg', discount: 25 },
+            { id: 3, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/gs-products/slim.png', discount: 22.22 },
+            { id: 4, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/gs-products/steam.png', discount: 20 },
+            { id: 5, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/gs-products/nin.png', discount: 20 },
+            { id: 6, name: 'xbox series x', oldPrice: 120, newPrice: 90, imageUrl: 'images/gs-products/xbox.jpg', discount: 25 },
+            { id: 7, name: 'atari', oldPrice: 55, newPrice: 50, imageUrl: 'images/gs-products/atari.png', discount: 9.09 },
+            { id: 8, name: 'gameboy', oldPrice: 300, newPrice: 240, imageUrl: 'images/gs-products/gameboy.png', discount: 20 },
+            { id: 9, name: 'Psp', oldPrice: 85, newPrice: 65, imageUrl: 'images/gs-products/psp.png', discount: 23.53 },
+            { id: 10, name: 'playstation 4', oldPrice: 110, newPrice: 88, imageUrl: 'images/gs-products/ps4.png', discount: 20 },
+        ];
+    
+        // Get the product ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id'), 10);
+    
+        // Find the product by ID
+        const product = products.find(p => p.id === productId);
+    
+        // Display product information
+        if (product) {
+            const productDetailContainer = document.getElementById('product-detail-container');
+            productDetailContainer.innerHTML = `
+               <center> <div class="product-details">
+                    <div class="img"><img src="${product.imageUrl}" alt="${product.name}" style="width: 100%; border-radius: 10px;"></div>
+                    <div class="details">
+                        <h1 class="product-name">${product.name}</h1>
+                        <h4 class="old-price">${product.oldPrice.toFixed(2)} SR</h4>
+                        <h3 class="new-price">${product.newPrice.toFixed(2)} SR</h3>
+                        <h3 style="color: black;">Description</h3>
+                        <h4 class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus illo recusandae pariatur. Animi quisquam vero ipsam voluptatum dolorum iure fugiat incidunt aspernatur, eos, iusto porro eius nisi. Distinctio, blanditiis sapiente.</h4>
+                        <div class="buttons">
+                           <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
+            Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
+        </button>
+                            <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
+            <i class="fa-regular fa-heart"></i>
+        </button>
+                        </div>
+                    </div>
+                </div></center>
+            `;
+        } else {
+            document.getElementById('product-detail-container').innerHTML = '<center><h1>Sorry, Product not found</h1></center>';
+        }
+
+        function buyProduct(id) {
+            alert(`Product ${id} added to cart!`);
+        }
+
+        function addtoWishList(id) {
+            alert(`Product ${id} added to wishlist!`);
+        }
+    </script>
+    <footer class="footer">
+        <table border="0">
+            <tr>
+               <div>
+                <td class="logo-f"><img src="images/e-store-2.png" height="150px" width="150px" alt="e-store"></td>
+               </div>
+                <div class="footer-element">
+                    <td><h3>Find Us</h3></td>
+                <td>
+                    <div class="social-media"><img src="images/social-media/twitter (1).png" alt="X"></div>
+                </td>
+                <td>
+                    <div class="social-media"><img src="images/social-media/facebook (1).png" alt="facebook"></div>
+                </td>
+                <td>
+                    <div class="social-media"><img src="images/social-media/tik-tok (1).png" alt="tiktok"></div>
+                </td>
+                <td>
+                    <div class="social-media"><img src="images/social-media/instagram (1).png" alt="instagram"></div>
+                </td>
+                </div>
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3>E-mail: </h3></td>
+                    <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#00e1ff;"><h3>myEmail@example.com</h3></a></td>
+                </div></td>
+               
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3>Call Center: </h3></td>
+                    <td><h3 style="color:#00e1ff;">8001207669</h3></td>
+                </div></td>
+               
+                <td><div  class="footer-element" style="width:100px;">
+                    <td><h3 style="color:#00e1ff;">About Us</h3></td>
+                </div></td>
+                
+            </tr>
+        </table>
+    </footer>
+</body>
+</html>
+<script>
+    // Check the sign-in status on page load
+    const isSignedIn = localStorage.getItem('isSignedIn');
+
+    // Reset sign-in status when the page is being unloaded
+
+    // Update UI based on sign-in status
+    function updateSignInUI() {
+    const isSignedIn = localStorage.getItem('isSignedIn');
+    const avatarLink = document.getElementById('avatar-link');
+    const signinLink = document.getElementById('signin-link');
+
+    if (isSignedIn === 'true') {
+        avatarLink.style.display = 'block'; // Show the avatar
+        signinLink.style.display = 'none';   // Hide the sign-in link
+        avatarLink.href = 'profile.html';    // Change to the desired profile page
+    } else {
+        avatarLink.style.display = 'none';    // Hide the avatar
+        signinLink.style.display = 'block';    // Show the sign-in link
+    }
+}
+
+    // Call the function to update the UI
+    updateSignInUI();
+</script>
+
+<script>
+
+let totalProductsInCart = parseInt(localStorage.getItem('totalProductsInCart')) || 0;
+let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
+
+// Function to update the cart count in the UI and localStorage
+function updateCartIcon() {
+    const cartIcon = document.getElementById('cart-count'); // Get the cart count element
+    cartIcon.textContent = totalProductsInCart > 0 ? totalProductsInCart : ''; // Update the text content
+    cartIcon.style.display = totalProductsInCart > 0 ? 'block' : 'none'; // Show or hide cart count
+    localStorage.setItem('totalProductsInCart', totalProductsInCart); // Save to localStorage
+}
+
+function updateWishListIcon() {
+    const wishListIcon = document.getElementById('wishList-count'); // Get the wishlist count element
+    wishListIcon.textContent = totalProductsInWishList > 0 ? totalProductsInWishList : ''; // Update the text content
+    wishListIcon.style.display = totalProductsInWishList > 0 ? 'block' : 'none'; // Show or hide wishlist count
+    localStorage.setItem('totalProductsInWishList', totalProductsInWishList); // Save to localStorage
+}
+
+// Function to add products to the cart
+function buyProduct(productId) {
+totalProductsInCart++; // Increment the total products in cart
+updateCartIcon(); // Update the cart icon
+
+// Change the button text to "Added to Cart"
+const buyButton = document.querySelector(`#buy[data-product-id="${productId}"]`);
+if (buyButton) {
+    buyButton.textContent = "Added to Cart";
+    buyButton.style.backgroundColor = "#4CAF50"; // Change button color to green
+    buyButton.disabled = true; // Optionally disable the button
+}
+
+alert(`Product Added to Cart!`);
+
+    // Redirect to the previous page
+    setTimeout(() => {
+        window.history.back();
+    }, 500); // Redirect after 1 second
+
+}
+
+function addWishList(productId) {
+totalProductsInWishList++; // Increment the total products in wishlist
+updateWishListIcon(); // Update the wishlist icon
+
+// Change the heart icon to "like-solid"
+const heartButton = document.querySelector(`#wish[data-product-id="${productId}"]`);
+if (heartButton) {
+    heartButton.innerHTML = '<i class="fa-solid fa-heart" style="color: white;"></i>'; // Change to solid heart
+}
+
+alert(`Product added to WishList!`);
+ // Redirect to the previous page
+ setTimeout(() => {
+        window.history.back();
+    }, 500); // Redirect after 1 second
+}
+
+
+   document.getElementById('avatar-link').addEventListener('click', function(event) {
+event.preventDefault(); // Prevent the default link behavior
+const signoutDiv = document.querySelector('.signin-out div'); // Select the sign-out button's container
+signoutDiv.style.display = signoutDiv.style.display === 'none' ? 'flex' : 'none'; // Toggle visibility
+});
+
+// Sign out functionality
+document.getElementById('signout-button').addEventListener('click', function() {
+localStorage.setItem('isSignedIn', 'false'); // Update sign-in status
+alert('You have signed out.'); // Alert user
+updateSignInUI(); // Update UI after signing out
+const signoutDiv = document.querySelector('.signout');
+document.getElementById('signout-container').style.display = 'none'; // Hide the sign-out button
+});
+updateCartIcon();
+updateWishListIcon(); 
+</script>
