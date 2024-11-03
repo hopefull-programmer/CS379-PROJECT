@@ -33,8 +33,8 @@
                 <td class="logo"><a href="index.html"><img src="images/logov2.png"  alt="e-store"></a></td>
                 <td>
                     <div class="search">
-                        <input type="text" placeholder='search...'>
-                        <button type="submit"><img src="images/search-solid.svg" alt="search"></button>
+                        <input type="text" id="searchInput" placeholder='search...'>
+                        <button type="submit" onclick="performSearch()"><img src="images/search-solid.svg" alt="search"></button>
                     </div>
                 </td>
                <td>
@@ -213,11 +213,11 @@ function buyProduct(productId) {
 
 
 const gamesConsloes_discount = [
-{ id: 1, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/11.png', discount: 20 },
-  { id: 2, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/12.png', discount: 25 },
-  { id: 3, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/13.png', discount: 22.22 },
-  { id: 4, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/14.png', discount: 20 },
-  { id: 5, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/15.png', discount: 20 },
+{ id: 11, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/11.png', discount: 20 },
+  { id: 12, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/12.png', discount: 25 },
+  { id: 13, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/13.png', discount: 22.22 },
+  { id: 14, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/14.png', discount: 20 },
+  { id: 15, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/15.png', discount: 20 },
 ];
 
 
@@ -229,10 +229,12 @@ const gamesConsloes_discount = [
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 productCard.innerHTML = `
+                <a href="product-detail.html?id=${product.id}">
     <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
-    <h3>Product ${product.id}</h3>
-    <p class="old-price">$${product.oldPrice.toFixed(2)}</p>
-    <p class="new-price">$${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
+    <h3>${product.name}</h3>
+    <p class="old-price">SR${product.oldPrice.toFixed(2)}</p>
+    <p class="new-price">SR${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
+    </a>
     <div style="display:flex;">
         <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
             <i class="fa-regular fa-heart"></i>
@@ -241,6 +243,7 @@ const gamesConsloes_discount = [
             Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
         </button>
     </div>
+    
 `;
                 productContainer.appendChild(productCard);
             });
@@ -348,6 +351,20 @@ function startAdInterval() {
 function stopAdInterval() {
     clearInterval(adTimeout);
 }
+
+
+
+function performSearch() {
+    const searchInput = document.getElementById('searchInput').value;
+    if (searchInput) {
+        // Redirect to search.html with the search term as a query parameter
+        window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
+    } else {
+        alert("Please enter a search term.");
+    }
+}
+
+
 
 // Change the ad image when the next button is clicked
 document.getElementById('next-ad').addEventListener('click', () => {

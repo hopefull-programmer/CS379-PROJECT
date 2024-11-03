@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <header>
         <table class="header" border="0">
@@ -17,8 +16,8 @@
                 <td class="logo"><a href="#"><img src="images/logov2.png"  alt="e-store"></a></td>
                 <td>
                     <div class="search">
-                        <input type="text" placeholder='search...'>
-                        <button type="submit"><img src="images/search-solid.svg" alt="search"></button>
+                        <input type="text" id="searchInput" placeholder='search...'>
+                        <button type="submit" onclick="performSearch()"><img src="images/search-solid.svg" alt="search"></button>
                     </div>
                 </td>
                <td>
@@ -175,53 +174,61 @@ function addWishList(productId) {
 }
 
         const homeappliances_discount = [
-{ id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20 },
-{ id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25 },
-{ id: 3, oldPrice: 90, newPrice: 70, imageUrl: 'https://via.placeholder.com/150?text=Product+3', discount: 22.22 },
-{ id: 4, oldPrice: 200, newPrice: 160, imageUrl: 'https://via.placeholder.com/150?text=Product+4', discount: 20 },
-{ id: 5, oldPrice: 75, newPrice: 60, imageUrl: 'https://via.placeholder.com/150?text=Product+5', discount: 20 },
-{ id: 6, oldPrice: 120, newPrice: 90, imageUrl: 'https://via.placeholder.com/150?text=Product+6', discount: 25 },
-{ id: 7, oldPrice: 55, newPrice: 50, imageUrl: 'https://via.placeholder.com/150?text=Product+7', discount: 9.09 },
-{ id: 8, oldPrice: 300, newPrice: 240, imageUrl: 'https://via.placeholder.com/150?text=Product+8', discount: 20 },
-{ id: 9, oldPrice: 85, newPrice: 65, imageUrl: 'https://via.placeholder.com/150?text=Product+9', discount: 23.53 },
-{ id: 10, oldPrice: 110, newPrice: 88, imageUrl: 'https://via.placeholder.com/150?text=Product+10', discount: 20 }
+        { id: 16, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20 },
+  { id: 17, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/2.png', discount: 25 },
+  { id: 18, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/3.png', discount: 22.22 },
+  { id: 19, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/4.png', discount: 20 },
+  { id: 20, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/5.png', discount: 20 },
+  { id: 21, name: 'xbox seris x', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/6.png', discount: 25 },
+  { id: 22, name: 'atari', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/7.png', discount: 9.09 },
+  { id: 23, name: 'gameboy', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/8.png', discount: 20 },
+  { id: 24, name: 'Psp', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/9.png', discount: 23.53 },
+  { id: 25, name: 'playstation 4', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/10.png', discount: 20 },
 ];
-const digitalCards_discount = [
-{ id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20 },
-{ id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25 },
-{ id: 3, oldPrice: 90, newPrice: 70, imageUrl: 'https://via.placeholder.com/150?text=Product+3', discount: 22.22 },
-{ id: 4, oldPrice: 200, newPrice: 160, imageUrl: 'https://via.placeholder.com/150?text=Product+4', discount: 20 },
-{ id: 5, oldPrice: 75, newPrice: 60, imageUrl: 'https://via.placeholder.com/150?text=Product+5', discount: 20 },
-{ id: 6, oldPrice: 120, newPrice: 90, imageUrl: 'https://via.placeholder.com/150?text=Product+6', discount: 25 },
-{ id: 7, oldPrice: 55, newPrice: 50, imageUrl: 'https://via.placeholder.com/150?text=Product+7', discount: 9.09 },
-{ id: 8, oldPrice: 300, newPrice: 240, imageUrl: 'https://via.placeholder.com/150?text=Product+8', discount: 20 },
-{ id: 9, oldPrice: 85, newPrice: 65, imageUrl: 'https://via.placeholder.com/150?text=Product+9', discount: 23.53 },
-{ id: 10, oldPrice: 110, newPrice: 88, imageUrl: 'https://via.placeholder.com/150?text=Product+10', discount: 20 }
+const tv_discount = [
+  { id: 27, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/17.png', discount: 25 },
+  { id: 28, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/18.png', discount: 22.22 },
+  { id: 29, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/19.png', discount: 20 },
+  { id: 30, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/20.png', discount: 20 },
+  { id: 31, name: 'xbox seris x', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/21.png', discount: 25 },
+  { id: 32, name: 'atari', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/22.png', discount: 9.09 },
+  { id: 33, name: 'gameboy', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/23.png', discount: 20 },
 ];
 const cameras_discount = [
-{ id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20 },
-{ id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25 },
-{ id: 3, oldPrice: 90, newPrice: 70, imageUrl: 'https://via.placeholder.com/150?text=Product+3', discount: 22.22 },
-{ id: 4, oldPrice: 200, newPrice: 160, imageUrl: 'https://via.placeholder.com/150?text=Product+4', discount: 20 },
-{ id: 5, oldPrice: 75, newPrice: 60, imageUrl: 'https://via.placeholder.com/150?text=Product+5', discount: 20 },
-{ id: 6, oldPrice: 120, newPrice: 90, imageUrl: 'https://via.placeholder.com/150?text=Product+6', discount: 25 },
-{ id: 7, oldPrice: 55, newPrice: 50, imageUrl: 'https://via.placeholder.com/150?text=Product+7', discount: 9.09 },
-{ id: 8, oldPrice: 300, newPrice: 240, imageUrl: 'https://via.placeholder.com/150?text=Product+8', discount: 20 },
-{ id: 9, oldPrice: 85, newPrice: 65, imageUrl: 'https://via.placeholder.com/150?text=Product+9', discount: 23.53 },
-{ id: 10, oldPrice: 110, newPrice: 88, imageUrl: 'https://via.placeholder.com/150?text=Product+10', discount: 20 }
+{ id: 11, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/11.png', discount: 20 },
+  { id: 12, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/12.png', discount: 25 },
+  { id: 13, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/13.png', discount: 22.22 },
+  { id: 14, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/14.png', discount: 20 },
+  { id: 15, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/15.png', discount: 20 },
 ];
 const gamesConsloes_discount = [
-{ id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20 },
-{ id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25 },
-{ id: 3, oldPrice: 90, newPrice: 70, imageUrl: 'https://via.placeholder.com/150?text=Product+3', discount: 22.22 },
-{ id: 4, oldPrice: 200, newPrice: 160, imageUrl: 'https://via.placeholder.com/150?text=Product+4', discount: 20 },
-{ id: 5, oldPrice: 75, newPrice: 60, imageUrl: 'https://via.placeholder.com/150?text=Product+5', discount: 20 },
-{ id: 6, oldPrice: 120, newPrice: 90, imageUrl: 'https://via.placeholder.com/150?text=Product+6', discount: 25 },
-{ id: 7, oldPrice: 55, newPrice: 50, imageUrl: 'https://via.placeholder.com/150?text=Product+7', discount: 9.09 },
-{ id: 8, oldPrice: 300, newPrice: 240, imageUrl: 'https://via.placeholder.com/150?text=Product+8', discount: 20 },
-{ id: 9, oldPrice: 85, newPrice: 65, imageUrl: 'https://via.placeholder.com/150?text=Product+9', discount: 23.53 },
-{ id: 10, oldPrice: 110, newPrice: 88, imageUrl: 'https://via.placeholder.com/150?text=Product+10', discount: 20 }
+{ id: 1, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/pic.png', discount: 20 },
+  { id: 2, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/pro.png', discount: 25 },
+  { id: 3, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/slim.png', discount: 22.22 },
+  { id: 4, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/steam.png', discount: 20 },
+  { id: 5, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/nin.png', discount: 20 },
+  { id: 6, name: 'xbox seris x', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/xbox.png', discount: 25 },
+  { id: 7, name: 'atari', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/nin.png', discount: 9.09 },
+  { id: 8, name: 'gameboy', oldPrice: 300, newPrice: 240, imageUrl: 'images/gameboy.png', discount: 20 },
+  { id: 9, name: 'Psp', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/psp.png', discount: 23.53 },
+  { id: 10, name: 'playstation 4', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/ps4.png', discount: 20 },
 ];
+
+
+
+
+
+function performSearch() {
+    const searchInput = document.getElementById('searchInput').value;
+    if (searchInput) {
+        // Redirect to search.html with the search term as a query parameter
+        window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
+    } else {
+        alert("Please enter a search term.");
+    }
+}
+
+
 
 
         // Function to display products in a specified container
@@ -233,10 +240,12 @@ const gamesConsloes_discount = [
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 productCard.innerHTML = `
+                <a href="product-detail.html?id=${product.id}">
     <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
-    <h3>Product ${product.id}</h3>
-    <p class="old-price">$${product.oldPrice.toFixed(2)}</p>
-    <p class="new-price">$${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
+    <h3>${product.name}</h3>
+    <p class="old-price">SR${product.oldPrice.toFixed(2)}</p>
+    <p class="new-price">SR${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
+    </a>
     <div style="display:flex;">
         <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
             <i class="fa-regular fa-heart"></i>
@@ -245,6 +254,7 @@ const gamesConsloes_discount = [
             Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
         </button>
     </div>
+    
 `;
                 productContainer.appendChild(productCard);
             });
@@ -253,7 +263,7 @@ const gamesConsloes_discount = [
         // Function to display all products in their respective categories
         function displayAllProducts() {
             displayProducts(homeappliances_discount, 'homeappliances-container');
-            displayProducts(digitalCards_discount, 'digitalCards-container');
+            displayProducts(tv_discount, 'digitalCards-container');
             displayProducts(cameras_discount, 'cameras-container');
             displayProducts(gamesConsloes_discount, 'gamesConsoles-container');
         }
@@ -412,5 +422,7 @@ document.getElementById('prev-ad').addEventListener('click', () => {
 
 // Initial start of the ad interval
 startAdInterval();
+
+
 </script>
 

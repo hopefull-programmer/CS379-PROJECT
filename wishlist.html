@@ -16,8 +16,8 @@
                 <td class="logo"><a href="index.html"><img src="images/logov2.png"  alt="e-store"></a></td>
                 <td>
                     <div class="search">
-                        <input type="text" placeholder='search...'>
-                        <button type="submit"><img src="images/search-solid.svg" alt="search"></button>
+                        <input type="text" id="searchInput" placeholder='search...'>
+                        <button type="submit" onclick="performSearch()"><img src="images/search-solid.svg" alt="search"></button>
                     </div>
                 </td>
                <td>
@@ -213,4 +213,17 @@ document.getElementById('signout-button').addEventListener('click', function() {
 }); 
     // Call the function to update the UI
     updateSignInUI();
+
+
+    function performSearch() {
+    const searchInput = document.getElementById('searchInput').value;
+    if (searchInput) {
+        // Redirect to search.html with the search term as a query parameter
+        window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
+    } else {
+        alert("Please enter a search term.");
+    }
+}
+
+
 </script>

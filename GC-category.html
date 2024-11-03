@@ -34,8 +34,8 @@
                 <td class="logo"><a href="index.html"><img src="images/logov2.png"  alt="e-store"></a></td>
                 <td>
                     <div class="search">
-                        <input type="text" placeholder='search...'>
-                        <button type="submit"><img src="images/search-solid.svg" alt="search"></button>
+                        <input type="text" id="searchInput" placeholder='search...'>
+                        <button type="submit" onclick="performSearch()"><img src="images/search-solid.svg" alt="search"></button>
                     </div>
                 </td>
                <td>
@@ -223,12 +223,12 @@ const gamesConsloes_discount = [
 
   { id: 1, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/pic.png', discount: 20 },
   { id: 2, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/pro.png', discount: 25 },
-  { id: 3, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/slim.png', discount: 22.22 },
+  { id: 3, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/slim.png', discount: 22.22 },
   { id: 4, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/steam.png', discount: 20 },
   { id: 5, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/nin.png', discount: 20 },
   { id: 6, name: 'xbox seris x', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/xbox.png', discount: 25 },
   { id: 7, name: 'atari', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/nin.png', discount: 9.09 },
-  { id: 8, name: 'gameboy', oldPrice: 300, newPrice: 240, imageUrl: 'images/gameboy.png', discount: 20 },
+  { id: 8, name: 'gameboy', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/gameboy.png', discount: 20 },
   { id: 9, name: 'Psp', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/psp.png', discount: 23.53 },
   { id: 10, name: 'playstation 4', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/ps4.png', discount: 20 },
 ];
@@ -245,8 +245,8 @@ const gamesConsloes_discount = [
                 <a href="product-detail.html?id=${product.id}">
     <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
     <h3>${product.name}</h3>
-    <p class="old-price">$${product.oldPrice.toFixed(2)}</p>
-    <p class="new-price">$${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
+    <p class="old-price">SR${product.oldPrice.toFixed(2)}</p>
+    <p class="new-price">SR${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
     </a>
     <div style="display:flex;">
         <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
@@ -276,7 +276,15 @@ const gamesConsloes_discount = [
         // Initialize by displaying all products
        
        // Global variable to keep track of products in cart
-
+       function performSearch() {
+    const searchInput = document.getElementById('searchInput').value;
+    if (searchInput) {
+        // Redirect to search.html with the search term as a query parameter
+        window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
+    } else {
+        alert("Please enter a search term.");
+    }
+}
 
        
 
