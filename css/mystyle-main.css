@@ -268,6 +268,12 @@ div.signin a{
     justify-content: space-around;/* Space between cards */
 }
 
+.product-image {
+    width: 150px;  /* Set a fixed width */
+    height: 150px; /* Set a fixed height */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+}
+
 
 .carousel {
     display: flex;
@@ -301,6 +307,10 @@ div.signin a{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0); 
 }
 
+.product-card a{
+    text-decoration: none;
+    color: black;
+}
 .product-image {
     width: 100%;
     height: auto;
@@ -573,4 +583,88 @@ min-width: 40px;
 
 .category-item img:hover {
     transform: scale(1.05); /* Scale effect on hover */
+}
+
+
+.product-details {
+    display: flex;
+    align-items: flex-start; /* Align items at the start */
+    margin: 50px; /* Margin around the product details */
+    max-width: 1300px;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 10px; /* Optional: add border radius to the whole container */
+    justify-content: center;
+}
+
+.product-details .img {
+    width: 70%;
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between image and details */
+    border-radius: 10px; /* Optional: add border radius to the image */
+}
+
+.details {
+    padding: 30px;
+    flex-grow: 1; /* Allow details to take remaining space */
+    text-align: left; /* Align text to the left */
+    background-color: #fdfcfc;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.details h3 {
+    color: #333;
+}
+
+h4.old-price {
+    text-decoration: line-through;
+    color: gray;
+}
+
+h3.new-price {
+    color: #063dd4;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+h4.description {
+    margin: 10px 0;
+    color: #555;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+
+
+@media (max-width: 600px) {
+    .product-details {
+        flex-direction: column; /* Stack on small screens */
+        align-items: center; /* Center align on small screens */
+    }
+
+    .product-details .img {
+        max-width: 100%; /* Full width on small screens */
+        margin-right: 0; /* Remove margin on small screens */
+        margin-bottom: 20px; /* Add bottom margin for spacing */
+    }
+
+    .details {
+        text-align: center; /* Center text on small screens */
+    }
+
+    .buttons button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+h1.product-name{
+    margin-top: 0;
 }
