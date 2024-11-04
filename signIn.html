@@ -8,22 +8,26 @@
 </head>
 <body>
     <center>
-        <div id="hiddenMessage" style="display: none; color: #FFCC00; font-size: 18px;"></div>
+        <div id="hiddenMessage" style="display: none; color: #ffffff; font-size: 18px;"></div>
         <div class="sign-in">
             <img src="images/logov2.png" alt="logo">
             <form id="signin-form" onsubmit="handleSignIn(event)">
                 <div class="signin-field">
-                    <p style="margin:0;text-align: left;font-weight: 600;color: #FFCC00; font-size: 18px;">UserName</p>  
-                    <input type="text" name="username" placeholder="Enter user name" required>
-                </div>
-                <div class="signin-field">
-                    <div style="width: 700px;">
-                        <p style="margin:0; text-align:left; font-weight:600;color: #FFCC00;font-size: 18px;">
-                            Password<a href="forgotpass.html" style="padding-left:200px; text-decoration: none;color:#007bff; font-size: 15px; font-weight: 100;">Forgot Password?</a>
-                        </p>
+                    <p>UserName</p>
+                    <div class="input-container">
+                        <div id="error-message-username" class="error-message" style="color: red; display: none;"></div>
+                        <input type="text" id="username" name="username" placeholder="Enter username" required>
                     </div>
-                    <input type="password" name="password" placeholder="Enter password" required><br>
-                    <h4 style="text-align: left; padding-bottom: 0px; color: #FFCC00;font-size: 18px;">Choose your account type</h4>
+                </div>
+                    <div class="signin-field">
+                        <p>Password</p>
+                        <div class="input-container">
+                            <div id="error-message-password" class="error-message" style="color: red; display: none;"></div>
+                            <input type="password" id="password" placeholder="Enter password" required>
+                        </div>
+                    </div>
+                    <div class="signin-field">
+                    <h4 style="text-align: left; padding-bottom: 0px; color: #006eff;font-size: 18px;">Choose your account type</h4>
                     <div class="usertype"> 
                         <label>
                             <input type="radio" name="userType" value="administrator" > 
@@ -38,7 +42,7 @@
                 <br>
                 <button type="submit" style="font-size: 20px;">Sign In</button>
                 <div class="links">
-                    Don't have an account? <a href="signup.html">Sign Up</a>
+                    Don't Have an Account? <a href="signup.html">Sign Up</a>
                 </div>
             </form>
         </div>
@@ -51,35 +55,66 @@
             const form = document.getElementById('signin-form');
             const username = form.username.value; // Get the username
             const password = form.password.value; // Get the password
-    
+             
             // Predefined username and password for validation
-            const validUsername = 'user'; // Replace with your actual username
-            const validPassword = '123'; // Replace with your actual password
-    
+            const savedUsername = localStorage.getItem("username"); // Replace with your actual username
+            const savedPassword = localStorage.getItem("password"); // Replace with your actual password
+
+
+            document.getElementById('error-message-username').style.display = 'none';
+            document.getElementById('error-message-password').style.display = 'none';
+
+
+            if (username.length < 4 || !/^[a-zA-Z0-9]+$/.test(username)&&password.length < 8) {
+                document.getElementById('error-message-username').textContent = "Invalid Username";
+                document.getElementById('error-message-username').style.display = 'block';
+                document.getElementById('error-message-password').textContent = "Password must be at least 8 characters";
+                document.getElementById('error-message-password').style.display = 'block';
+                return; // Stop form submission
+            }
+
+
+            else if (username.length < 4 || !/^[a-zA-Z0-9]+$/.test(username)) {
+                document.getElementById('error-message-username').textContent = "Invalid Username";
+                document.getElementById('error-message-username').style.display = 'block';
+                return; // Stop form submission
+            }
+
+            else if (password.length < 8) {
+                document.getElementById('error-message-password').textContent = "Password must be at least 8 characters";
+                document.getElementById('error-message-password').style.display = 'block';
+                return; // Stop form submission
+            }
+
+            
             // Check if the entered username and password match the predefined ones
-            if (username === validUsername && password === validPassword) {
+             else if(username!=savedUsername||password!=savedPassword) {
+               
+                // Handle unsuccessful login
+                const hiddenMessage = document.getElementById('hiddenMessage');
+                hiddenMessage.innerText = "Username or Password may not be Correct";
+                hiddenMessage.style.position = 'relative'; 
+                hiddenMessage.style.backgroundColor = 'rgb(255, 39, 39)';
+                hiddenMessage.style.display = 'block'; 
+                setTimeout(function(){
+                        hiddenMessage.style.display = 'none';// Show the welcome message
+               },2500)// Show the alert message
+            }
+
+            else if (username === savedUsername && password === savedPassword) {
                 // Store the successful sign-in status in localStorage
                 localStorage.setItem('isSignedIn', 'true');
                 
                 // Display welcome message
                 const hiddenMessage = document.getElementById('hiddenMessage');
                 hiddenMessage.innerText = `Welcome, ${username}!`;
+                hiddenMessage.style.backgroundColor="#006eff";
                 hiddenMessage.style.display = 'block'; // Show the welcome message
                 
                 // Redirect to index.html after a short delay
                 setTimeout(function() {
                     window.location.href = 'index.html'; // Redirect to index.html
                 }, 2500); // Adjust as necessary
-            } else {
-               
-                // Handle unsuccessful login
-                const hiddenMessage = document.getElementById('hiddenMessage');
-                hiddenMessage.innerText = "Invalid username or password.";
-                hiddenMessage.style.position = 'relative'; 
-                hiddenMessage.style.display = 'block'; 
-                setTimeout(function(){
-                        hiddenMessage.style.display = 'none';// Show the welcome message
-               },2500)// Show the alert message
             }
         }
     </script>

@@ -204,6 +204,9 @@ div.signin a{
     width: 120px; /* Width of the sign-out button */
 }
 
+#email{
+    margin: 0;
+}
 
 #avatar-link img {
     transition: opacity 0.3s; /* Smooth transition */

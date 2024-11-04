@@ -7,27 +7,42 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <div id="hiddenMessage"> Your Account Has Been Made Successfully!</div>
+    <div id="hiddenMessage" style="display: none; color: red;"></div>
     <center>
         <div class="sign-in">
             <img src="images/logov2.png" alt="logo">
             <form action="signIn.html" id="myForm">
                 <div class="signin-field">
-                    <p style="margin:0;text-align: left;font-weight: 600;color: #FFCC00; font-size: 18px;">UserName </p>  
-                    <input type="text" name="username" placeholder="Enter username" required>
-                    <p style="margin:0;text-align: left;font-weight: 600;color: #FFCC00; font-size: 18px;">Email </p>  
-                    <input type="text" name="username" placeholder="Enter Email" required>
+                    <p>UserName</p>
+                    <div class="input-container">
+                        <div id="error-message-username" class="error-message" style="color: red; display: none;"></div>
+                        <input type="text" id="username" name="username" placeholder="Enter username" required>
+                    </div>
                 </div>
-                <div class="signin-field" >
-                <div style="width: 700px;"><p style="margin:0; text-align:left; font-weight:600;color: #FFCC00;font-size: 18px;">Password</p></div>
-                    <input type="password" placeholder="Enter password" required><br>
-                    <p style="margin:0; text-align:left; font-weight:600;color: #FFCC00;font-size: 18px;">Re-Enter Password</p>
-                    <input type="password" name="password" placeholder="Re-Enter password" required><br>
+                <div class="signin-field">
+                    <p>Email</p>  
+                    <div class="input-container">
+                        <div id="error-message-email" class="error-message" style="color: red; display: none;"></div>
+                        <input type="text" id="email" name="email" placeholder="Enter Email" required>
+                    </div>
                 </div>
-                <br>
+                <div class="signin-field">
+                    <p>Password</p>
+                    <div class="input-container">
+                        <div id="error-message-password" class="error-message" style="color: red; display: none;"></div>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                    </div>
+                </div>
+                <div class="signin-field">
+                    <p>Re-Enter Password</p>
+                    <div class="input-container">
+                        <div id="error-message-repassword" class="error-message" style="color: red; display: none;"></div>
+                        <input type="password" id="rePassword" name="repassword" placeholder="Re-Enter password" required>
+                    </div>
+                </div>
                 <button type="submit" style="font-size: 20px;">Sign Up</button>
                 <div class="links">
-                   Do you have an account? <a href="signin.html">Sign In</a>
+                   Do You Have an Account? <a href="signin.html">Sign In</a>
                 </div>
             </form>
         </div>
@@ -40,10 +55,75 @@
         // Add event listener to handle form submission
         form.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
-            hiddenMessage.style.display = 'block'; // Show the alert message
+
+            // Clear previous hidden message
+            hiddenMessage.style.display = 'none'; // Hide previous messages
+
+            // Clear previous error messages
+            document.getElementById('error-message-username').style.display = 'none';
+            document.getElementById('error-message-email').style.display = 'none';
+            document.getElementById('error-message-password').style.display = 'none';
+            document.getElementById('error-message-repassword').style.display = 'none';
+
+            // Validation logic
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const rePassword = document.getElementById('rePassword').value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+
+            // Username validation
+            if (username.length < 4 || !/^[a-zA-Z0-9]+$/.test(username)&&!emailPattern.test(email)&&password.length < 8) {
+                document.getElementById('error-message-username').textContent = "Invalid Username";
+                document.getElementById('error-message-username').style.display = 'block';
+                document.getElementById('error-message-email').textContent = "Invalid Email";
+                document.getElementById('error-message-email').style.display = 'block';
+                document.getElementById('error-message-password').textContent = "Password must be at least 8 characters";
+                document.getElementById('error-message-password').style.display = 'block';
+                return; // Stop form submission
+            }
+
+            else if (password.length < 8 &&!emailPattern.test(email)) {
+                document.getElementById('error-message-password').textContent = "Password must be at least 8 characters";
+                document.getElementById('error-message-password').style.display = 'block';
+                document.getElementById('error-message-email').textContent = "Invalid Email";
+                document.getElementById('error-message-email').style.display = 'block';
+                return; // Stop form submission
+            }
+        
+            // Email validation
+           else if (!emailPattern.test(email)) {
+                document.getElementById('error-message-email').textContent = "Invalid Email";
+                document.getElementById('error-message-email').style.display = 'block';
+                return; // Stop form submission
+            }
+
+            // Password validation
+           else if (password.length < 8) {
+                document.getElementById('error-message-password').textContent = "Password must be at least 8 characters";
+                document.getElementById('error-message-password').style.display = 'block';
+                return; // Stop form submission
+            }
+
+            // Re-enter password validation
+            else if (password !== rePassword) {
+                document.getElementById('error-message-repassword').textContent = "Passwords do not match";
+                document.getElementById('error-message-repassword').style.display = 'block';
+                return; // Stop form submission
+            }
+
+            // Save data in local storage
+            localStorage.setItem('username', username);
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password); // Consider security implications of storing passwords in local storage
+
+            // If all validations pass, proceed
+            hiddenMessage.textContent = "Your Account Has Been Made Successfully!";
+            hiddenMessage.style.color = 'green'; // Change color for success
+            hiddenMessage.style.display = 'block'; // Show the success message
             setTimeout(function() {
-                window.location.href = 'signIn.html'; // Redirect to index.html
-            }, 5000); // Redirect after 5 seconds
+                window.location.href = 'signIn.html'; // Redirect to signIn.html
+            }, 2500); // Redirect after 5 seconds
         });
     </script>
 </body>

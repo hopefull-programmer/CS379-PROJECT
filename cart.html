@@ -10,26 +10,26 @@
     <header>
         <table class="header" border="0">
             <tr>
-                <td class="logo"><a href="index.html"><img src="images/logov2.png"  alt="e-store"></a></td>
+                <td class="logo"><a href="index.html"><img src="images/logov2.png" alt="e-store"></a></td>
                 <td>
                     <div class="search">
                         <input type="text" id="searchInput" placeholder='search...'>
                         <button type="submit" onclick="performSearch()"><img src="images/search-solid.svg" alt="search"></button>
                     </div>
                 </td>
-               <td>
-                <div style="padding-left: 30px; text-align: center; position: relative;">
-                    <a href="cart.html">
-                        <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
-                           Cart <div id="cart-count" class="cart-count" style="display: none;"><script>totalProductsInCart</script></div>
-                    </a>
-                </div>
+                <td>
+                    <div style="padding-left: 30px; text-align: center; position: relative;">
+                        <a href="cart.html">
+                            <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
+                            Cart <div id="cart-count" class="cart-count" style="display: none;"></div>
+                        </a>
+                    </div>
                 </td>
                 <td>
                     <div style="padding-left: 30px; text-align: center; position: relative;">
                         <a href="wishlist.html">
                             <img src="images/like-2.png" alt="wishList" style="width: 30px; height: 30px;"><br>
-                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"><script>totalProductsInWishList</script></div>
+                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"></div>
                         </a>
                     </div>
                 </td>
@@ -74,77 +74,104 @@
                 </div>
                 <br>
                 <div class="total">
-                    <h3>Total Price</h3><h3><span id="total-price">$0.00</span></h3>
+                    <h3>Total Price</h3><h3><span id="total-price">0.00 SR</span></h3>
                 </div>
-                <div id="pay-div"><button id="pay-button" onclick="location.href='payment.html'">Proceed to Pay</button></div>
+                <div id="pay-div"><button id="pay-button" onclick="goToPaymentPage()">Proceed to Pay</button></div>
             </div>
         </div>
     </div>
-   
+
     <footer class="footer">
         <table border="0">
             <tr>
-               <div>
-                <td class="logo-f"><img src="images/logov2.png" height="150px" width="150px" alt="e-store"></td>
-               </div>
+                <div>
+                    <td class="logo-f"><img src="images/logov2.png" height="150px" width="150px" alt="e-store"></td>
+                </div>
                 <div class="footer-element">
                     <td><h3>Find Us</h3></td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/twitter (1).png" alt="X"></div>
-                </td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/facebook (1).png" alt="facebook"></div>
-                </td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/tik-tok (1).png" alt="tiktok"></div>
-                </td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/instagram (1).png" alt="instagram"></div>
-                </td>
+                    <td><div class="social-media"><img src="images/social-media/twitter (1).png" alt="X"></div></td>
+                    <td><div class="social-media"><img src="images/social-media/facebook (1).png" alt="facebook"></div></td>
+                    <td><div class="social-media"><img src="images/social-media/tik-tok (1).png" alt="tiktok"></div></td>
+                    <td><div class="social-media"><img src="images/social-media/instagram (1).png" alt="instagram"></div></td>
                 </div>
-                <td><div  class="footer-element" style="width:100px;">
+                <td><div class="footer-element" style="width:100px;">
                     <td><h3>E-mail: </h3></td>
                     <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#00e1ff;"><h3>myEmail@example.com</h3></a></td>
                 </div></td>
-               
-                <td><div  class="footer-element" style="width:100px;">
+                <td><div class="footer-element" style="width:100px;">
                     <td><h3>Call Center: </h3></td>
                     <td><h3 style="color:#00e1ff;">8001207669</h3></td>
                 </div></td>
-               
-                <td><div  class="footer-element" style="width:100px;">
+                <td><div class="footer-element" style="width:100px;">
                     <td><h3 style="color:#00e1ff;">About Us</h3></td>
                 </div></td>
-                
             </tr>
         </table>
     </footer>
 
     <script>
+        let totalProductsInCart = parseInt(localStorage.getItem('totalProductsInCart')) || 0;
+        let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
+
         const cartProducts = [
-            { id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20, quantity: 1 },
-            { id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25, quantity: 1 },
+            { id: 16, name: 'PS5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20, quantity: 1 },
+            { id: 28, name: 'PS5 Slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/18.png', discount: 22.22, quantity: 1 },
         ];
+
+        function updateCartIcon() {
+            const cartIcon = document.getElementById('cart-count');
+            cartIcon.textContent = totalProductsInCart > 0 ? totalProductsInCart : '';
+            cartIcon.style.display = totalProductsInCart > 0 ? 'block' : 'none';
+            localStorage.setItem('totalProductsInCart', totalProductsInCart);
+        }
+
+        function updateWishlistIcon() {
+            const wishListIcon = document.getElementById('wishList-count');
+            wishListIcon.textContent = totalProductsInWishList > 0 ? totalProductsInWishList : '';
+            wishListIcon.style.display = totalProductsInWishList > 0 ? 'block' : 'none';
+            localStorage.setItem('totalProductsInWishList', totalProductsInWishList);
+        }
 
         function displayProducts(productArray) {
             const productContainer = document.getElementById('cart-items');
-            productContainer.innerHTML = ''; // Clear previous products
+            const cartSummary = document.getElementById('cart-summary');
+            productContainer.innerHTML = '';
             let total = 0;
-            let totalItems = 0; // Variable to hold total items count
+            let totalItems = 0;
+
+            if (productArray.length === 0) {
+                productContainer.innerHTML = `
+                    <center>
+                        <div>
+                            <h1>Your Cart is Empty</h1>
+                            <br>
+                            <button style="padding: 15px 30px; font-size: 23px; background-color: #006eff; color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="location.href='index.html'">
+                                Start Shopping
+                            </button>
+                        </div>
+                    </center>
+                `;
+                cartSummary.style.display = 'none';
+                document.getElementById('total-price').textContent = `0.00 SR`;
+                document.getElementById('total-items-count').textContent = `0`;
+                return;
+            }
+
+            cartSummary.style.display = 'block';
 
             productArray.forEach(product => {
                 total += product.newPrice * product.quantity;
-                totalItems += product.quantity; // Increment total items
-                
+                totalItems += product.quantity;
+
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 productCard.innerHTML = `
                     <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
                     <div class="cart-product-details">
-                        <div class="product-name"><h3>Product ${product.id}</h3></div>
+                        <div class="product-name"><h3>${product.name}</h3></div>
                         <div id="product-price">
-                            <p class="old-price">${product.oldPrice.toFixed(2)}</p>
-                            <p class="new-price">${product.newPrice.toFixed(2)}</p>
+                            <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
+                            <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
                             <div class="product-quantity">
                                 <button class="remove" onclick="removeFromCart(${product.id})"><img src="images/delete.png" alt="Remove" style="width: 15px; height: 15px;"></button>
                                 <button class="decrease" onclick="decreaseQuantity(${product.id})" id="decrease-${product.id}" ${product.quantity === 1 ? 'disabled' : ''}>-</button>
@@ -157,15 +184,15 @@
                 productContainer.appendChild(productCard);
             });
 
-            document.getElementById('total-price').textContent = `$${total.toFixed(2)}`;
-            document.getElementById('total-items-count').textContent = totalItems; // Update the total items count
+            document.getElementById('total-price').textContent = `${total.toFixed(2)} SR`;
+            document.getElementById('total-items-count').textContent = totalItems;
         }
 
         function increaseQuantity(productId) {
             const product = cartProducts.find(item => item.id === productId);
             if (product) {
                 product.quantity++;
-                displayProducts(cartProducts); // Refresh the cart display
+                displayProducts(cartProducts);
             }
         }
 
@@ -173,20 +200,23 @@
             const product = cartProducts.find(item => item.id === productId);
             if (product && product.quantity > 1) {
                 product.quantity--;
-                displayProducts(cartProducts); // Refresh the cart display
+                displayProducts(cartProducts);
             }
         }
 
         function removeFromCart(productId) {
             const index = cartProducts.findIndex(item => item.id === productId);
             if (index !== -1) {
-                cartProducts.splice(index, 1); // Remove the product from the array
-                displayProducts(cartProducts); // Refresh the cart display
+                cartProducts.splice(index, 1);
+                displayProducts(cartProducts);
             }
         }
 
-        // Initialize by displaying all products
-        displayProducts(cartProducts);
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(cartProducts);
+            updateCartIcon();
+            updateWishlistIcon();
+        });
 
         document.getElementById('avatar-link').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link behavior
@@ -202,45 +232,52 @@ document.getElementById('signout-button').addEventListener('click', function() {
     const signoutDiv = document.querySelector('.signout');
     document.getElementById('signout-container').style.display = 'none'; // Hide the sign-out button
 });
+
+    
+
+        const isSignedIn = localStorage.getItem('isSignedIn');
+
+// Reset sign-in status when the page is being unloaded
+
+// Update UI based on sign-in status
+function updateSignInUI() {
+const isSignedIn = localStorage.getItem('isSignedIn');
+const avatarLink = document.getElementById('avatar-link');
+const signinLink = document.getElementById('signin-link');
+
+if (isSignedIn === 'true') {
+    avatarLink.style.display = 'block'; // Show the avatar
+    signinLink.style.display = 'none';   // Hide the sign-in link
+    avatarLink.href = 'profile.html';    // Change to the desired profile page
+} else {
+    avatarLink.style.display = 'none';    // Hide the avatar
+    signinLink.style.display = 'block';    // Show the sign-in link
+}
+}
+
+// Call the function to update the UI
+updateSignInUI();
+
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput').value;
+            if (searchInput) {
+                window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
+            } else {
+                alert("Please enter a search term.");
+            }
+        }
+
+
+        function goToPaymentPage() {
+        const isSignedIn = localStorage.getItem('isSignedIn');
+
+        if (isSignedIn === 'true') {
+            window.location.href = 'payment.html'; // Your payment page URL
+        } else {
+            alert("You need to sign in first.");
+            window.location.href = 'signin.html'; // Your sign-in page URL
+        }
+    }
     </script>
 </body>
 </html>
-
-<script>
-    // Check the sign-in status on page load
-    const isSignedIn = localStorage.getItem('isSignedIn');
-
-    // Reset sign-in status when the page is being unloaded
-
-    // Update UI based on sign-in status
-    function updateSignInUI() {
-    const isSignedIn = localStorage.getItem('isSignedIn');
-    const avatarLink = document.getElementById('avatar-link');
-    const signinLink = document.getElementById('signin-link');
-
-    if (isSignedIn === 'true') {
-        avatarLink.style.display = 'block'; // Show the avatar
-        signinLink.style.display = 'none';   // Hide the sign-in link
-        avatarLink.href = 'profile.html';    // Change to the desired profile page
-    } else {
-        avatarLink.style.display = 'none';    // Hide the avatar
-        signinLink.style.display = 'block';    // Show the sign-in link
-    }
-}
-
-    // Call the function to update the UI
-    updateSignInUI();
-
-
-    function performSearch() {
-    const searchInput = document.getElementById('searchInput').value;
-    if (searchInput) {
-        // Redirect to search.html with the search term as a query parameter
-        window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
-    } else {
-        alert("Please enter a search term.");
-    }
-}
-
-
-</script>

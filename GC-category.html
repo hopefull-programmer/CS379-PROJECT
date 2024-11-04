@@ -245,8 +245,8 @@ const gamesConsloes_discount = [
                 <a href="product-detail.html?id=${product.id}">
     <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
     <h3>${product.name}</h3>
-    <p class="old-price">SR${product.oldPrice.toFixed(2)}</p>
-    <p class="new-price">SR${product.newPrice.toFixed(2)} (Discount: ${product.discount}%)</p>
+    <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
+    <p class="new-price">${product.newPrice.toFixed(2)} SR(Discount: ${product.discount}%)</p>
     </a>
     <div style="display:flex;">
         <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">

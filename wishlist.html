@@ -3,42 +3,42 @@
 <head>
     <title>Home Page</title>
     <link rel="stylesheet" href="css/mystyle-main.css">
-<link rel="stylesheet" href="css/all.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
         <table class="header" border="0">
             <tr>
-                <td class="logo"><a href="index.html"><img src="images/logov2.png"  alt="e-store"></a></td>
+                <td class="logo"><a href="index.html"><img src="images/logov2.png" alt="e-store"></a></td>
                 <td>
                     <div class="search">
                         <input type="text" id="searchInput" placeholder='search...'>
                         <button type="submit" onclick="performSearch()"><img src="images/search-solid.svg" alt="search"></button>
                     </div>
                 </td>
-               <td>
-                <div style="padding-left: 30px; text-align: center; position: relative;">
-                    <a href="cart.html">
-                        <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
-                        Cart <div id="cart-count" class="cart-count" style="display: none;"><script>totalProductsInCart</script></div>
-                    </a>
-                </div>
+                <td>
+                    <div style="padding-left: 30px; text-align: center; position: relative;">
+                        <a href="cart.html">
+                            <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
+                            Cart <div id="cart-count" class="cart-count" style="display: none;"></div>
+                        </a>
+                    </div>
                 </td>
                 <td>
                     <div style="padding-left: 30px; text-align: center; position: relative;">
                         <a href="wishlist.html">
                             <img src="images/like-2.png" alt="wishList" style="width: 30px; height: 30px;"><br>
-                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"><script>totalProductsInWishList</script></div>
+                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"></div>
                         </a>
                     </div>
                 </td>
                 <td>
                     <div style="display: flex; align-items: center; justify-content: flex-end; position: relative; width: 100%; margin:auto;">
-                        <a id="avatar-link" style="margin-right: 10px; display: none;">
+                        <a href="#" id="avatar-link" style="margin-right: 10px; display: none;">
                             <img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">
                         </a>
                         <div class="signin-out">
@@ -65,59 +65,76 @@
             <div id="cart-items"></div>      
         </div>
     </div>
+    
+    <div id="notification" style="display: none; position: fixed; top: 10px; right: 10px; background: rgba(0, 128, 0, 0.8); color: white; padding: 10px; border-radius: 5px;">Product added to cart!</div>
 
     <script>
+        let totalProductsInCart = parseInt(localStorage.getItem('totalProductsInCart')) || 0;
+        let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
+
         const cartProducts = [
-            { id: 1, oldPrice: 100, newPrice: 80, imageUrl: 'https://via.placeholder.com/150?text=Product+1', discount: 20, quantity: 1 },
-            { id: 2, oldPrice: 150, newPrice: 112.50, imageUrl: 'https://via.placeholder.com/150?text=Product+2', discount: 25, quantity: 1 },
+            { id: 16, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20, quantity: 1 },
+            { id: 28, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/18.png', discount: 22.22, quantity: 1 },
         ];
 
         function displayProducts(productArray) {
             const productContainer = document.getElementById('cart-items');
             productContainer.innerHTML = ''; // Clear previous products
-            let total = 0;
-            let totalItems = 0; // Variable to hold total items count
+            
+            // Check if the product array is empty
+            if (productArray.length === 0) {
+                productContainer.innerHTML = `
+                    <center>
+                        <div>
+                            <h1>Your Wishlist is Empty</h1>
+                            <br>
+                            <button style="padding: 15px 30px; font-size: 23px; background-color: #006eff; color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="window.location.href='index.html'">
+                                Start Shopping
+                            </button>
+                        </div>
+                    </center>
+                `; // Display message
+                return; // Exit the function
+            }
 
             productArray.forEach(product => {
-                total += product.newPrice * product.quantity;
-                totalItems += product.quantity; // Increment total items
-                
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 productCard.innerHTML = `
                     <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
                     <div class="cart-product-details">
-                        <div class="product-name"><h3>Product ${product.id}</h3></div>
+                        <div class="product-name"><h3>${product.name}</h3></div>
                         <div id="product-price">
-                            <p class="old-price">${product.oldPrice.toFixed(2)}</p>
-                            <p class="new-price">${product.newPrice.toFixed(2)}</p>
+                            <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
+                            <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
                             <div class="product-quantity">
                                 <button class="remove" onclick="removeFromCart(${product.id})"><img src="images/delete.png" alt="Remove" style="width: 15px; height: 15px;"></button>
-                                <button class="increase" onclick="increaseQuantity(${product.id})">Add To Cart</button>
+                                <button class="increase" onclick="addToCart(${product.id})">Add To Cart</button>
                             </div>
                         </div>
                     </div>
                 `;
                 productContainer.appendChild(productCard);
             });
-
-            document.getElementById('total-price').textContent = `$${total.toFixed(2)}`;
-            document.getElementById('total-items-count').textContent = totalItems; // Update the total items count
         }
 
-        function increaseQuantity(productId) {
+        function addToCart(productId) {
             const product = cartProducts.find(item => item.id === productId);
             if (product) {
-                product.quantity++;
-                displayProducts(cartProducts); // Refresh the cart display
-            }
-        }
+                // Display notification
+                const notification = document.getElementById('notification');
+                notification.style.display = 'block';
+                notification.innerText = `${product.name} added to cart!`;
+                
+                // Increment the cart count and update local storage
+                totalProductsInCart++;
+                localStorage.setItem('totalProductsInCart', totalProductsInCart);
+                updateCartCount();
 
-        function decreaseQuantity(productId) {
-            const product = cartProducts.find(item => item.id === productId);
-            if (product && product.quantity > 1) {
-                product.quantity--;
-                displayProducts(cartProducts); // Refresh the cart display
+                // Hide notification after 3 seconds
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
             }
         }
 
@@ -125,79 +142,41 @@
             const index = cartProducts.findIndex(item => item.id === productId);
             if (index !== -1) {
                 cartProducts.splice(index, 1); // Remove the product from the array
-                displayProducts(cartProducts); // Refresh the cart display
+                displayProducts(cartProducts); // Refresh the display
             }
         }
 
-        // Initialize by displaying all products
-        displayProducts(cartProducts);
+        function updateCartCount() {
+            const cartCountDiv = document.getElementById('cart-count');
+            cartCountDiv.textContent = totalProductsInCart > 0 ? totalProductsInCart : '';
+            cartCountDiv.style.display = totalProductsInCart > 0 ? 'block' : 'none';
+
+            const wishListCountDiv = document.getElementById('wishList-count');
+            wishListCountDiv.textContent = totalProductsInWishList > 0 ? totalProductsInWishList : '';
+            wishListCountDiv.style.display = totalProductsInWishList > 0 ? 'block' : 'none';
+        }
+
+        function updateSignInUI() {
+            const avatarLink = document.getElementById('avatar-link');
+            const signinLink = document.getElementById('signin-link');
+
+            if (isSignedIn === 'true') {
+                avatarLink.style.display = 'block';
+                signinLink.style.display = 'none';
+                avatarLink.href = 'profile.html';
+            } else {
+                avatarLink.style.display = 'none';
+                signinLink.style.display = 'block';
+            }
+        }
 
 
-    </script>
-    
-    <footer class="footer">
-        <table border="0">
-            <tr>
-               <div>
-                <td class="logo-f"><img src="images/logov2.png" height="150px" width="150px" alt="e-store"></td>
-               </div>
-                <div class="footer-element">
-                    <td><h3>Find Us</h3></td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/twitter (1).png" alt="X"></div>
-                </td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/facebook (1).png" alt="facebook"></div>
-                </td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/tik-tok (1).png" alt="tiktok"></div>
-                </td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/instagram (1).png" alt="instagram"></div>
-                </td>
-                </div>
-                <td><div  class="footer-element" style="width:100px;">
-                    <td><h3>E-mail: </h3></td>
-                    <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#00e1ff;"><h3>myEmail@example.com</h3></a></td>
-                </div></td>
-               
-                <td><div  class="footer-element" style="width:100px;">
-                    <td><h3>Call Center: </h3></td>
-                    <td><h3 style="color:#00e1ff;">8001207669</h3></td>
-                </div></td>
-               
-                <td><div  class="footer-element" style="width:100px;">
-                    <td><h3 style="color:#00e1ff;">About Us</h3></td>
-                </div></td>
-                
-            </tr>
-        </table>
-    </footer>
-</body>
-</html>
-<script>
-    // Check the sign-in status on page load
-    const isSignedIn = localStorage.getItem('isSignedIn');
-
-    // Reset sign-in status when the page is being unloaded
-
-    // Update UI based on sign-in status
-    function updateSignInUI() {
-    const isSignedIn = localStorage.getItem('isSignedIn');
-    const avatarLink = document.getElementById('avatar-link');
-    const signinLink = document.getElementById('signin-link');
-
-    if (isSignedIn === 'true') {
-        avatarLink.style.display = 'block'; // Show the avatar
-        signinLink.style.display = 'none';   // Hide the sign-in link
-        avatarLink.href = 'profile.html';    // Change to the desired profile page
-    } else {
-        avatarLink.style.display = 'none';    // Hide the avatar
-        signinLink.style.display = 'block';    // Show the sign-in link
-    }
-}
-
-document.getElementById('avatar-link').addEventListener('click', function(event) {
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(cartProducts);
+            updateCartIcon();
+            updateWishlistIcon();
+        });
+        document.getElementById('avatar-link').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link behavior
     const signoutDiv = document.querySelector('.signin-out div'); // Select the sign-out button's container
     signoutDiv.style.display = signoutDiv.style.display === 'none' ? 'flex' : 'none'; // Toggle visibility
@@ -210,20 +189,91 @@ document.getElementById('signout-button').addEventListener('click', function() {
     updateSignInUI(); // Update UI after signing out
     const signoutDiv = document.querySelector('.signout');
     document.getElementById('signout-container').style.display = 'none'; // Hide the sign-out button
-}); 
-    // Call the function to update the UI
-    updateSignInUI();
+});
 
 
-    function performSearch() {
-    const searchInput = document.getElementById('searchInput').value;
-    if (searchInput) {
-        // Redirect to search.html with the search term as a query parameter
-        window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
-    } else {
-        alert("Please enter a search term.");
-    }
+const isSignedIn = localStorage.getItem('isSignedIn');
+
+// Reset sign-in status when the page is being unloaded
+
+// Update UI based on sign-in status
+function updateSignInUI() {
+const isSignedIn = localStorage.getItem('isSignedIn');
+const avatarLink = document.getElementById('avatar-link');
+const signinLink = document.getElementById('signin-link');
+
+if (isSignedIn === 'true') {
+    avatarLink.style.display = 'block'; // Show the avatar
+    signinLink.style.display = 'none';   // Hide the sign-in link
+    avatarLink.href = 'profile.html';    // Change to the desired profile page
+} else {
+    avatarLink.style.display = 'none';    // Hide the avatar
+    signinLink.style.display = 'block';    // Show the sign-in link
+}
 }
 
+// Call the function to update the UI
+updateSignInUI();
+        
+        // Initialize the counts and display products
+        updateCartCount();
+        updateSignInUI();
+        displayProducts(cartProducts);
 
-</script>
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput').value;
+            if (searchInput) {
+                // Redirect to search.html with the search term as a query parameter
+                window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
+            } else {
+                alert("Please enter a search term.");
+            }
+        }
+    </script>
+    
+    <footer class="footer">
+        <table border="0">
+            <tr>
+                <div>
+                    <td class="logo-f"><img src="images/logov2.png" height="150px" width="150px" alt="e-store"></td>
+                </div>
+                <div class="footer-element">
+                    <td><h3>Find Us</h3></td>
+                    <td>
+                        <div class="social-media"><img src="images/social-media/twitter (1).png" alt="X"></div>
+                    </td>
+                    <td>
+                        <div class="social-media"><img src="images/social-media/facebook (1).png" alt="facebook"></div>
+                    </td>
+                    <td>
+                        <div class="social-media"><img src="images/social-media/tik-tok (1).png" alt="tiktok"></div>
+                    </td>
+                    <td>
+                        <div class="social-media"><img src="images/social-media/instagram (1).png" alt="instagram"></div>
+                    </td>
+                </div>
+                <td><div class="footer-element" style="width:100px;">
+                    <td><h3>E-mail: </h3></td>
+                    <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#00e1ff;"><h3>myEmail@example.com</h3></a></td>
+                </div></td>
+                <td><div class="footer-element" style="width:100px;">
+                    <td><h3>Call Center: </h3></td>
+                    <td><h3 style="color:#00e1ff;">8001207669</h3></td>
+                </div></td>
+                <td><div class="footer-element" style="width:100px;">
+                    <td><h3 style="color:#00e1ff;">About Us</h3></td>
+                </div></td>
+            </tr>
+        </table>
+    </footer>
+</body>
+</html>
+
+
+
+
+  
+   
+
+
+   
