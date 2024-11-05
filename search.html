@@ -6,6 +6,59 @@
     <link rel="stylesheet" href="css/mystyle-main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Search Results</title>
+    <style>
+        .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Style for the filters container */
+.filters {
+    width: 300px; /* Adjust this to control the width of the filter sidebar */
+    padding: 20px;
+    border-right: 1px solid #ddd; /* Optional: adds a separator between filters and products */
+}
+
+/* Style for the results container (products) */
+.results {
+    flex-grow: 1; /* This will make the results container take the remaining space */
+    padding: 20px;
+}
+
+/* Optionally, style the individual filter sections */
+.filter-category, .filter-company, .filter-price {
+    margin-bottom: 20px;
+}
+
+/* Style the filter headings */
+h3 {
+    margin-bottom: 10px;
+}
+
+/* Style the range input (Price Range) */
+input[type="range"] {
+    width: 100%;
+}
+
+/* Responsive behavior */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .filters {
+        width: 100%;
+        border-right: none;
+    }
+    
+    .results {
+        width: 100%;
+    }
+}
+    </style>
 </head>
 <body>
     <header>
@@ -55,26 +108,51 @@
             </tr>
         </table>
     </header>
+    <div class="nav-container">
+        <nav>
+            <table class="categories" border="0">
+                <tr>
+                    <td class="c-item"><img src="images/delivery-van.png" alt=""><br><b>Free Delivery</b></td>
+                    <td class="c-item"><img src="images/return.png" alt=""><br><b>Free Return</b></td>
+                    <td class="c-item"><img src="images/fast-delivery.png" alt=""><br><b>Fast Delivery</b></td>
+                </tr>
+            </table>
+        </nav>
+    </div>
 
     <div class="container">
         <div class="filters">
             <h2>Filters</h2>
-            <div class="filter-category">
-                <h3>Category</h3>
-                <!-- You can add actual categories if necessary -->
-                <label><input type="checkbox" value="GameConsoles" class="category-filter">Game Consoles</label><br><br>
-                <label><input type="checkbox" value="TV" class="category-filter">TV's</label><br><br>
-                <label><input type="checkbox" value="Home Appliances" class="category-filter">Home Appliances</label><br><br>
-                <label><input type="checkbox" value="Cameras" class="category-filter">Cameras</label><br><br>
+            <!-- Merged Category and Price Range Filter -->
+            <div class="filter-options">
+                <!-- Category Filter -->
+                <div class="filter-category">
+                    <h3>Category</h3><br>
+                    <label><input type="checkbox" value="GameConsoles" class="category-filter"> Game Consoles</label><br>
+                    <label><input type="checkbox" value="TV" class="category-filter"> TVs</label><br>
+                    <label><input type="checkbox" value="HomeAppliances" class="category-filter"> Home Appliances</label><br>
+                    <label><input type="checkbox" value="Cameras" class="category-filter"> Cameras</label><br>
+                </div>
+                <!-- Company Filter -->
+                <div class="filter-company">
+                    <h3>Company</h3>
+                    <label><input type="checkbox" value="Sony" class="company-filter"> Sony</label><br><br>
+                    <label><input type="checkbox" value="Microsoft" class="company-filter"> Microsoft</label><br><br>
+                    <label><input type="checkbox" value="Nintendo" class="company-filter"> Nintendo</label><br><br>
+                    <label><input type="checkbox" value="Valve" class="company-filter"> Valve</label><br><br>
+                </div>
+                <!-- Price Range Filter -->
+                <div class="filter-price">
+                    <h3>Price Range</h3>
+                    <input type="range" min="0" max="300" id="priceRange" value="300" step="10" oninput="updatePriceLabel()"><br>
+                    <span id="priceLabel">0 SR - 300 SR</span>
+                </div>
             </div>
-            <div class="filter-price">
-                <h3>Price Range</h3>
-                <input type="range" min="0" max="300" id="priceRange" value="300" step="10" oninput="updatePriceLabel()">
-                <span id="priceLabel">0 SR - 300 SR</span>
-            </div>
-            <button id="applyFilters">Apply Filters</button>
+        
+            <br>
+            <button class="applyFilters" id="applyFilters">Apply Filters</button>
         </div>
-
+    
         <div class="results">
             <h2 id="resultsTitle"></h2>
             <div class="category-container">
@@ -82,49 +160,52 @@
             </div>
         </div>
     </div>
+    
 
-    <footer class="footer">
-        <table border="0">
-            <tr>
-               <div>
-                <td class="logo-f"><img src="images/logov2.png" height="150px" width="150px" alt="e-store"></td>
-               </div>
-                <div class="footer-element">
-                    <td><h3>Find Us</h3></td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/twitter (1).png" alt="X"></div>
-                </td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/facebook (1).png" alt="facebook"></div>
-                </td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/tik-tok (1).png" alt="tiktok"></div>
-                </td>
-                <td>
-                    <div class="social-media"><img src="images/social-media/instagram (1).png" alt="instagram"></div>
-                </td>
-                </div>
-                <td><div  class="footer-element" style="width:100px;">
-                    <td><h3>E-mail: </h3></td>
-                    <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#00e1ff;"><h3>myEmail@example.com</h3></a></td>
-                </div></td>
-               
-                <td><div  class="footer-element" style="width:100px;">
-                    <td><h3>Call Center: </h3></td>
-                    <td><h3 style="color:#00e1ff;">8001207669</h3></td>
-                </div></td>
-               
-                <td><div  class="footer-element" style="width:100px;">
-                    <td><h3 style="color:#00e1ff;">About Us</h3></td>
-                </div></td>
-                
-            </tr>
-        </table>
-    </footer>
+<footer class="footer">
+    <table border="0">
+        <tr>
+           <div>
+            <td class="logo-f"><img src="images/logov2.png" height="150px" width="150px" alt="e-store"></td>
+           </div>
+            <div class="footer-element">
+                <td><h3>Find Us</h3></td>
+            <td>
+                <div class="social-media"><img src="images/social-media/twitter (1).png" alt="X"></div>
+            </td>
+            <td>
+                <div class="social-media"><img src="images/social-media/facebook (1).png" alt="facebook"></div>
+            </td>
+            <td>
+                <div class="social-media"><img src="images/social-media/tik-tok (1).png" alt="tiktok"></div>
+            </td>
+            <td>
+                <div class="social-media"><img src="images/social-media/instagram (1).png" alt="instagram"></div>
+            </td>
+            </div>
+            <td><div  class="footer-element" style="width:100px;">
+                <td><h3>E-mail: </h3></td>
+                <td><a href="mailto:myEmail@example.com" style="text-decoration: none; color:#00e1ff;"><h3>myEmail@example.com</h3></a></td>
+            </div></td>
+           
+            <td><div  class="footer-element" style="width:100px;">
+                <td><h3>Call Center: </h3></td>
+                <td><h3 style="color:#00e1ff;">8001207669</h3></td>
+            </div></td>
+           
+            <td><div  class="footer-element" style="width:100px;">
+                <td><h3 style="color:#00e1ff;">About Us</h3></td>
+            </div></td>
+            
+        </tr>
+    </table>
+</footer>
 
-    <script src="search.js"></script>
+<script src="search.js"></script>
+
 </body>
 </html>
+
 
 <script>
 
@@ -177,16 +258,7 @@
         alert(`Product ${productId} added to WishList!`);
     }
     
-    function performSearch() {
-    const searchInput = document.getElementById('searchInput').value;
-    if (searchInput) {
-        // Redirect to search.html with the search term as a query parameter
-        window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
-    } else {
-        alert("Please enter a search term.");
-    }
-} 
-    
+     
     
     function performSearch() {
         const searchInput = document.getElementById('searchInput').value;
@@ -210,7 +282,7 @@
                 <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
                 <h3>${product.name}</h3>
                 <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
-                <p class="new-price">${product.newPrice.toFixed(2)} SR(Discount: ${product.discount}%)</p>
+                <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
             </a>
             <div style="display:flex;">
                 <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
@@ -225,6 +297,11 @@
     });
 }
 
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
 // Function to filter and display results based on the search input
 document.getElementById('applyFilters').addEventListener('click', function() {
     filterAndDisplayResults(); // Call the filtering function when the button is clicked
@@ -233,6 +310,7 @@ document.getElementById('applyFilters').addEventListener('click', function() {
 // Function to filter and display results based on selected filters
 function filterAndDisplayResults() {
     const selectedCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value);
+    const selectedCompanies = Array.from(document.querySelectorAll('.company-filter:checked')).map(cb => cb.value);
     const maxPrice = parseInt(document.getElementById('priceRange').value);
     const query = getQueryParam('query').toLowerCase(); // Ensure to get the search query
 
@@ -240,8 +318,9 @@ function filterAndDisplayResults() {
     const filteredProducts = Products.filter(product => {
         const matchesQuery = product.name.toLowerCase().includes(query);
         const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(product.category);
+        const matchesCompany = selectedCompanies.length === 0 || selectedCompanies.includes(product.company);
         const matchesPrice = product.newPrice <= maxPrice;
-        return matchesQuery && matchesCategory && matchesPrice;
+        return matchesQuery && matchesCategory && matchesCompany && matchesPrice;
     });
 
     displayProducts(filteredProducts); // Call to display filtered products

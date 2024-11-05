@@ -120,10 +120,36 @@
         </div>
     </div>
 
-    <div class="category-container">
-        <div class="category-title">Games Consoles</div>
-        <div class="product-flex" id="gamesConsoles-container"></div>
+    <div class="category-container" style="display: flex; justify-content: flex-start;">
+        <!-- Filters Section on the Left -->
+        <div class="filters" style="width: 350px; padding: 20px; background-color: #f9f9f9;">
+            <h2>Filters</h2>
+            <!-- New Filter for Companies -->
+            <div class="filter-company">
+                <h3>Company</h3><br>
+                <label><input type="checkbox" value="Sony" class="company-filter"> Sony</label><br><br>
+                <label><input type="checkbox" value="Microsoft" class="company-filter"> Microsoft</label><br><br>
+                <label><input type="checkbox" value="Nintendo" class="company-filter"> Nintendo</label><br><br>
+                <label><input type="checkbox" value="Valve" class="company-filter"> Valve</label><br><br>
+            </div>
+            
+            <!-- Price Range Filter -->
+            <div class="filter-price">
+                <h3>Price Range</h3>
+                <input type="range" min="0" max="300" id="priceRange" value="300" step="10" oninput="updatePriceLabel()"><br>
+                <span id="priceLabel">0 SR - 300 SR</span>
+            </div>
+            <br>
+            <button class="applyFilters" id="applyFilters">Apply Filters</button>
+        </div>
+    
+        <!-- Products Section -->
+        <div style="flex-grow: 1; padding: 20px;">
+            <div class="category-title">Game Consoles</div>
+            <div class="product-flex" id="gamesConsoles-container"></div>
+        </div>
     </div>
+
 
     <footer class="footer">
         <table border="0">
@@ -199,8 +225,36 @@ function addWishList(productId) {
     alert(`Product ${productId} added to WishList!`);
 }
 
+function updatePriceLabel() {
+    const priceRange = document.getElementById('priceRange');
+    const maxPrice = priceRange.value; // Get the current value of the slider
+    const minPrice = 0; // Set minimum price (can also be dynamic if needed)
 
+    // Update the label with the current range
+    document.getElementById('priceLabel').textContent = `${minPrice} SR - ${maxPrice} SR`;
+}
 
+function applyFilters() {
+    const priceRange = document.getElementById('priceRange').value;
+    const selectedCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value);
+    const selectedCompanies = Array.from(document.querySelectorAll('.company-filter:checked')).map(cb => cb.value);
+    
+    // Filter products based on price, category, and company
+    const filteredProducts = gamesConsloes_discount.filter(product => {
+        // Filter by price
+        const isWithinPrice = product.newPrice <= priceRange;
+        
+        // Filter by category (optional, can add more categories)
+        const isInCategory = selectedCategories.length === 0 || selectedCategories.includes('Game Consoles'); // Can be extended with more categories
+        
+        // Filter by company (example companies: Sony, Microsoft, etc.)
+        const isInCompany = selectedCompanies.length === 0 || selectedCompanies.includes(product.company);
+        
+        return isWithinPrice && isInCategory && isInCompany;
+    });
+    
+    displayProducts(filteredProducts, 'gamesConsoles-container'); // Update product display
+}
 
 // Function to add products to the cart
 function buyProduct(productId) {
@@ -235,32 +289,39 @@ const gamesConsloes_discount = [
 
 
         // Function to display products in a specified container
-        function displayProducts(productArray, containerId) {
-            const productContainer = document.getElementById(containerId);
-            productContainer.innerHTML = ''; // Clear previous products
-            productArray.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.innerHTML = `
-                <a href="product-detail.html?id=${product.id}">
-    <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
-    <h3>${product.name}</h3>
-    <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
-    <p class="new-price">${product.newPrice.toFixed(2)} SR(Discount: ${product.discount}%)</p>
-    </a>
-    <div style="display:flex;">
-        <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
-            <i class="fa-regular fa-heart"></i>
-        </button>
-        <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
-            Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
-        </button>
-    </div>
-    
-`;
-                productContainer.appendChild(productCard);
-            });
-        }
+       // Function to display products in a specified container
+function displayProducts(productArray, containerId) {
+    const productContainer = document.getElementById(containerId);
+    productContainer.innerHTML = ''; // Clear previous products
+    productArray.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            <a href="product-detail.html?id=${product.id}">
+                <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+                <h3>${product.name}</h3>
+                <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
+                <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
+            </a>
+            <div style="display:flex;">
+                <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
+                    Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+        `;
+        productContainer.appendChild(productCard);
+    });
+}
+
+// Apply filters when the button is clicked
+document.getElementById('applyFilters').addEventListener('click', applyFilters);
+
+
+
+
         // Function to display all products in their respective categories
         function displayAllProducts() {
             displayProducts(gamesConsloes_discount, 'gamesConsoles-container');

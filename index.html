@@ -3,11 +3,8 @@
 <head>
     <title>Home Page</title>
     <link rel="stylesheet" href="css/mystyle-main.css">
-<link rel="stylesheet" href="css/all.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -101,22 +98,22 @@
  
 
     <!-- Product Display for Each Category -->
-    <div class="category-container" style="padding-bottom: 150px;">
+    <div class="category-container-m" style="padding-bottom: 150px;">
         <div class="category-title">Home Appliances</div>
         <div id="homeappliances-container" class="product-container"></div>
     </div>
 
-    <div class="category-container" style="padding-bottom: 150px;">
+    <div class="category-container-m" style="padding-bottom: 150px;">
         <div class="category-title">TV's</div>
         <div id="digitalCards-container" class="product-container"></div>
     </div>
 
-    <div class="category-container" style="padding-bottom: 150px;">
+    <div class="category-container-m" style="padding-bottom: 150px;">
         <div class="category-title">Cameras</div>
         <div id="cameras-container" class="product-container"></div>
     </div>
 
-    <div class="category-container" style="padding-bottom: 0px;">
+    <div class="category-container-m" style="padding-bottom: 0px;">
         <div class="category-title">Games Consoles</div>
         <div id="gamesConsoles-container" class="product-container"></div>
     </div>
@@ -174,25 +171,25 @@ function addWishList(productId) {
 }
 
         const homeappliances_discount = [
-        { id: 16, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20 },
-  { id: 17, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/2.png', discount: 25 },
-  { id: 18, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/3.png', discount: 22.22 },
-  { id: 19, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/4.png', discount: 20 },
-  { id: 20, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/5.png', discount: 20 },
-  { id: 21, name: 'xbox seris x', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/6.png', discount: 25 },
-  { id: 22, name: 'atari', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/7.png', discount: 9.09 },
-  { id: 23, name: 'gameboy', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/8.png', discount: 20 },
-  { id: 24, name: 'Psp', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/9.png', discount: 23.53 },
-  { id: 25, name: 'playstation 4', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/10.png', discount: 20 },
+        { id: 18, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20 },
+  { id: 19, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/2.png', discount: 25 },
+  { id: 20, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/3.png', discount: 22.22 },
+  { id: 21, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/4.png', discount: 20 },
+  { id: 22, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/5.png', discount: 20 },
+  { id: 23, name: 'xbox seris x', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/6.png', discount: 25 },
+  { id: 24, name: 'atari', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/7.png', discount: 9.09 },
+  { id: 25, name: 'gameboy', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/8.png', discount: 20 },
+  { id: 26, name: 'Psp', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/9.png', discount: 23.53 },
+  { id: 27, name: 'playstation 4', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/10.png', discount: 20 },
 ];
 const tv_discount = [
-  { id: 27, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/17.png', discount: 25 },
-  { id: 28, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/18.png', discount: 22.22 },
-  { id: 29, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/19.png', discount: 20 },
-  { id: 30, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/20.png', discount: 20 },
-  { id: 31, name: 'xbox seris x', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/21.png', discount: 25 },
-  { id: 32, name: 'atari', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/22.png', discount: 9.09 },
-  { id: 33, name: 'gameboy', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/23.png', discount: 20 },
+  { id: 28, name: 'ps5 pro', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/17.png', discount: 25 },
+  { id: 29, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/18.png', discount: 22.22 },
+  { id: 30, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/19.png', discount: 20 },
+  { id: 31, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/20.png', discount: 20 },
+  { id: 32, name: 'xbox seris x', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/21.png', discount: 25 },
+  { id: 33, name: 'atari', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/22.png', discount: 9.09 },
+  { id: 34, name: 'gameboy', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/23.png', discount: 20 },
 ];
 const cameras_discount = [
 { id: 11, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/11.png', discount: 20 },
@@ -200,6 +197,8 @@ const cameras_discount = [
   { id: 13, name: 'ps5 slim', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/13.png', discount: 22.22 },
   { id: 14, name: 'steam deck', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/14.png', discount: 20 },
   { id: 15, name: 'nintendo switch', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/15.png', discount: 20 },
+  { id: 16, name: 'nintendo switch', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/16.png', discount: 20 },
+  { id: 17, name: 'nintendo switch', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/17-c.png', discount: 20 },
 ];
 const gamesConsloes_discount = [
 { id: 1, name: 'ps5', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/pic.png', discount: 20 },
@@ -241,10 +240,12 @@ function performSearch() {
                 productCard.className = 'product-card';
                 productCard.innerHTML = `
                 <a href="product-detail.html?id=${product.id}">
-    <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+   <div class="image-container" style="display: flex; justify-content: center; align-items: center; width: 100%;">
+                <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="max-width: 100%; height: auto;">
+            </div>
     <h3>${product.name}</h3>
     <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
-    <p class="new-price">${product.newPrice.toFixed(2)} SR(Discount: ${product.discount}%)</p>
+    <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
     </a>
     <div style="display:flex;">
         <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">

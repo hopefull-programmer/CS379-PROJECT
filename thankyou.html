@@ -5,35 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You</title>
     <style>
+        /* Reset some basic styles */
+        body, h1, p, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: Arial, sans-serif;
+            background-color: #f9f9f9; /* Light gray background */
+            color: #333; /* Default text color */
+            font-size: 16px;
+        }
+
+        /* Main container */
+        .thank-you-container {
             text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 90%;
+            max-width: 600px;
         }
+
+        /* Heading Styles */
         h1 {
-            color: #0077ff;
+            color: #0077FF; /* Primary blue color */
             font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
+
+        /* Paragraph Styling */
         p {
             font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* The details section */
+        .details {
+            background-color: #f2f9ff; /* Soft blue background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .details p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* List styles for the receipt details */
+        .details ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 15px;
+        }
+
+        .details li {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        /* Button or Contact Section */
+        .contact-info {
+            font-size: 16px;
+            margin-top: 30px;
+            color: #0077FF;
+        }
+
+        /* Link styles */
+        .contact-info a {
+            color: #0077FF;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Redirect message */
+        .redirect-message {
+            margin-top: 30px;
+            font-size: 16px;
+            color: #777;
+        }
+
+        /* Button Styling for Manual Redirect */
+        .redirect-button {
+            background-color: #0077FF;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 23px;
+            cursor: pointer;
+            border-radius: 5px;
             margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .redirect-button:hover {
+            background-color: #005bb5;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .thank-you-container {
+                padding: 30px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .details {
+                padding: 15px;
+            }
         }
     </style>
-    <script>
-        // Redirect after 5 seconds
-        setTimeout(function() {
-            window.location.href = 'index.html';
-        }, 5000);
-    </script>
 </head>
 <body>
-    <div>
+    <div class="thank-you-container">
         <h1>Thank You!</h1>
         <p>Your payment has been processed successfully.</p>
-        <p>You will be redirected shortly...</p>
+        
+        <div class="details">
+            <p><strong>Your receipt has been sent to you.</strong></p>
+            <p>Within a few minutes, you will receive a detailed purchase receipt. This email will contain:</p>
+            <ul>
+                <li>1- Your transaction ID and payment details</li>
+                <li>2- Order summary and items purchased</li>
+                <li>3- Billing and shipping information</li>
+            </ul>
+            <p>If you don't receive the receipt, please check your spam folder or <a href="mailto:support@example.com">contact our support team</a>.</p>
+        </div>
+
+        <p class="redirect-message">You can choose to return to the homepage at any time by clicking the button below.</p>
+        
+        <!-- Button for manual redirection -->
+        <button class="redirect-button" onclick="window.location.href='index.html';">Return to Homepage</button>
     </div>
 </body>
 </html>

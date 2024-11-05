@@ -1,12 +1,14 @@
 body {
     background-color: #ffffff; 
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
     display: flex;
     flex-direction: column; 
     height: 100%; /* Full height for the body */
+    color: #333; /* Dark gray text for better readability */
+    line-height: 1.6;
 }
 
 
@@ -24,8 +26,11 @@ body {
     width: 100%;
 }
 
-
-
+.container {
+    flex-grow: 1; /* This ensures the container takes up available space */
+    padding: 20px;
+    overflow: auto; /* Allows scrolling content */
+}
 
 .header td {
     padding: 0 15px; /* Adjust padding for header items */
@@ -141,7 +146,7 @@ padding: 70px 50px;
 
 .footer{
     background-color: #0e6bd6;
-    margin-top: 10%;
+    margin-top: 25%;
     margin-bottom: 0;
     padding: 0;
    color: rgb(255, 255, 255);
@@ -150,7 +155,6 @@ padding: 70px 50px;
    width: 100%; 
    text-align: center; 
    display: flex;
-   position: relative; /* Positioning context */
    bottom: 0; /* Stick to the bottom */
 }
 
@@ -257,8 +261,16 @@ div.signin a{
 
 
 .category-title {
-    font-size: 24px;
-    margin: 30px 0 30px 40px ;
+    font-size: 28px;
+    margin: 20px 30px;
+    font-weight: bold;
+}
+
+.category-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    padding: 20px;
 }
 
 
@@ -267,8 +279,9 @@ div.signin a{
     padding: 10px;
     gap: 10px; 
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;/* Space between cards */
+    justify-content: space-between;/* Space between cards */
 }
 
 .product-image {
@@ -293,6 +306,7 @@ div.signin a{
     white-space: nowrap; /* Allow horizontal scrolling */
    /* Prevents items from wrapping */
 }
+
 
 .product-container {
     padding: 10px; 
@@ -326,7 +340,8 @@ div.signin a{
 
 .new-price {
     font-weight: bold;
-    color:#0056b3
+    font-size: 25px;
+    color:#0e6bd6;
 }
 
 .cart .old-price {
@@ -345,7 +360,7 @@ button {
     margin: 5px;
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 45px;
     background-color: #007bff;
     color: white;
     cursor: pointer;
@@ -368,10 +383,6 @@ button:hover {
 
 .nav-button:hover {
     background-color: #0056b3;
-}
-
-.category-container {
-    margin: 20px 0;
 }
 
 
@@ -673,25 +684,6 @@ h1.product-name{
 }
 
 
-
-
-
-
-.container {
-    display: flex;
-    flex-direction: row;
-    margin: 20px;
-}
-
-.filters {
-    width: 250px;
-    margin-right: 20px;
-    background: white;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
 .results {
     flex: 1;
     background: white;
@@ -700,29 +692,12 @@ h1.product-name{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.result {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: #fafafa;
-    display: flex;
-    align-items: center;
-}
 
 .result img {
     margin-right: 15px;
 }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background: #007bff;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
+category-title
 
 button {
     background-color: #007bff;
@@ -735,4 +710,45 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+.filters {
+    width: 350px; /* Increase the width */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.filters h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.filters h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.filters .category-filter {
+    margin-bottom: 10px;
+}
+
+/* Price Range Filter */
+.filter-price {
+    margin-top: 20px;
+}
+
+.applyFilters {
+    font-size: 20px;
+    padding: 10px 20px;  /* Optional: Adjust padding to match the larger text */
+    background-color: #007bff;  /* Optional: Set background color */
+    color: white;  /* Optional: Set text color */
+    border: none;  /* Optional: Remove border */
+    border-radius: 5px;  /* Optional: Rounded corners */
+    cursor: pointer;  /* Optional: Change cursor on hover */
+}
+
+.applyFilters:hover {
+    background-color: #0056b3;  /* Optional: Darker shade on hover */
 }
