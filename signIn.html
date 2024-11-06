@@ -19,25 +19,26 @@
                         <input type="text" id="username" name="username" placeholder="Enter username" required>
                     </div>
                 </div>
-                    <div class="signin-field">
-                        <p>Password</p>
-                        <div class="input-container">
-                            <div id="error-message-password" class="error-message" style="color: red; display: none;"></div>
-                            <input type="password" id="password" placeholder="Enter password" required>
-                        </div>
+                <div class="signin-field">
+                    <p>Password</p>
+                    <div class="input-container">
+                        <div id="error-message-password" class="error-message" style="color: red; display: none;"></div>
+                        <input type="password" id="password" placeholder="Enter password" required>
                     </div>
-                    <div class="signin-field">
+                </div>
+                <div class="signin-field">
                     <h4 style="text-align: left; padding-bottom: 0px; color: #006eff;font-size: 18px;">Choose your account type</h4>
-                    <div class="usertype"> 
+                    <div class="usertype">
                         <label>
-                            <input type="radio" name="userType" value="administrator" > 
+                            <input type="radio" name="userType" value="administrator">
                             <h4>&nbsp;Administrator</h4>
                         </label>
                         <label>
-                            <input type="radio" name="userType" value="user" > 
+                            <input type="radio" name="userType" value="user">
                             <h4>&nbsp;User</h4>
                         </label>
                     </div>
+                    <div id="error-message-usertype" class="error-message" style="color: red; display: none;"></div>
                 </div>
                 <br>
                 <button type="submit" style="font-size: 20px;">Sign In</button>
@@ -51,70 +52,101 @@
     <script>
         function handleSignIn(event) {
             event.preventDefault(); // Prevent the form from submitting normally
-    
+
             const form = document.getElementById('signin-form');
             const username = form.username.value; // Get the username
             const password = form.password.value; // Get the password
-             
-            // Predefined username and password for validation
+            const userType = form.userType.value; // Get the selected account type
+
+            // Predefined credentials for validation
             const savedUsername = localStorage.getItem("username"); // Replace with your actual username
             const savedPassword = localStorage.getItem("password"); // Replace with your actual password
 
+            // Admin credentials for validation
+            const administratorUsername = 'admin55';
+            const administratorPassword = '11112222';
 
+            // Reset error messages
             document.getElementById('error-message-username').style.display = 'none';
             document.getElementById('error-message-password').style.display = 'none';
+            document.getElementById('error-message-usertype').style.display = 'none';
 
-
-            if (username.length < 4 || !/^[a-zA-Z0-9]+$/.test(username)&&password.length < 8) {
+            // Validate username and password
+            if (username.length < 4 || !/^[a-zA-Z0-9]+$/.test(username) && password.length < 8) {
                 document.getElementById('error-message-username').textContent = "Invalid Username";
                 document.getElementById('error-message-username').style.display = 'block';
                 document.getElementById('error-message-password').textContent = "Password must be at least 8 characters";
                 document.getElementById('error-message-password').style.display = 'block';
                 return; // Stop form submission
-            }
-
-
-            else if (username.length < 4 || !/^[a-zA-Z0-9]+$/.test(username)) {
+            } else if (username.length < 4 || !/^[a-zA-Z0-9]+$/.test(username)) {
                 document.getElementById('error-message-username').textContent = "Invalid Username";
                 document.getElementById('error-message-username').style.display = 'block';
                 return; // Stop form submission
-            }
-
-            else if (password.length < 8) {
+            } else if (password.length < 8) {
                 document.getElementById('error-message-password').textContent = "Password must be at least 8 characters";
                 document.getElementById('error-message-password').style.display = 'block';
                 return; // Stop form submission
             }
 
-            
+            // Validate user type (Account Type)
+            if (!userType) {
+                document.getElementById('error-message-usertype').textContent = "Please choose an account type.";
+                document.getElementById('error-message-usertype').style.display = 'block';
+                return; // Stop form submission
+            }
+
             // Check if the entered username and password match the predefined ones
-             else if(username!=savedUsername||password!=savedPassword) {
-               
-                // Handle unsuccessful login
-                const hiddenMessage = document.getElementById('hiddenMessage');
-                hiddenMessage.innerText = "Username or Password may not be Correct";
-                hiddenMessage.style.position = 'relative'; 
-                hiddenMessage.style.backgroundColor = 'rgb(255, 39, 39)';
-                hiddenMessage.style.display = 'block'; 
-                setTimeout(function(){
-                        hiddenMessage.style.display = 'none';// Show the welcome message
-               },2500)// Show the alert message
-            }
+            if (userType === 'administrator') {
+                // Check if administrator credentials match
+                if (username !== administratorUsername || password !== administratorPassword) {
+                    const hiddenMessage = document.getElementById('hiddenMessage');
+                    hiddenMessage.innerText = "Incorrect admin credentials.";
+                    hiddenMessage.style.position = 'relative';
+                    hiddenMessage.style.backgroundColor = 'rgb(255, 39, 39)';
+                    hiddenMessage.style.display = 'block';
+                    setTimeout(function () {
+                        hiddenMessage.style.display = 'none';
+                    }, 2500);
+                    return; // Stop form submission
+                }
 
-            else if (username === savedUsername && password === savedPassword) {
-                // Store the successful sign-in status in localStorage
+                // If admin credentials are correct
                 localStorage.setItem('isSignedIn', 'true');
-                
-                // Display welcome message
+                const hiddenMessage = document.getElementById('hiddenMessage');
+                hiddenMessage.innerText = `Welcome, Administrator ${administratorUsername}!`;
+                hiddenMessage.style.backgroundColor = "#006eff";
+                hiddenMessage.style.display = 'block';
+
+                // Redirect to the thank you page for administrators
+                setTimeout(function () {
+                    window.location.href = 'index.html'; // Redirect to thank you page for admin
+                }, 2500);
+
+            } else if (userType === 'user') {
+                // Check if user credentials match
+                if (username !== savedUsername || password !== savedPassword) {
+                    const hiddenMessage = document.getElementById('hiddenMessage');
+                    hiddenMessage.innerText = "Incorrect user credentials.";
+                    hiddenMessage.style.position = 'relative';
+                    hiddenMessage.style.backgroundColor = 'rgb(255, 39, 39)';
+                    hiddenMessage.style.display = 'block';
+                    setTimeout(function () {
+                        hiddenMessage.style.display = 'none';
+                    }, 2500);
+                    return; // Stop form submission
+                }
+
+                // If user credentials are correct
+                localStorage.setItem('isSignedIn', 'true');
                 const hiddenMessage = document.getElementById('hiddenMessage');
                 hiddenMessage.innerText = `Welcome, ${username}!`;
-                hiddenMessage.style.backgroundColor="#006eff";
-                hiddenMessage.style.display = 'block'; // Show the welcome message
-                
-                // Redirect to index.html after a short delay
-                setTimeout(function() {
-                    window.location.href = 'index.html'; // Redirect to index.html
-                }, 2500); // Adjust as necessary
+                hiddenMessage.style.backgroundColor = "#006eff";
+                hiddenMessage.style.display = 'block';
+
+                // Redirect to the main page for regular users
+                setTimeout(function () {
+                    window.location.href = 'index.html'; // Redirect to user dashboard
+                }, 2500);
             }
         }
     </script>
