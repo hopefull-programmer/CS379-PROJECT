@@ -52,38 +52,48 @@ color: #4790df;
     width: 100px;
 }
 
+.logo{
+   width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
 .avatar img {
     padding-left: 270px;
 }
 
 .categories {
-    justify-content: center;
+    display: flex;  /* Enable flexbox layout */
+    justify-content: center;  /* Center items horizontally */
     background-color: #0b40a3;
     text-decoration: none;
     margin: 0;
     width: 100%;
-    display: flex;
-    flex-direction: row; /* Use flexbox for items */
 }
 
-
 .c-item {
-padding: 0 70px;
-margin: 0;
+    display: flex;
+    align-items: center; /* Vertically center the content inside the item */
+    padding: 0 70px;  /* Adjust horizontal padding as necessary */
+    margin: 0;
 }
 
 .c-item img {
     padding: 10px; 
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
 }
 
+.c-item b{
+    color: white;
+}
 td.c-item{
     color: #ffffff;
     font-size: 13px; 
     text-align: center;
     text-decoration: none;
 }
+
 
 
 div.search {
@@ -353,10 +363,11 @@ div.signin a{
 .cart .new-price {
     font-weight: bold;
     color: rgb(0, 0, 0);
-    color:#0b40a3
+    color:#0b40a3;
 }
 
 button {
+    font-size:20px;
     margin: 5px;
     padding: 10px;
     border: none;
@@ -366,11 +377,28 @@ button {
     cursor: pointer;
 }
 
+#wish{
+    font-size: 30px;
+    color:#0077ff;
+    background-color: #ffffff;
+
+}
+.remove {
+background-color: white;
+    font-size: 15px;
+}
+
+.increase,.decrease{
+border-radius: 5px;
+font-size: 15px;
+}
+
 button:hover {
     background-color: #0056b3;
 }
 
 .nav-button {
+    
     background-color: #007bff;
     border: none;
     color: white;
@@ -426,6 +454,13 @@ footer.footer table{
 .cart-title{
     font-size: 24px;
     margin: 30px 0 30px 40px ;
+}
+
+.cart-prices{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .wishlist-title{
@@ -527,70 +562,74 @@ background-color: darkgrey;
 min-width: 40px;
 }
 
+
+
+/* Container for the slider */
+.slider-container {
+    position: relative;
+    width: 100%;  /* Adjust this based on your needs */
+    height: auto;
+}
+
+/* Style for the ad slider */
 .ad-slider {
     position: relative;
-    width: 80%;
     overflow: hidden;
-    margin: 20px 0;
-    height: 70%; /* Set height based on your image's aspect ratio */
-    display: flex;
-    justify-content: center; /* Centers the slider horizontally */
-    align-items: center; 
+    width: 100%;
 }
 
+/* Position for the ad image */
 #ad-image {
-    width: 100%; /* Make image fill the width of the container */
-    height: 70%; /* Set height to fill the container *//* Ensure the image covers the container */
-    transition: opacity 1s;
-    object-fit: contain;
-    display: block; /* Ensure block display */
-    margin: 0 auto; /* Center the image */
+    width: 100%;
+    height: auto;
 }
 
-.button{
-    background-color: rgba(255, 255, 255, 0.5);
-    color: white;
-    border: none;
-    border-radius: 80px;
-    padding: 10px;
+/* Button style */
+.button {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.slider-container {
+    top: 50%;  /* Vertically center the buttons */
+    transform: translateY(-50%);  /* Fine-tune the vertical positioning */
+    z-index: 10;
+    font-size: 3rem;  /* Increase the font size */
+    width: 50px;  /* Increase button size */
+    height: 50px;  /* Increase button size */
     display: flex;
-    justify-content: center; /* Centers the slider horizontally */
-    align-items: center; /* Centers the slider vertically */
-    height: 100%;
-    width: 100%; /* Adjust height as needed */
+    justify-content: center;
+    align-items: center;
 }
 
-.ad-slider {
-    display: flex;
-    align-items: center; /* Aligns buttons and image vertically */
-}
-
+/* Prev button */
 #prev-ad {
-    left: 10px; /* Position left button */
-    border-radius: 50%;
+    left: 10px;
 }
 
+/* Next button */
 #next-ad {
-    right: 10px; /* Position right button */
-    border-radius: 50%;
+    right: 10px;
 }
+
+.button button {
+    padding: 10px;  /* Adjust padding for larger buttons */
+    background-color: transparent;  /* Make the background transparent */
+    border: 2px solid #fff;  /* Optional: add a white border for visibility */
+    color: #fff;  /* Set the text (or icon) color to white */
+    font-size: 3rem;  /* Adjust font size as needed */
+    cursor: pointer;  /* Make sure the button is clickable */
+}
+
+
 .category-images {
     margin: 20px 0;
 }
 
 .category-item a{
     text-decoration: none;
-    color:#007bff;
-    font-size: 20px;
+    color:#036fe4;
+    font-size: 25px;
 }
 
 .category-item img {
+    object-fit: cover;
     border-radius: 50%; /* Makes the images round */
     transition: transform 0.3s;
 }
@@ -630,6 +669,7 @@ min-width: 40px;
     flex-direction: column;
     width: 40%;
 }
+
 
 .details h3 {
     color: #333;
@@ -697,14 +737,14 @@ h1.product-name{
     margin-right: 15px;
 }
 
-category-title
+
 
 button {
     background-color: #007bff;
     color: white;
     border: none;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
 }
 

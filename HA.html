@@ -78,13 +78,17 @@
 
     <div class="nav-container">
         <nav>
-            <table class="categories" border="0">
-                <tr>
-                    <td class="c-item"><img src="images/delivery-van.png" alt=""><br><b>Free Delivery</b></td>
-                    <td class="c-item"><img src="images/return.png" alt=""><br><b>Free Return</b></td>
-                    <td class="c-item"><img src="images/fast-delivery.png" alt=""><br><b>Fast Delivery</b></td>
-                </tr>
-            </table>
+            <div class="categories">
+                <div class="c-item">
+                    <img src="images/delivery-van.png" alt="">&nbsp;<b>Free Delivery</b>
+                </div>
+                <div class="c-item">
+                    <img src="images/return.png" alt="" style="width: 35px; height: 35px;">&nbsp;<b>Free Return</b>
+                </div>
+                <div class="c-item">
+                    <img src="images/fast-delivery.png" alt="">&nbsp;<b>Fast Delivery</b>
+                </div>
+            </div>
         </nav>
     </div>
     <div class="slider-container">
@@ -102,23 +106,23 @@
 
     <div class="category-images" style="display: flex; justify-content: space-around; margin: 20px 0;">
         <div class="category-item" style="text-align: center;">
-            <a href="HA.html"><img src="images/pic/HA.png" alt="Home Appliances" style="border-radius: 50%; width: 150px; height: 150px;">
+            <a href="HA.html"><img src="images/categories-images/ha-cat.PNG" alt="Home Appliances" style="border-radius: 50%; width: 150px; height: 150px;">
                 <h4>Home Appliances</h4></a>
         </div>
         <div class="category-item" style="text-align: center;">
-           <a href="TV.html"> <img src="images/pic/17.png" alt="TVs" style="border-radius: 50%; width: 150px; height: 150px;">
+           <a href="TV.html"> <img src="images/categories-images/tv-cat.PNG" alt="TVs" style="border-radius: 50%; width: 150px; height: 150px;">
             <h4>TVs</h4></a>
         </div>
         <div class="category-item" style="text-align: center;">
-            <a href="Cameras-category.html"><img src="images/pic/cameras.png" alt="Cameras" style="border-radius: 50%; width: 150px; height: 150px;">
+            <a href="Cameras-category.html"><img src="images/categories-images/c-cat.PNG" alt="Cameras" style="border-radius: 50%; width: 150px; height: 150px;">
                 <h4>Cameras</h4></a>
         </div>
         <div class="category-item" style="text-align: center;">
-           <a href="GC-category.html"> <img src="images/pic/game.png" alt="Games Consoles" style="border-radius: 50%; width: 150px; height: 150px;">
+           <a href="GC-category.html"> <img src="images/categories-images/gs-cat.PNG" alt="Games Consoles" style="border-radius: 50%; width: 150px; height: 150px;">
             <h4>Games Consoles</h4></a>
         </div>
     </div>
-
+    
     <div class="category-container" style="display: flex; justify-content: flex-start;">
         <!-- Filters Section on the Left -->
         <div class="filters" style="width: 350px; padding: 20px; background-color: #f9f9f9;">
@@ -407,12 +411,14 @@ document.getElementById('signout-button').addEventListener('click', function() {
 </script>
 
 <script>
-   const adImages = [
-    "images/ad's/ad-2-e2.png",
+  const adImages = [
+    "images/ad's/ad-2-e2.jpg",
     "images/ad's/ad-3-2e.jpg",
     "images/ad's/ad-4-2e.jpg",
+    "images/ad's/ad-5-2e.jpg",
+    "images/ad's/ad-6-2e.jpg",
+    "images/ad's/ad-1-2e.jpg",
 ];
-
 let currentAdIndex = 0;
 let adInterval = 5000; // Time in milliseconds
 let adTimeout; // Variable to hold the timeout ID

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 
@@ -57,7 +58,21 @@
             </tr>
         </table>
     </header>
-
+    <div class="nav-container">
+        <nav>
+            <div class="categories">
+                <div class="c-item">
+                    <img src="images/delivery-van.png" alt="">&nbsp;<b>Free Delivery</b>
+                </div>
+                <div class="c-item">
+                    <img src="images/return.png" alt="" style="width: 35px; height: 35px;">&nbsp;<b>Free Return</b>
+                </div>
+                <div class="c-item">
+                    <img src="images/fast-delivery.png" alt="">&nbsp;<b>Fast Delivery</b>
+                </div>
+            </div>
+        </nav>
+    </div>
     <div class="wishlist-title"><h2>WishList</h2></div>
     
     <div class="cart">
@@ -108,7 +123,7 @@
                             <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
                             <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
                             <div class="product-quantity">
-                                <button class="remove" onclick="removeFromCart(${product.id})"><img src="images/delete.png" alt="Remove" style="width: 15px; height: 15px;"></button>
+                                <button class="remove" onclick="removeFromCart(${product.id})"><i class="fa-solid fa-trash"></i></button>
                                 <button class="increase" onclick="addToCart(${product.id})">Add To Cart</button>
                             </div>
                         </div>
