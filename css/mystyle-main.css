@@ -323,23 +323,40 @@ div.signin a{
     overflow-x: auto; 
     display: flex;
 }
+
 .product-card {
     background: rgb(255, 255, 255);
     border-radius: 5px;
     border: 2px solid #d8d8d8; 
     padding: 10px;
     margin: 10px; /* Adds spacing between cards */
-    min-width: 250px; /* Minimum width for product cards */
+    max-width: 250px; 
+    min-width: 250px;/* Minimum width for product cards */
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0); 
 }
 
+.product-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;       /* Limits the text to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;            /* Hides the overflow text */
+    text-overflow: ellipsis;     /* Adds "..." at the end if the text overflows */
+    white-space: normal;         /* Ensures text can wrap to multiple lines */
+    margin-bottom:auto;
+}
+.product-name-d {
+   color: #333;
+}
+
 .product-card a{
     text-decoration: none;
-    color: black;
+    color: rgb(48, 48, 48);
 }
 .product-image {
-    width: 100%;
+    object-fit: fill;
+    min-width: 227.78px;
+    min-height: 227.78px;
     height: auto;
 }
 
@@ -494,12 +511,6 @@ footer.footer table{
     height: auto;
     vertical-align: top;
     justify-content:start;
-}
-.product-name{
-    margin-bottom:auto;
-}
-.product-image {
-    max-width: 100%;
 }
 
 .total {

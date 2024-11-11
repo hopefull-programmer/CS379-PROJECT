@@ -227,13 +227,13 @@ function buyProduct(productId) {
 
 
 const gamesConsloes_discount = [
-{ id: 11, name: 'EOS 2000D DSLR Camera With 18-55 DC Lens 24.1 MP APS-C Sensor Optical Viewfinder', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/11.png', discount: 20 },
-{ id: 12, name: 'EOS 4000D DSLR With EF-S 18-55mm F/3.5-5.6 III Lens 18MP Built-In Wi-Fi Black', oldPrice: 78, newPrice: 60, imageUrl: 'images/pic/18-c.png', discount: 20 },
-  { id: 13, name: 'Alpha 7 Iv Full-Frame Mirrorless Interchangeable Lens Camera, 33 Mega Pixel Full-Frame Back-Illuminated Exmor R cmos Image Sensor, Ilce-7M4', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/13.png', discount: 22.22 },
-  { id: 14, name: 'FUJIFILM Digital Camera X-T5 Black - XF16-80MM Kit', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/14.png', discount: 20 },
-  { id: 15, name: 'Nikon Z 7II Mirrorless Digital Camera', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/15.png', discount: 20 },
-  { id: 16, name: 'Lumix EOS 5D Mark IV DSLR Camera With EF 24-105mm IS USM Lens Fast Versatile Full Frame Camera 30.4 MP 4K Wi-Fi GPS', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/16.png', discount: 20 },
-  { id: 17, name: 'Alpha 7R V Full Frame Mirrorless Interchangeable Lens Camera With 61.0MP Full-Frame Back-Illuminated Exmor R CMOS Sensor, Black', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/17-c.png', discount: 20 },
+{ id: 11, name: 'EOS 2000D DSLR Camera With 18-55 DC Lens 24.1 MP APS-C Sensor Optical Viewfinder', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/11.png', discount: 20, company: 'Canon', category: 'Cameras' },
+        { id: 12, name: 'EOS 4000D DSLR With EF-S 18-55mm F/3.5-5.6 III Lens 18MP Built-In Wi-Fi Black', oldPrice: 78, newPrice: 60, imageUrl: 'images/pic/18-c.png', discount: 20, company: 'Canon', category: 'Cameras' },
+        { id: 13, name: 'Alpha 7 Iv Full-Frame Mirrorless Interchangeable Lens Camera, 33 Mega Pixel Full-Frame Back-Illuminated Exmor R cmos Image Sensor, Ilce-7M4', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/13.png', discount: 22.22, company: 'Sony', category: 'Cameras' },
+        { id: 14, name: 'FUJIFILM Digital Camera X-T5 Black - XF16-80MM Kit', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/14.png', discount: 20, company: 'Fujifilm', category: 'Cameras' },
+        { id: 15, name: 'Nikon Z 7II Mirrorless Camera - High-Resolution 45.7MP, 10fps Continuous', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/15.png', discount: 20, company: 'Nikon', category: 'Cameras' },
+        { id: 16, name: 'Lumix EOS 5D Mark IV DSLR Camera With EF 24-105mm IS USM Lens Fast Versatile Full Frame Camera 30.4 MP 4K Wi-Fi GPS', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/16.png', discount: 20, company: 'Canon', category: 'Cameras' },
+        { id: 17, name: 'Alpha 7R V Full Frame Mirrorless Interchangeable Lens Camera With 61.0MP Full-Frame Back-Illuminated Exmor R CMOS Sensor, Black', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/17-c.png', discount: 20, company: 'Sony', category: 'Cameras' },
 ];
 
         // Function to display products in a specified container
@@ -244,21 +244,21 @@ const gamesConsloes_discount = [
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
         productCard.innerHTML = `
-            <a href="product-detail.html?id=${product.id}">
-                <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
-                <h3>${product.name}</h3>
-                <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
-                <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
-            </a>
-            <div style="display:flex;">
-                <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
-                    Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
-                </button>
-            </div>
-        `;
+    <a href="product-detail.html?id=${product.id}">
+        <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+        <h5 class="product-name">${product.name}</h5>
+        <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
+        <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
+    </a>
+    <div style="display:flex;">
+        <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
+            <i class="fa-regular fa-heart"></i>
+        </button>
+        <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
+            Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
+        </button>
+    </div>
+`;
         productContainer.appendChild(productCard);
     });
 }

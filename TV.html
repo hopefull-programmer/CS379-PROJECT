@@ -289,13 +289,13 @@ function applyFilters() {
 
 
 const gamesConsloes_discount = [
-{ id: 28, name: 'TCL 40 Inch 2K Ultra HD Smart Android LED TV With Free Wall Mount- Frame Less Design', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/17.png', discount: 25 },
-  { id: 29, name: 'SONY 50 Inch 4K Upscaling UHD LED Smart TV', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/18.png', discount: 22.22 },
-  { id: 30, name: '55 Inch 4K Ultra HD Smart Android LED TV With Free Wall Mount- Frame Less Design', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/19.png', discount: 20 },
-  { id: 31, name: 'LG 65 Inch 4K LED Smart TV | WebOS24', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/20.png', discount: 20 },
-  { id: 32, name: '55 Inch 4K UHD Smart TV | 60HZ', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/21.png', discount: 25 },
-  { id: 33, name: '55" 4K UHD LEDSmart Google TV', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/22.png', discount: 9.09 },
-  { id: 34, name: '65 Inch TV 4K QLED Pro Dolby Vision Atmos Onkyo 2.1CH Slim & Uni-body Google TV, 120HZ', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/23.png', discount: 20 },
+{ id: 28, name: 'LG 4K Ultra HD Smart LED TV 65 inch', oldPrice: 800, newPrice: 640, imageUrl: 'images/pic/17.png', discount: 20, company: 'LG', category: 'TV' },
+        { id: 29, name: 'Samsung QLED 55 inch Smart TV with 4K Resolution', oldPrice: 750, newPrice: 600, imageUrl: 'images/pic/18.png', discount: 20, company: 'Samsung', category: 'TV' },
+        { id: 30, name: 'Sony Bravia 65 inch LED 4K UHD Smart TV', oldPrice: 1000, newPrice: 800, imageUrl: 'images/pic/19.png', discount: 20, company: 'Sony', category: 'TV' },
+        { id: 31, name: '55 Inch 4K UHD Smart TV | 60HZ55-Inch 4K UHD Smart TV - 60Hz, Smart TV with Streaming Support', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/20.png', discount: 25, company: 'Generic', category: 'TV' },
+        { id: 32, name: '55" 4K UHD LED Smart Google TV - HDR, Google Assistant, Ultra HD', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/21.png', discount: 9.09, company: 'Generic', category: 'TV' },
+        { id: 33, name: '65 Inch TV 4K QLED Pro Dolby Vision Atmos Onkyo 2.1CH Slim & Uni-body Google TV, 120HZ', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/22.png', discount: 20, company: 'Generic', category: 'TV' },
+        {id: 34,name: 'TCL 40 Inch 2K Ultra HD Smart Android LED TV With Free Wall Mount - Frameless Design', oldPrice: 150, newPrice: 112.50,imageUrl: 'images/pic/23.png',discount: 25, company: 'TCL', category: 'TV' }    
 ];
 
 
@@ -307,21 +307,21 @@ const gamesConsloes_discount = [
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
         productCard.innerHTML = `
-            <a href="product-detail.html?id=${product.id}">
-                <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
-                <h3>${product.name}</h3>
-                <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
-                <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
-            </a>
-            <div style="display:flex;">
-                <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
-                    Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
-                </button>
-            </div>
-        `;
+    <a href="product-detail.html?id=${product.id}">
+        <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+        <h5 class="product-name">${product.name}</h5>
+        <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
+        <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
+    </a>
+    <div style="display:flex;">
+        <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
+            <i class="fa-regular fa-heart"></i>
+        </button>
+        <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
+            Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
+        </button>
+    </div>
+`;
         productContainer.appendChild(productCard);
     });
 }
