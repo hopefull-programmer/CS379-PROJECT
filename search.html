@@ -110,17 +110,14 @@ input[type="range"] {
     </header>
     <div class="nav-container">
         <nav>
-            <div class="categories">
-                <div class="c-item">
-                    <img src="images/delivery-van.png" alt="">&nbsp;<b>Free Delivery</b>
-                </div>
-                <div class="c-item">
-                    <img src="images/return.png" alt="" style="width: 35px; height: 35px;">&nbsp;<b>Free Return</b>
-                </div>
-                <div class="c-item">
-                    <img src="images/fast-delivery.png" alt="">&nbsp;<b>Fast Delivery</b>
-                </div>
-            </div>
+            <table class="categories" border="0">
+                <tr>
+                    <td class="c-item"><h4><a href="HA.html">Home Appliances</a></h4></td>
+                    <td class="c-item"><h4><a href="TV.html">TV's</a></h4></td>
+                    <td class="c-item"><h4><a href="Cameras-category.html">Cameras</a></h4></td>
+                    <td class="c-item"><h4><a href="GC-category.html">Games Consoles</a></h4></td>
+                </tr>
+            </table>
         </nav>
     </div>
 
@@ -250,17 +247,17 @@ input[type="range"] {
     }
     
     function addWishList(productId) {
-        totalProductsInWishList++; // Increment the total products in wishlist
-        updateWishListIcon(); // Update the wishlist icon
-    
-        // Change the heart icon to "like-solid"
-        const heartButton = document.querySelector(`#wish[data-product-id="${productId}"]`);
-        if (heartButton) {
-            heartButton.innerHTML = '<i class="fa-solid fa-heart" style="color: white;"></i>'; // Change to solid heart
-        }
-    
-        alert(`Product ${productId} added to WishList!`);
+    totalProductsInWishList++; // Increment the total products in wishlist
+    updateWishListIcon(); // Update the wishlist icon
+
+    // Change the heart icon to "like-solid"
+    const heartButton = document.querySelector(`#wish[data-product-id="${productId}"]`);
+    if (heartButton) {
+        heartButton.innerHTML = '<i class="fa-solid fa-heart" style="color: #0b48a3;"></i>'; // Change to solid heart
     }
+
+    alert(`Product ${productId} added to WishList!`);
+}
     
      
     
