@@ -52,11 +52,7 @@ color: #4790df;
     width: 100px;
 }
 
-.logo{
-   width: 100%;
-    display: inline-block;
-    text-align: center;
-}
+
 
 .avatar img {
     padding-left: 270px;
@@ -145,19 +141,163 @@ padding: 70px 50px;
 
 }
 
-.footer{
+/* Global footer styles */
+.footer {
     background-color: #0e6bd6;
-    margin-top: 25%;
-    margin-bottom: 0;
-    padding: 0;
-   color: rgb(255, 255, 255);
-   display: flex;
-   justify-content:center;
-   width: 100%; 
-   text-align: center; 
-   display: flex;
-   bottom: 0; /* Stick to the bottom */
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    justify-content: center;
+    padding: 30px 30px;
+    margin-top: 200px;
 }
+
+.footer-logo{
+margin: 50px 50px;
+}
+
+
+.footer-logo img{
+    height: 100px;
+    width: 100px;
+}
+
+.footer a{
+    text-decoration: none;
+    color: #00e1ff;
+    transition: color 0.2s ease;
+}
+.footer a:hover{
+color: #4790df;
+}
+
+/* Footer Container */
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    gap: 20px; /* Adding a gap between columns for better spacing */
+}
+
+/* Footer Categories */
+.footer-category {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px 0; /* Reduce margin between categories */
+}
+
+.footer-category h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-category ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-category ul li {
+    margin-bottom: 8px;
+}
+
+.footer-category ul li a {
+    color: #00e1ff;
+    text-decoration: none;
+}
+
+.footer-about ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-about ul li {
+    margin-bottom: 8px;
+}
+
+.footer-about ul li a {
+    color: #00e1ff;
+    text-decoration: none;
+}
+
+.footer-phone{
+    color: #00e1ff;
+}
+
+/* Contact and Social Section */
+.footer-contact {
+    flex: 1;
+    min-width: 200px;
+    margin-top: 0; /* Reduced margin on top */
+}
+
+.footer-contact .social-media {
+    margin-bottom: 10px; /* Reduced margin between social media section and contact info */
+}
+
+.footer-contact h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-contact a {
+    color: #00e1ff;
+    text-decoration: none;
+}
+
+.footer-contact .social-media a img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    transition: transform 0.3s;
+}
+
+.footer-contact .social-media a:hover img {
+    transform: scale(1.1);
+}
+
+/* Footer About Us Section */
+.footer-about {
+    flex: 1;
+    min-width: 200px;
+    margin-top: 0; /* Reduced margin on top */
+    text-align: center;
+}
+
+.footer-about h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-category {
+        margin-bottom: 15px; /* Adjust bottom margin for mobile */
+    }
+
+    .footer-contact, .footer-about {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .footer-contact .social-media {
+        margin-bottom: 15px;
+    }
+
+    .footer-contact .social-media a {
+        margin-right: 15px;
+    }
+}
+
 
 .cart-count {
     position: absolute;
@@ -221,9 +361,7 @@ div.signin a{
     opacity: 0.7; /* Change opacity on hover */
 }
 
-.signout {
-    display: none; /* Initially hidden */
-}
+
 
 #avatar-link:hover + .signout {
     display: block; /* Show on hover over the avatar */
@@ -421,10 +559,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-
-footer.footer table{
-    justify-content: space-around;
-}
 
 
 .shipping-fee{
@@ -793,4 +927,14 @@ button:hover {
 
 .applyFilters:hover {
     background-color: #0056b3;  /* Optional: Darker shade on hover */
+}
+
+
+.about-us{
+    text-align: left;
+    margin: 300px 200px;
+}
+
+.about-us p{
+    font-size: 23px;
 }
