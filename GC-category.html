@@ -311,46 +311,59 @@ function buyProduct(productId) {
 
 const gamesConsloes_discount = [
 
-{ id: 1, name: 'PlayStation 5 Console (Disc Version) With Controller', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/pic.png', discount: 20, company: 'Sony', category: 'GameConsoles' },
-        { id: 2, name: 'PlayStation 5 Pro-Console ( Official KSA Version )', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/pro.png', discount: 25, company: 'Sony', category: 'GameConsoles' },
-        { id: 3, name: 'PlayStation 5 Slim Console (International Version) Digital Edition With Controller', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/slim.png', discount: 22.22, company: 'Sony', category: 'GameConsoles' },
-        { id: 4, name: 'Steam Deck OLED 1 TB Handheld Console', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/steam.png', discount: 20, company: 'Valve', category: 'GameConsoles' },
-        { id: 5, name: 'Nintendo Switch OLED - 7-inch OLED Display & Adjustable Kickstand', oldPrice: 75, newPrice: 60, imageUrl: 'images/gs-products/nin.png', discount: 20, company: 'Nintendo', category: 'GameConsoles' },
-        { id: 6, name: 'Xbox Series X 1TB Console (Disc Version) With Controller', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/xbox.png', discount: 25, company: 'Microsoft', category: 'GameConsoles' },
-        { id: 7, name: 'atari Flashback9 Deluxe With 110 Built-In Games', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/atari.png', discount: 9.09, company: 'Atari', category: 'GameConsoles' },
-        { id: 8, name: 'gameboy 400-In-1 MIni Handheld Gaming Console', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/gameboy.png', discount: 20, company: 'Nintendo', category: 'GameConsoles' },
-        { id: 9, name: 'Portable PSP Handheld Console - 4.3-inch Display, 8GB Storage, Black', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/psp.png', discount: 23.53, company: 'Sony', category: 'GameConsoles' },
-        { id: 10, name: 'PlayStation 4 Slim 500GB Console With Controller', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/ps4.png', discount: 20, company: 'Sony', category: 'GameConsoles' },
+{ id: 1, name: 'PlayStation 5 Console (Disc Version) With Controller', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/pic.png', discount: 20, company: 'Sony', category: 'GameConsoles', rating: 4  },
+        { id: 2, name: 'PlayStation 5 Pro-Console ( Official KSA Version )', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/pro.png', discount: 25, company: 'Sony', category: 'GameConsoles' , rating: 2.5 },
+        { id: 3, name: 'PlayStation 5 Slim Console (International Version) Digital Edition With Controller', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/slim.png', discount: 22.22, company: 'Sony', category: 'GameConsoles', rating: 3 },
+        { id: 4, name: 'Steam Deck OLED 1 TB Handheld Console', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/steam.png', discount: 20, company: 'Valve', category: 'GameConsoles', rating: 3  },
+        { id: 5, name: 'Nintendo Switch OLED - 7-inch OLED Display & Adjustable Kickstand', oldPrice: 75, newPrice: 60, imageUrl: 'images/gs-products/nin.png', discount: 20, company: 'Nintendo', category: 'GameConsoles' , rating: 3.5 },
+        { id: 6, name: 'Xbox Series X 1TB Console (Disc Version) With Controller', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/xbox.png', discount: 25, company: 'Microsoft', category: 'GameConsoles', rating: 4  },
+        { id: 7, name: 'atari Flashback9 Deluxe With 110 Built-In Games', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/atari.png', discount: 9.09, company: 'Atari', category: 'GameConsoles' , rating: 4.5 },
+        { id: 8, name: 'gameboy 400-In-1 MIni Handheld Gaming Console', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/gameboy.png', discount: 20, company: 'Nintendo', category: 'GameConsoles', rating: 5  },
+        { id: 9, name: 'Portable PSP Handheld Console - 4.3-inch Display, 8GB Storage, Black', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/psp.png', discount: 23.53, company: 'Sony', category: 'GameConsoles', rating: 4  },
+        { id: 10, name: 'PlayStation 4 Slim 500GB Console With Controller', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/ps4.png', discount: 20, company: 'Sony', category: 'GameConsoles' , rating: 4.5 },
 ];
 
 
         // Function to display products in a specified container
        // Function to display products in a specified container
-function displayProducts(productArray, containerId) {
+       function displayProducts(productArray, containerId) {
     const productContainer = document.getElementById(containerId);
     productContainer.innerHTML = ''; // Clear previous products
+
+    // Iterate over the product array and create a product card for each item
     productArray.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
+
+        // Generate the star rating for each product
+        const starsHtml = generateStars(product.rating); // Call generateStars to get the stars HTML
+
         productCard.innerHTML = `
-    <a href="product-detail.html?id=${product.id}">
-        <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
-        <h5 class="product-name">${product.name}</h5>
-        <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
-        <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
-    </a>
-    <div style="display:flex;">
-        <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
-            <i class="fa-regular fa-heart"></i>
-        </button>
-        <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
-            Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
-        </button>
-    </div>
-`;
+            <a href="product-detail.html?id=${product.id}">
+                <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+                <div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
+                ${starsHtml}
+            </div>
+                <h5 class="product-name">${product.name}</h5>
+                <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
+                <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
+            </a>
+            <div style="display:flex;">
+                <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
+                    Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+            
+        `;
+
+        // Append the product card to the container
         productContainer.appendChild(productCard);
     });
 }
+
 
 // Apply filters when the button is clicked
 document.getElementById('applyFilters').addEventListener('click', applyFilters);
@@ -367,6 +380,34 @@ document.getElementById('applyFilters').addEventListener('click', applyFilters);
         function addToWishlist(productId) {
             alert(`Product ${productId} added to wishlist!`);
         }
+
+
+
+        function generateStars(rating) {
+    const fullStars = Math.floor(rating); // Number of full stars
+    const hasHalfStar = rating % 1 !== 0; // Whether there's a half star
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // Remaining empty stars
+
+    let starsHtml = '';
+
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+        starsHtml += '<i class="fa-solid fa-star" style="color:gold;"></i>';
+    }
+
+    // Add half star if necessary
+    if (hasHalfStar) {
+        starsHtml += '<i class="fa-solid fa-star-half-alt" style="color: gold;"></i>';
+    }
+
+    // Add empty stars
+    for (let i = 0; i < emptyStars; i++) {
+        starsHtml += '<i class="fa-regular fa-star" style="color: gold;"></i>';
+    }
+
+    return starsHtml;
+}
+
 
 
 

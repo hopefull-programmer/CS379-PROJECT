@@ -319,13 +319,13 @@ function applyFilters() {
 
 
 const gamesConsloes_discount = [
-{ id: 28, name: 'LG 4K Ultra HD Smart LED TV 65 inch', oldPrice: 800, newPrice: 640, imageUrl: 'images/pic/17.png', discount: 20, company: 'LG', category: 'TV' },
-        { id: 29, name: 'Samsung QLED 55 inch Smart TV with 4K Resolution', oldPrice: 750, newPrice: 600, imageUrl: 'images/pic/18.png', discount: 20, company: 'Samsung', category: 'TV' },
-        { id: 30, name: 'Sony Bravia 65 inch LED 4K UHD Smart TV', oldPrice: 1000, newPrice: 800, imageUrl: 'images/pic/19.png', discount: 20, company: 'Sony', category: 'TV' },
-        { id: 31, name: '55 Inch 4K UHD Smart TV | 60HZ55-Inch 4K UHD Smart TV - 60Hz, Smart TV with Streaming Support', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/20.png', discount: 25, company: 'Generic', category: 'TV' },
-        { id: 32, name: '55" 4K UHD LED Smart Google TV - HDR, Google Assistant, Ultra HD', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/21.png', discount: 9.09, company: 'Generic', category: 'TV' },
-        { id: 33, name: '65 Inch TV 4K QLED Pro Dolby Vision Atmos Onkyo 2.1CH Slim & Uni-body Google TV, 120HZ', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/22.png', discount: 20, company: 'Generic', category: 'TV' },
-        {id: 34,name: 'TCL 40 Inch 2K Ultra HD Smart Android LED TV With Free Wall Mount - Frameless Design', oldPrice: 150, newPrice: 112.50,imageUrl: 'images/pic/23.png',discount: 25, company: 'TCL', category: 'TV' }    
+{ id: 28, name: 'LG 4K Ultra HD Smart LED TV 65 inch', oldPrice: 800, newPrice: 640, imageUrl: 'images/pic/17.png', discount: 20, company: 'LG', category: 'TV', rating: 4 },
+        { id: 29, name: 'Samsung QLED 55 inch Smart TV with 4K Resolution', oldPrice: 750, newPrice: 600, imageUrl: 'images/pic/18.png', discount: 20, company: 'Samsung', category: 'TV', rating: 4  },
+        { id: 30, name: 'Sony Bravia 65 inch LED 4K UHD Smart TV', oldPrice: 1000, newPrice: 800, imageUrl: 'images/pic/19.png', discount: 20, company: 'Sony', category: 'TV', rating: 5  },
+        { id: 31, name: '55 Inch 4K UHD Smart TV | 60HZ55-Inch 4K UHD Smart TV - 60Hz, Smart TV with Streaming Support', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/20.png', discount: 25, company: 'Generic', category: 'TV' , rating: 3 },
+        { id: 32, name: '55" 4K UHD LED Smart Google TV - HDR, Google Assistant, Ultra HD', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/21.png', discount: 9.09, company: 'Generic', category: 'TV' , rating: 3.5 },
+        { id: 33, name: '65 Inch TV 4K QLED Pro Dolby Vision Atmos Onkyo 2.1CH Slim & Uni-body Google TV, 120HZ', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/22.png', discount: 20, company: 'Generic', category: 'TV', rating: 3.5  },
+        {id: 34,name: 'TCL 40 Inch 2K Ultra HD Smart Android LED TV With Free Wall Mount - Frameless Design', oldPrice: 150, newPrice: 112.50,imageUrl: 'images/pic/23.png',discount: 25, company: 'TCL', category: 'TV' , rating: 3 }    
 ];
 
 
@@ -333,28 +333,68 @@ const gamesConsloes_discount = [
         function displayProducts(productArray, containerId) {
     const productContainer = document.getElementById(containerId);
     productContainer.innerHTML = ''; // Clear previous products
+
+    // Iterate over the product array and create a product card for each item
     productArray.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
+
+        // Generate the star rating for each product
+        const starsHtml = generateStars(product.rating); // Call generateStars to get the stars HTML
+
         productCard.innerHTML = `
-    <a href="product-detail.html?id=${product.id}">
-        <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
-        <h5 class="product-name">${product.name}</h5>
-        <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
-        <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
-    </a>
-    <div style="display:flex;">
-        <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
-            <i class="fa-regular fa-heart"></i>
-        </button>
-        <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
-            Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
-        </button>
-    </div>
-`;
+            <a href="product-detail.html?id=${product.id}">
+                <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+                <div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
+                ${starsHtml}
+            </div>
+                <h5 class="product-name">${product.name}</h5>
+                <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
+                <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
+            </a>
+            <div style="display:flex;">
+                <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
+                    Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+            
+        `;
+
+        // Append the product card to the container
         productContainer.appendChild(productCard);
     });
 }
+
+
+function generateStars(rating) {
+    const fullStars = Math.floor(rating); // Number of full stars
+    const hasHalfStar = rating % 1 !== 0; // Whether there's a half star
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // Remaining empty stars
+
+    let starsHtml = '';
+
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+        starsHtml += '<i class="fa-solid fa-star" style="color:gold;"></i>';
+    }
+
+    // Add half star if necessary
+    if (hasHalfStar) {
+        starsHtml += '<i class="fa-solid fa-star-half-alt" style="color: gold;"></i>';
+    }
+
+    // Add empty stars
+    for (let i = 0; i < emptyStars; i++) {
+        starsHtml += '<i class="fa-regular fa-star" style="color: gold;"></i>';
+    }
+
+    return starsHtml;
+}
+
+
 
 // Apply filters when the button is clicked
 document.getElementById('applyFilters').addEventListener('click', applyFilters);

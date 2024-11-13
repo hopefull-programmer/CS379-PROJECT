@@ -322,16 +322,16 @@ function buyProduct(productId) {
 
 
 const gamesConsloes_discount = [
-{ id: 18, name: 'ONIX VACUUM CLEANER 21 LTR - Powerful 2200W Input', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20, company: 'Onix', category: 'HomeAppliances' },
+{ id: 18, name: 'ONIX VACUUM CLEANER 21 LTR - Powerful 2200W Input', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20, company: 'Onix', category: 'HomeAppliances', rating: 4.5 },
         { id: 19, name: 'elba Load Washing Machine ThinQ WiFi 9 kg', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/2.png', discount: 25, company: 'Elba', category: 'HomeAppliances' },
-        { id: 20, name: 'HISENSE Refrigerator 7 Cuft Freezer 1.8 Cuft Inverter Color Silver 211 kW', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/3.png', discount: 22.22, company: 'Hisense', category: 'HomeAppliances' },
-        { id: 21, name: 'KOOLEN 30 Liter Digital Microwave Oven, 900 Watts Power, 11 Power Levels, 6/7 Auto Menu, With Grill Function, Mirror Finish Door 30 L 900 W', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/4.png', discount: 20, company: 'Koolen', category: 'HomeAppliances' },
+        { id: 20, name: 'HISENSE Refrigerator 7 Cuft Freezer 1.8 Cuft Inverter Color Silver 211 kW', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/3.png', discount: 22.22, company: 'Hisense', category: 'HomeAppliances' , rating: 4 },
+        { id: 21, name: 'KOOLEN 30 Liter Digital Microwave Oven, 900 Watts Power, 11 Power Levels, 6/7 Auto Menu, With Grill Function, Mirror Finish Door 30 L 900 W', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/4.png', discount: 20, company: 'Koolen', category: 'HomeAppliances', rating: 3.5  },
         { id: 22, name: 'GLEM GAS Gas Oven 5 Burners Jumbo 90X60 Steel', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/fur.png', discount: 20, company: 'Glem Gas', category: 'HomeAppliances' },
-        { id: 23, name: 'KENWOOD Blender, Ice Crush Function, Multi Mill, Grinder, 2 Speeds, 2 L 500 W', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/6.png', discount: 25, company: 'Kenwood', category: 'HomeAppliances' },
-        { id: 24, name: 'Philips Easy Speed Steam Iron 220 ml 2000 W', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/iron.png', discount: 9.09, company: 'Philips', category: 'HomeAppliances' },
-        { id: 25, name: 'LC Countertop Electric Kettle 500ml 500.0 ml', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/8.png', discount: 20, company: 'LC', category: 'HomeAppliances' },
-        { id: 26, name: 'Techno Best 2 Slice Electric Toaster/Efficient Breakfast Toasting/Breakfast machine with Browning control/Plastic 650 W', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/9.png', discount: 23.53, company: 'Techno Best', category: 'HomeAppliances' },
-        { id: 27, name: 'Rebune Coffee Machine - 1.2L Capacity, 1050W Power, Premium Brewing', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/10.png', discount: 20, company: 'Rebune', category: 'HomeAppliances' },
+        { id: 23, name: 'KENWOOD Blender, Ice Crush Function, Multi Mill, Grinder, 2 Speeds, 2 L 500 W', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/6.png', discount: 25, company: 'Kenwood', category: 'HomeAppliances', rating: 3  },
+        { id: 24, name: 'Philips Easy Speed Steam Iron 220 ml 2000 W', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/iron.png', discount: 9.09, company: 'Philips', category: 'HomeAppliances' , rating: 2 },
+        { id: 25, name: 'LC Countertop Electric Kettle 500ml 500.0 ml', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/8.png', discount: 20, company: 'LC', category: 'HomeAppliances' , rating: 2.5 },
+        { id: 26, name: 'Techno Best 2 Slice Electric Toaster/Efficient Breakfast Toasting/Breakfast machine with Browning control/Plastic 650 W', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/9.png', discount: 23.53, company: 'Techno Best', category: 'HomeAppliances', rating: 1.5  },
+        { id: 27, name: 'Rebune Coffee Machine - 1.2L Capacity, 1050W Power, Premium Brewing', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/10.png', discount: 20, company: 'Rebune', category: 'HomeAppliances', rating: 4  },
 ];
 
 
@@ -339,26 +339,37 @@ const gamesConsloes_discount = [
         function displayProducts(productArray, containerId) {
     const productContainer = document.getElementById(containerId);
     productContainer.innerHTML = ''; // Clear previous products
+
+    // Iterate over the product array and create a product card for each item
     productArray.forEach(product => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
-        productCard.innerHTML = `
-    <a href="product-detail.html?id=${product.id}">
-        <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
-        <h5 class="product-name">${product.name}</h5>
-        <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
-        <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
-    </a>
-    <div style="display:flex;">
-        <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
-            <i class="fa-regular fa-heart"></i>
-        </button>
-        <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
-            Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
-        </button>
-    </div>
-`;
 
+        // Generate the star rating for each product
+        const starsHtml = generateStars(product.rating); // Call generateStars to get the stars HTML
+
+        productCard.innerHTML = `
+            <a href="product-detail.html?id=${product.id}">
+                <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+                <div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
+                ${starsHtml}
+            </div>
+                <h5 class="product-name">${product.name}</h5>
+                <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
+                <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
+            </a>
+            <div style="display:flex;">
+                <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
+                    Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+            
+        `;
+
+        // Append the product card to the container
         productContainer.appendChild(productCard);
     });
 }
@@ -378,11 +389,30 @@ document.getElementById('applyFilters').addEventListener('click', applyFilters);
         }
 
 
+        function generateStars(rating) {
+    const fullStars = Math.floor(rating); // Number of full stars
+    const hasHalfStar = rating % 1 !== 0; // Whether there's a half star
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // Remaining empty stars
 
-        // Initialize by displaying all products
-       
-       // Global variable to keep track of products in cart
+    let starsHtml = '';
 
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+        starsHtml += '<i class="fa-solid fa-star" style="color:gold;"></i>';
+    }
+
+    // Add half star if necessary
+    if (hasHalfStar) {
+        starsHtml += '<i class="fa-solid fa-star-half-alt" style="color: gold;"></i>';
+    }
+
+    // Add empty stars
+    for (let i = 0; i < emptyStars; i++) {
+        starsHtml += '<i class="fa-regular fa-star" style="color: gold;"></i>';
+    }
+
+    return starsHtml;
+}
 
        
 
