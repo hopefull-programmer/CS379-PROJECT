@@ -32,26 +32,26 @@
     <header>
         <table class="header" border="0">
             <tr>
-                <td class="logo"><a href="index.html"><img src="images/logov2.png" alt="e-store"></a></td>
+                <td class="logo"><a href="index.html"><img src="images/logov2.png"  alt="e-store"></a></td>
                 <td>
                     <div class="search">
                         <input type="text" id="searchInput" placeholder='search...'>
                         <button type="submit" onclick="performSearch()"><img src="images/search-solid.svg" alt="search"></button>
                     </div>
                 </td>
-                <td>
-                    <div style="padding-left: 30px; text-align: center; position: relative;">
-                        <a href="cart.html">
-                            <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
-                            Cart <div id="cart-count" class="cart-count" style="display: none;"></div>
-                        </a>
-                    </div>
+               <td>
+                <div style="padding-left: 30px; text-align: center; position: relative;">
+                    <a href="cart.html">
+                        <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
+                        Cart <div id="cart-count" class="cart-count" style="display: none;"><script>totalProductsInCart</script></div>
+                    </a>
+                </div>
                 </td>
                 <td>
                     <div style="padding-left: 30px; text-align: center; position: relative;">
                         <a href="wishlist.html">
                             <img src="images/like-2.png" alt="wishList" style="width: 30px; height: 30px;"><br>
-                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"></div>
+                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"><script>totalProductsInWishList</script></div>
                         </a>
                     </div>
                 </td>
@@ -65,14 +65,38 @@
                                 <img src="images/signin-av.png" alt="sign in"><br>Sign In
                             </a>
                             <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
-                                <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
+                                <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; border-radius: 5px;">
                                     <h5 style="margin: 0;">Sign Out</h5>
                                     <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
                                 </button>
                             </div>
                         </div>
                     </div>
-                </td>  
+                </td> 
+                <td>
+                    <div id="add-product"  style="padding-left: 30px; text-align: center; position: relative; display: none;">
+                        <a href="Addproduct.html">
+                            <img src="images/add.png" alt="wishList" style="width: 30px; height: 30px;"><br>
+                            Add Products
+                        </a>
+                    </div>
+                </td> 
+                <td>
+                    <div id="delete-product"  style="padding-left: 30px; text-align: center; position: relative; display: none;">
+                        <a href="Deleteproduct.html">
+                            <img src="images/delete.png" alt="delete product" style="width: 30px; height: 30px;"><br>
+                            Delete Products
+                        </a>
+                    </div>
+                </td> 
+                <td>
+                    <div id="statistics"  style="padding-left: 30px; text-align: center; position: relative; display: none;">
+                        <a href="statistics.html">
+                            <img src="images/chart.png" alt="delete product" style="width: 30px; height: 30px;"><br>
+                            Statistics
+                        </a>
+                    </div>
+                </td>            
             </tr>
         </table>
     </header>
@@ -250,27 +274,43 @@ document.getElementById('signout-button').addEventListener('click', function() {
 
 
 const isSignedIn = localStorage.getItem('isSignedIn');
+    const isAdmin = localStorage.getItem('isAdmin');
+    // Reset sign-in status when the page is being unloaded
 
-// Reset sign-in status when the page is being unloaded
+    // Update UI based on sign-in status
+    function updateSignInUI() {
+    const isSignedIn = localStorage.getItem('isSignedIn');
+    const isAdmin = localStorage.getItem('isAdmin');
+    const avatarLink = document.getElementById('avatar-link');
+    const signinLink = document.getElementById('signin-link');
+    const addIcon = document.getElementById('add-product');
+    const deleteIcon = document.getElementById('delete-product');
+    const statIcon = document.getElementById('statistics');
+    if (isSignedIn === 'true') {
 
-// Update UI based on sign-in status
-function updateSignInUI() {
-const isSignedIn = localStorage.getItem('isSignedIn');
-const avatarLink = document.getElementById('avatar-link');
-const signinLink = document.getElementById('signin-link');
-
-if (isSignedIn === 'true') {
-    avatarLink.style.display = 'block'; // Show the avatar
-    signinLink.style.display = 'none';   // Hide the sign-in link
-    avatarLink.href = 'profile.html';    // Change to the desired profile page
-} else {
-    avatarLink.style.display = 'none';    // Hide the avatar
-    signinLink.style.display = 'block';    // Show the sign-in link
+        if(isAdmin === 'true'){
+            avatarLink.style.display = 'block'; // Show the avatar
+        signinLink.style.display = 'none';   // Hide the sign-in link
+        avatarLink.href = 'profile.html';
+        addIcon.style.display="block"; 
+        deleteIcon.style.display="block";
+        statIcon.style.display="block";
+        }
+        else{
+            avatarLink.style.display = 'block'; // Show the avatar
+        signinLink.style.display = 'none';   // Hide the sign-in link
+        avatarLink.href = 'profile.html';
+        }
+         // Change to the desired profile page
+    } 
+    else {
+        avatarLink.style.display = 'none';    // Hide the avatar
+        signinLink.style.display = 'block';    // Show the sign-in link
+    }
 }
-}
 
-// Call the function to update the UI
-updateSignInUI();
+    // Call the function to update the UI
+    updateSignInUI();
         
         // Initialize the counts and display products
         updateCartCount();

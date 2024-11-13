@@ -20,14 +20,18 @@
                     </div>
                 </div>
                 <div class="signin-field">
-                    <p>Password</p>
+                    <!-- Password and Forgot Password link in the same row -->
+                    <div class="password-row">
+                        <p>Password</p>
+                        <a href="forgotpass.html" class="forgot-password">Forgot Password?</a>
+                    </div>
                     <div class="input-container">
                         <div id="error-message-password" class="error-message" style="color: red; display: none;"></div>
                         <input type="password" id="password" placeholder="Enter password" required>
                     </div>
                 </div>
                 <div class="signin-field">
-                    <h4 style="text-align: left; padding-bottom: 0px; color: #006eff;font-size: 18px;">Choose your account type</h4>
+                    <h4 style="text-align: left; padding-bottom: 0px; color: #006eff; font-size: 18px;">Choose Your Account Type</h4>
                     <div class="usertype">
                         <label>
                             <input type="radio" name="userType" value="administrator">
@@ -41,13 +45,15 @@
                     <div id="error-message-usertype" class="error-message" style="color: red; display: none;"></div>
                 </div>
                 <br>
-                <button type="submit" style="font-size: 20px;">Sign In</button>
                 <div class="links">
-                    Don't Have an Account? <a href="signup.html">Sign Up</a>
+                    <button type="submit" style="font-size: 20px;">Sign In</button>
+                    <span>Don't Have an Account? &nbsp;<a href="signup.html">Sign Up</a></span>
                 </div>
             </form>
         </div>
     </center>
+    
+    
     
     <script>
         function handleSignIn(event) {
@@ -102,7 +108,7 @@
                     const hiddenMessage = document.getElementById('hiddenMessage');
                     hiddenMessage.innerText = "Incorrect admin credentials.";
                     hiddenMessage.style.position = 'relative';
-                    hiddenMessage.style.backgroundColor = 'rgb(255, 39, 39)';
+                    hiddenMessage.style.backgroundColor = '#ff0800';
                     hiddenMessage.style.display = 'block';
                     setTimeout(function () {
                         hiddenMessage.style.display = 'none';
@@ -112,8 +118,9 @@
 
                 // If admin credentials are correct
                 localStorage.setItem('isSignedIn', 'true');
+                localStorage.setItem('isAdmin', 'true');
                 const hiddenMessage = document.getElementById('hiddenMessage');
-                hiddenMessage.innerText = `Welcome, Administrator ${administratorUsername}!`;
+                hiddenMessage.innerText = `Welcome, ${administratorUsername}!`;
                 hiddenMessage.style.backgroundColor = "#006eff";
                 hiddenMessage.style.display = 'block';
 
@@ -128,7 +135,7 @@
                     const hiddenMessage = document.getElementById('hiddenMessage');
                     hiddenMessage.innerText = "Incorrect user credentials.";
                     hiddenMessage.style.position = 'relative';
-                    hiddenMessage.style.backgroundColor = 'rgb(255, 39, 39)';
+                    hiddenMessage.style.backgroundColor = '#ff0800';
                     hiddenMessage.style.display = 'block';
                     setTimeout(function () {
                         hiddenMessage.style.display = 'none';

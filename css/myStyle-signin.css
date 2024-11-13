@@ -23,6 +23,25 @@ div.sign-in form{
 }
 
 
+
+.password-row {
+    display: flex;            
+    justify-content: space-between; 
+    align-items: center;      
+    width: 100%;   
+}
+
+.forgot-password {
+    font-size: 15px;
+    color: #006eff;             /* Blue color for the link */
+    text-decoration: none;
+    transition: color 0.3s ease;      /* Remove underline */
+}
+
+.forgot-password:hover {
+    color: #0056b3;  
+}
+
 .sign-in input {
     width: 100%;
     padding: 10px;
@@ -45,19 +64,36 @@ div.sign-in form{
     background-color: #0056b3;
 }
 
-
+span{
+    display: flex;
+}
 .links {
-    margin-top: 15px; /* Space between form and links */
-    text-align: center; /* Center the links */
+    display: flex;
+    flex-direction: column;   /* Stack the items vertically */
+    align-items: center;      /* Center the items horizontally */
+    margin-top: 10px;         /* Add space at the top */
+}
+
+.links button {
+    margin-bottom: 10px;      /* Add space between the button and the link */
+    padding: 10px 20px;       /* Style the button */
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #006eff; /* Green background (you can change this) */
+    color: white;
+    border: none;
+    border-radius: 5px;
 }
 
 .links a {
-    color: #006eff; /* Link color */
-    text-decoration: none; /* Remove underline from links */
+    font-size: 16px;
+    color: #007BFF;           /* Change the link color */
+    text-decoration: none;    /* Remove underline */
+    transition: color 0.3s ease;
 }
 
 .links a:hover {
-    text-decoration: underline; /* Underline on hover */
+    color: #0056b3;           /* Change color on hover */
 }
 
 div.signin-field  {
@@ -97,7 +133,6 @@ div.signin-field input{
     padding: 20px;
     justify-content: space-between;
 }
-
 
 .section {
     flex: 1;
@@ -149,18 +184,6 @@ p {
     flex-basis: 30%; /* Adjusts label width */
 }
 
-button {
-    margin-top: 100px;
-    background-color: #006eff; /* Button background color */
-    color: white; /* Button text color */
-    border: none;
-    padding: 10px 30px;
-    position: relative;
-    bottom: 80px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 25px;
-}
 
 button:hover {
     background-color: #0056d4; /* Darker shade on hover */

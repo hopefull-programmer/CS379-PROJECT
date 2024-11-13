@@ -50,7 +50,31 @@
                             </div>
                         </div>
                     </div>
-                </td>              
+                </td> 
+                <td>
+                    <div id="add-product"  style="padding-left: 30px; text-align: center; position: relative; display: none;">
+                        <a href="Addproduct.html">
+                            <img src="images/add.png" alt="wishList" style="width: 30px; height: 30px;"><br>
+                            Add Products
+                        </a>
+                    </div>
+                </td> 
+                <td>
+                    <div id="delete-product"  style="padding-left: 30px; text-align: center; position: relative; display: none;">
+                        <a href="Deleteproduct.html">
+                            <img src="images/delete.png" alt="delete product" style="width: 30px; height: 30px;"><br>
+                            Delete Products
+                        </a>
+                    </div>
+                </td> 
+                <td>
+                    <div id="statistics"  style="padding-left: 30px; text-align: center; position: relative; display: none;">
+                        <a href="statistics.html">
+                            <img src="images/chart.png" alt="delete product" style="width: 30px; height: 30px;"><br>
+                            Statistics
+                        </a>
+                    </div>
+                </td>            
             </tr>
         </table>
     </header>
@@ -153,11 +177,11 @@ function buyProduct(productId) {
     const buyButton = document.querySelector(`#buy[data-product-id="${productId}"]`);
     if (buyButton) {
         buyButton.textContent = "Added to Cart";
+        buyButton.textContent.fontsize = "23px";
         buyButton.style.backgroundColor = "#4CAF50"; // Change button color to green
         buyButton.disabled = true; // Optionally disable the button
     }
 
-    alert(`Product ${productId} purchased!`);
 }
 
 function addWishList(productId) {
@@ -186,9 +210,9 @@ function addWishList(productId) {
         { id: 27, name: 'Rebune Coffee Machine - 1.2L Capacity, 1050W Power, Premium Brewing', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/10.png', discount: 20, company: 'Rebune', category: 'HomeAppliances', rating: 4  },
 ];
 const tv_discount = [
-{ id: 28, name: 'LG 4K Ultra HD Smart LED TV 65 inch', oldPrice: 800, newPrice: 640, imageUrl: 'images/pic/17.png', discount: 20, company: 'LG', category: 'TV', rating: 4 },
-        { id: 29, name: 'Samsung QLED 55 inch Smart TV with 4K Resolution', oldPrice: 750, newPrice: 600, imageUrl: 'images/pic/18.png', discount: 20, company: 'Samsung', category: 'TV', rating: 4  },
-        { id: 30, name: 'Sony Bravia 65 inch LED 4K UHD Smart TV', oldPrice: 1000, newPrice: 800, imageUrl: 'images/pic/19.png', discount: 20, company: 'Sony', category: 'TV', rating: 5  },
+{ id: 28, name: 'LG 4K Ultra HD Smart LED TV 65 inch', oldPrice: 500, newPrice: 299, imageUrl: 'images/pic/17.png', discount: 20, company: 'LG', category: 'TV', rating: 4 },
+        { id: 29, name: 'Samsung QLED 55 inch Smart TV with 4K Resolution', oldPrice: 299, newPrice: 150, imageUrl: 'images/pic/18.png', discount: 20, company: 'Samsung', category: 'TV', rating: 4  },
+        { id: 30, name: 'Sony Bravia 65 inch LED 4K UHD Smart TV', oldPrice: 300, newPrice: 230, imageUrl: 'images/pic/19.png', discount: 20, company: 'Sony', category: 'TV', rating: 5  },
         { id: 31, name: '55 Inch 4K UHD Smart TV | 60HZ55-Inch 4K UHD Smart TV - 60Hz, Smart TV with Streaming Support', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/20.png', discount: 25, company: 'Generic', category: 'TV' , rating: 3 },
         { id: 32, name: '55" 4K UHD LED Smart Google TV - HDR, Google Assistant, Ultra HD', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/21.png', discount: 9.09, company: 'Generic', category: 'TV' , rating: 3.5 },
         { id: 33, name: '65 Inch TV 4K QLED Pro Dolby Vision Atmos Onkyo 2.1CH Slim & Uni-body Google TV, 120HZ', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/22.png', discount: 20, company: 'Generic', category: 'TV', rating: 3.5  },
@@ -260,7 +284,7 @@ function performSearch() {
                 <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
                     <i class="fa-regular fa-heart"></i>
                 </button>
-                <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:15px;">
+                <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:23px;">
                     Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
                 </button>
             </div>
@@ -315,6 +339,7 @@ function performSearch() {
 // Sign out functionality
 document.getElementById('signout-button').addEventListener('click', function() {
     localStorage.setItem('isSignedIn', 'false'); // Update sign-in status
+    localStorage.setItem('isAdmin', 'false');
     alert('You have signed out.'); // Alert user
     updateSignInUI(); // Update UI after signing out
     const signoutDiv = document.querySelector('.signout');
@@ -412,20 +437,36 @@ updateWishListIcon();
 <script>
     // Check the sign-in status on page load
     const isSignedIn = localStorage.getItem('isSignedIn');
-
+    const isAdmin = localStorage.getItem('isAdmin');
     // Reset sign-in status when the page is being unloaded
 
     // Update UI based on sign-in status
     function updateSignInUI() {
     const isSignedIn = localStorage.getItem('isSignedIn');
+    const isAdmin = localStorage.getItem('isAdmin');
     const avatarLink = document.getElementById('avatar-link');
     const signinLink = document.getElementById('signin-link');
-
+    const addIcon = document.getElementById('add-product');
+    const deleteIcon = document.getElementById('delete-product');
+    const statIcon = document.getElementById('statistics');
     if (isSignedIn === 'true') {
-        avatarLink.style.display = 'block'; // Show the avatar
+
+        if(isAdmin === 'true'){
+            avatarLink.style.display = 'block'; // Show the avatar
         signinLink.style.display = 'none';   // Hide the sign-in link
-        avatarLink.href = 'profile.html';    // Change to the desired profile page
-    } else {
+        avatarLink.href = 'profile.html';
+        addIcon.style.display="block"; 
+        deleteIcon.style.display="block";
+        statIcon.style.display="block";
+        }
+        else{
+            avatarLink.style.display = 'block'; // Show the avatar
+        signinLink.style.display = 'none';   // Hide the sign-in link
+        avatarLink.href = 'profile.html';
+        }
+         // Change to the desired profile page
+    } 
+    else {
         avatarLink.style.display = 'none';    // Hide the avatar
         signinLink.style.display = 'block';    // Show the sign-in link
     }
