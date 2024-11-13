@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Product Management</title>
+    <link rel="stylesheet" href="css/mystyle-main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <table class="header" border="0">
+            <tr>
+                <td class="logo"><a href="#"><img src="images/logov2.png"  alt="e-store"></a></td>
+                <td>
+                    <div class="search">
+                        <input type="text" id="searchInput" placeholder='search...'>
+                        <button type="submit" onclick="performSearch()"><img src="images/search-solid.svg" alt="search"></button>
+                    </div>
+                </td>
+               <td>
+                <div style="padding-left: 30px; text-align: center; position: relative;">
+                    <a href="cart.html">
+                        <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
+                        Cart <div id="cart-count" class="cart-count" style="display: none;"><script>totalProductsInCart</script></div>
+                    </a>
+                </div>
+                </td>
+                <td>
+                    <div style="padding-left: 30px; text-align: center; position: relative;">
+                        <a href="wishlist.html">
+                            <img src="images/like-2.png" alt="wishList" style="width: 30px; height: 30px;"><br>
+                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"><script>totalProductsInWishList</script></div>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; position: relative; width: 100%; margin:auto;">
+                        <a href="#" id="avatar-link" style="margin-right: 10px; display: none;">
+                            <img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">
+                        </a>
+                        <div class="signin-out">
+                            <a href="signin.html" id="signin-link">
+                                <img src="images/signin-av.png" alt="sign in"><br>Sign In
+                            </a>
+                            <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
+                                <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; border-radius: 5px;">
+                                    <h5 style="margin: 0;">Sign Out</h5>
+                                    <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </td>              
+            </tr>
+        </table>
+    </header>
+    <h1>Admin Panel</h1>
+    <h2>Add New Product</h2>
+    <form id="product-form">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" required><br>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" required><br>
+
+        <label for="imageUrl">Image URL:</label>
+        <input type="url" id="imageUrl" required><br>
+
+        <label for="category">Category:</label>
+        <select id="category" required>
+            <option value="Home Appliances">Home Appliances</option>
+            <option value="TVs">TVs</option>
+            <option value="Cameras">Cameras</option>
+            <option value="Game Consoles">Game Consoles</option>
+        </select><br>
+
+        <button type="submit">Add Product</button>
+    </form>
+
+    <h2>Product List</h2>
+    <div id="product-list"></div>
+
+    <script>
+        const products = JSON.parse(localStorage.getItem("products")) || [];
+
+        function renderProducts() {
+            const productList = document.getElementById("product-list");
+            productList.innerHTML = "";
+            products.forEach((product, index) => {
+                const productDiv = document.createElement("div");
+                productDiv.innerHTML = `
+                    <h3>${product.name}</h3>
+                    <p>Price: ${product.price}</p>
+                    <p>Category: ${product.category}</p>
+                    <img src="${product.imageUrl}" alt="${product.name}" style="width: 100px;">
+                    <button onclick="deleteProduct(${index})">Delete</button>
+                `;
+                productList.appendChild(productDiv);
+            });
+        }
+
+        document.getElementById("product-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const product = {
+                name: document.getElementById("productName").value,
+                price: document.getElementById("price").value,
+                imageUrl: document.getElementById("imageUrl").value,
+                category: document.getElementById("category").value
+            };
+            products.push(product);
+            localStorage.setItem("products", JSON.stringify(products));
+            renderProducts();
+            event.target.reset();
+        });
+
+        function deleteProduct(index) {
+            products.splice(index, 1);
+            localStorage.setItem("products", JSON.stringify(products));
+            renderProducts();
+        }
+
+        renderProducts();
+    </script>
+     <footer class="footer">
+        <div class="footer-container">
+            <!-- Logo Section -->
+            <div class="footer-logo">
+                <img src="images/logov2.png" height="150px" width="150px" alt="e-store">
+            </div>
+    
+            <!-- Footer Categories -->
+            <div class="footer-category">
+                <h3>Home Appliances</h3>
+                <ul>
+                    <li><a href="HA.html">Refrigerators</a></li>
+                    <li><a href="HA.html">Washing Machines</a></li>
+                    <li><a href="HA.html">Microwaves</a></li>
+                    <li><a href="HA.html">Air Conditioners</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-category">
+                <h3>TVs</h3>
+                <ul>
+                    <li><a href="TV.html">Smart TVs</a></li>
+                    <li><a href="TV.html">LED TVs</a></li>
+                    <li><a href="TV.html">OLED TVs</a></li>
+                    <li><a href="TV.html">4K TVs</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-category">
+                <h3>Game Consoles</h3>
+                <ul>
+                    <li><a href="GC-category.html">PlayStation</a></li>
+                    <li><a href="GC-category.html">Xbox</a></li>
+                    <li><a href="GC-category.html">Nintendo</a></li>
+                    <li><a href="GC-category.html">Handheld Consoles</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-category">
+                <h3>Cameras</h3>
+                <ul>
+                    <li><a href="Cameras-category.html">DSLR Cameras</a></li>
+                    <li><a href="Cameras-category.html">Mirrorless Cameras</a></li>
+                    <li><a href="Cameras-category.html">Action Cameras</a></li>
+                    <li><a href="Cameras-category.html">Bridge Cameras</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact and Social Section -->
+            <div class="footer-contact">
+                <div class="social-media">
+                    <h3>Find Us</h3>
+                    <a href="#" target="_blank"><img src="images/social-media/twitter (1).png" alt="Twitter"></a>
+                    <a href="#" target="_blank"><img src="images/social-media/facebook (1).png" alt="Facebook"></a>
+                    <a href="#" target="_blank"><img src="images/social-media/tik-tok (1).png" alt="TikTok"></a>
+                    <a href="#" target="_blank"><img src="images/social-media/instagram (1).png" alt="Instagram"></a>
+                </div>
+    
+                <h3>Email: <a href="mailto:myEmail@example.com" class="footer-email">myEmail@example.com</a></h3>
+                <h3>Call Center: <span class="footer-phone">8521336588</span></h3>
+            </div>
+    
+            <!-- Footer About Us Section -->
+            <div class="footer-about">
+                <h3>About</h3>
+                <ul>
+                <li><a href="about-us.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+       
+    </footer>
+</body>
+</html>
