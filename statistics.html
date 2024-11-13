@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="CSS/mystyle-main.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Financial Statistics</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+/* Header */
+.dashboard-header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.dashboard-header h1 {
+    font-size: 2.5em;
+}
+
+.dashboard-header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+/* Main Content */
+.dashboard-main {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Stats Cards */
+.summary-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.stat-card .amount {
+    font-size: 2em;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Tables */
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.product-table th, .product-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.product-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.product-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Revenue Chart */
+.revenue-chart {
+    max-width: 100%;
+    margin-top: 30px;
+}
+
+/* Footer */
+.dashboard-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #007bff;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.dashboard-footer p {
+    font-size: 1em;
+}
+.title{
+    padding: 50px 20px;
+    color: #4a4a4a;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <table class="header" border="0">
+            <tr>
+                <td class="logo"><a href="index.html"><img src="images/logov2.png"  alt="e-store"></a></td>
+                <td>
+                    <div class="search">
+                        <input type="text" id="searchInput" placeholder='search...'>
+                        <button type="submit" onclick="performSearch()"><img src="images/search-solid.svg" alt="search"></button>
+                    </div>
+                </td>
+               <td>
+                <div style="padding-left: 30px; text-align: center; position: relative;">
+                    <a href="cart.html">
+                        <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
+                        Cart <div id="cart-count" class="cart-count" style="display: none;"><script>totalProductsInCart</script></div>
+                    </a>
+                </div>
+                </td>
+                <td>
+                    <div style="padding-left: 30px; text-align: center; position: relative;">
+                        <a href="wishlist.html">
+                            <img src="images/like-2.png" alt="wishList" style="width: 30px; height: 30px;"><br>
+                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"><script>totalProductsInWishList</script></div>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; position: relative; width: 100%; margin:auto;">
+                        <a href="#" id="avatar-link" style="margin-right: 10px; display: none;">
+                            <img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">
+                        </a>
+                        <div class="signin-out">
+                            <a href="signin.html" id="signin-link">
+                                <img src="images/signin-av.png" alt="sign in"><br>Sign In
+                            </a>
+                            <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
+                                <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
+                                    <h5 style="margin: 0;">Sign Out</h5>
+                                    <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </td>  
+            </tr>
+        </table>
+    </header>
+
+    <div class="nav-container">
+        <nav>
+            <table class="categories" border="0">
+                <tr>
+                    <td class="c-item"><h4><a href="HA.html">Home Appliances</a></h4></td>
+                    <td class="c-item"><h4><a href="TV.html">TV's</a></h4></td>
+                    <td class="c-item"><h4><a href="Cameras-category.html">Cameras</a></h4></td>
+                    <td class="c-item"><h4><a href="GC-category.html">Games Consoles</a></h4></td>
+                </tr>
+            </table>
+        </nav>
+    </div>
+
+
+    <!-- Header Section -->
+<h1 class="title">Financial Statistics</h1>
+
+    <!-- Main Content Section -->
+    <main class="dashboard-main">
+        <!-- Summary Stats Section -->
+        <section class="summary-stats">
+            <div class="stat-card">
+                <h3>Total Revenue</h3>
+                <p class="amount">430,000 SR</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Products Sold</h3>
+                <p class="amount">1,200 Units</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Profit</h3>
+                <p class="amount">150,000 SR</p>
+            </div>
+        </section>
+
+        <!-- Top Products Section -->
+        <section class="top-products">
+            <h2 class="title">Top Performing Products</h2>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Revenue</th>
+                        <th>Profit</th>
+                        <th>Units Sold</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PlayStation 5 Console</td>
+                        <td>240,000 SR</td>
+                        <td>100,000 SR</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td>Nintendo Switch OLED</td>
+                        <td>120,000 SR</td>
+                        <td>50,000 SR</td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td>Xbox Series X 1TB Console</td>
+                        <td>120,000 SR</td>
+                        <td>50,000 SR</td>
+                        <td>300</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Revenue Over Time Chart -->
+        <section class="revenue-chart">
+            <h2 class="title">Revenue Over Time</h2>
+            <canvas id="revenueChart"></canvas>
+        </section>
+
+        <!-- Cost vs Revenue Section -->
+        <section class="cost-vs-revenue">
+            <h2 class="title">Cost vs Revenue</h2>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Cost</th>
+                        <th>Revenue</th>
+                        <th>Profit Margin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PlayStation 5 Console</td>
+                        <td>100,000 SR</td>
+                        <td>240,000 SR</td>
+                        <td>58%</td>
+                    </tr>
+                    <tr>
+                        <td>Nintendo Switch OLED</td>
+                        <td>75,000 SR</td>
+                        <td>120,000 SR</td>
+                        <td>58%</td>
+                    </tr>
+                    <tr>
+                        <td>Xbox Series X 1TB Console</td>
+                        <td>90,000 SR</td>
+                        <td>120,000 SR</td>
+                        <td>50%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Logo Section -->
+            <div class="footer-logo">
+                <img src="images/logov2.png" height="150px" width="150px" alt="e-store">
+            </div>
+    
+            <!-- Footer Categories -->
+            <div class="footer-category">
+                <h3>Home Appliances</h3>
+                <ul>
+                    <li><a href="HA.html">Refrigerators</a></li>
+                    <li><a href="HA.html">Washing Machines</a></li>
+                    <li><a href="HA.html">Microwaves</a></li>
+                    <li><a href="HA.html">Air Conditioners</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-category">
+                <h3>TVs</h3>
+                <ul>
+                    <li><a href="TV.html">Smart TVs</a></li>
+                    <li><a href="TV.html">LED TVs</a></li>
+                    <li><a href="TV.html">OLED TVs</a></li>
+                    <li><a href="TV.html">4K TVs</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-category">
+                <h3>Game Consoles</h3>
+                <ul>
+                    <li><a href="GC-category.html">PlayStation</a></li>
+                    <li><a href="GC-category.html">Xbox</a></li>
+                    <li><a href="GC-category.html">Nintendo</a></li>
+                    <li><a href="GC-category.html">Handheld Consoles</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-category">
+                <h3>Cameras</h3>
+                <ul>
+                    <li><a href="Cameras-category.html">DSLR Cameras</a></li>
+                    <li><a href="Cameras-category.html">Mirrorless Cameras</a></li>
+                    <li><a href="Cameras-category.html">Action Cameras</a></li>
+                    <li><a href="Cameras-category.html">Bridge Cameras</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact and Social Section -->
+            <div class="footer-contact">
+                <div class="social-media">
+                    <h3>Find Us</h3>
+                    <a href="https://x.com" target="_blank"><img src="images/social-media/twitter (1).png" alt="X"></a>
+                    <a href="https://www.facebook.com" target="_blank"><img src="images/social-media/facebook (1).png" alt="Facebook"></a>
+                    <a href="https://www.tiktok.com" target="_blank"><img src="images/social-media/tik-tok (1).png" alt="TikTok"></a>
+                    <a href="https://www.instagram.com" target="_blank"><img src="images/social-media/instagram (1).png" alt="Instagram"></a>
+                </div>
+    
+                <h3>Email: <a href="mailto:myEmail@example.com" class="footer-email">myEmail@example.com</a></h3>
+                <h3>Call Center: <span class="footer-phone">8521336588</span></h3>
+            </div>
+    
+            <!-- Footer About Us Section -->
+            <div class="footer-about">
+                <h3>About</h3>
+                <ul>
+                <li><a href="about-us.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+       
+    </footer>
+
+
+    <!-- JS to render charts (Chart.js) -->
+    <script>
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'line', // You can change this to 'bar' or other chart types
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'PlayStation 5 Console',
+                    data: [30000, 40000, 45000, 50000, 60000, 70000],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false
+                },
+                {
+                    label: 'Nintendo Switch OLED',
+                    data: [20000, 25000, 30000, 35000, 40000, 50000],
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 2,
+                    fill: false
+                },
+                {
+                    label: 'Xbox Series X Console',
+                    data: [15000, 20000, 25000, 30000, 35000, 40000],
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+        document.getElementById('avatar-link').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    const signoutDiv = document.querySelector('.signin-out div'); // Select the sign-out button's container
+    signoutDiv.style.display = signoutDiv.style.display === 'none' ? 'flex' : 'none'; // Toggle visibility
+});
+
+// Sign out functionality
+document.getElementById('signout-button').addEventListener('click', function() {
+    localStorage.setItem('isSignedIn', 'false'); // Update sign-in status
+    alert('You have signed out.'); // Alert user
+    updateSignInUI(); // Update UI after signing out
+    const signoutDiv = document.querySelector('.signout');
+    document.getElementById('signout-container').style.display = 'none'; // Hide the sign-out button
+});
+    </script>
+
+</body>
+</html>
+
+
+<script>
+    // Check the sign-in status on page load
+    const isSignedIn = localStorage.getItem('isSignedIn');
+
+    // Reset sign-in status when the page is being unloaded
+
+    // Update UI based on sign-in status
+    function updateSignInUI() {
+    const isSignedIn = localStorage.getItem('isSignedIn');
+    const avatarLink = document.getElementById('avatar-link');
+    const signinLink = document.getElementById('signin-link');
+
+    if (isSignedIn === 'true') {
+        avatarLink.style.display = 'block'; // Show the avatar
+        signinLink.style.display = 'none';   // Hide the sign-in link
+        avatarLink.href = 'profile.html';    // Change to the desired profile page
+    } else {
+        avatarLink.style.display = 'none';    // Hide the avatar
+        signinLink.style.display = 'block';    // Show the sign-in link
+    }
+}
+
+    // Call the function to update the UI
+    updateSignInUI();
+</script>

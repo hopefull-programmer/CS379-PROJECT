@@ -45,7 +45,7 @@
                             </a>
                             <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
                                 <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
-                                    <h3 style="margin: 0;">Sign Out</h3>
+                                    <h5 style="margin: 0;">Sign Out</h5>
                                     <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
                                 </button>
                             </div>
@@ -77,7 +77,79 @@
         </button>
         
     </div>
+ <!-- Footer Section -->
+ <footer class="footer">
+    <div class="footer-container">
+        <!-- Logo Section -->
+        <div class="footer-logo">
+            <img src="images/logov2.png" height="150px" width="150px" alt="e-store">
+        </div>
 
+        <!-- Footer Categories -->
+        <div class="footer-category">
+            <h3>Home Appliances</h3>
+            <ul>
+                <li><a href="HA.html">Refrigerators</a></li>
+                <li><a href="HA.html">Washing Machines</a></li>
+                <li><a href="HA.html">Microwaves</a></li>
+                <li><a href="HA.html">Air Conditioners</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-category">
+            <h3>TVs</h3>
+            <ul>
+                <li><a href="TV.html">Smart TVs</a></li>
+                <li><a href="TV.html">LED TVs</a></li>
+                <li><a href="TV.html">OLED TVs</a></li>
+                <li><a href="TV.html">4K TVs</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-category">
+            <h3>Game Consoles</h3>
+            <ul>
+                <li><a href="GC-category.html">PlayStation</a></li>
+                <li><a href="GC-category.html">Xbox</a></li>
+                <li><a href="GC-category.html">Nintendo</a></li>
+                <li><a href="GC-category.html">Handheld Consoles</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-category">
+            <h3>Cameras</h3>
+            <ul>
+                <li><a href="Cameras-category.html">DSLR Cameras</a></li>
+                <li><a href="Cameras-category.html">Mirrorless Cameras</a></li>
+                <li><a href="Cameras-category.html">Action Cameras</a></li>
+                <li><a href="Cameras-category.html">Bridge Cameras</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact and Social Section -->
+        <div class="footer-contact">
+            <div class="social-media">
+                <h3>Find Us</h3>
+                <a href="https://x.com" target="_blank"><img src="images/social-media/twitter (1).png" alt="X"></a>
+                <a href="https://www.facebook.com" target="_blank"><img src="images/social-media/facebook (1).png" alt="Facebook"></a>
+                <a href="https://www.tiktok.com" target="_blank"><img src="images/social-media/tik-tok (1).png" alt="TikTok"></a>
+                <a href="https://www.instagram.com" target="_blank"><img src="images/social-media/instagram (1).png" alt="Instagram"></a>
+            </div>
+
+            <h3>Email: <a href="mailto:myEmail@example.com" class="footer-email">myEmail@example.com</a></h3>
+            <h3>Call Center: <span class="footer-phone">8521336588</span></h3>
+        </div>
+
+        <!-- Footer About Us Section -->
+        <div class="footer-about">
+            <h3>About</h3>
+            <ul>
+            <li><a href="about-us.html">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+   
+</footer>
     <script>
         let totalProductsInCart = parseInt(localStorage.getItem('totalProductsInCart')) || 0;
         let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
@@ -215,6 +287,22 @@ function displayAllProducts() {
 
 // Call this function when the page loads to show the products
 displayAllProducts();
+
+
+document.getElementById('avatar-link').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    const signoutDiv = document.querySelector('.signin-out div'); // Select the sign-out button's container
+    signoutDiv.style.display = signoutDiv.style.display === 'none' ? 'flex' : 'none'; // Toggle visibility
+});
+
+// Sign out functionality
+document.getElementById('signout-button').addEventListener('click', function() {
+    localStorage.setItem('isSignedIn', 'false'); // Update sign-in status
+    alert('You have signed out.'); // Alert user
+    updateSignInUI(); // Update UI after signing out
+    const signoutDiv = document.querySelector('.signout');
+    document.getElementById('signout-container').style.display = 'none'; // Hide the sign-out button
+});
     </script>
 </body>
 </html>

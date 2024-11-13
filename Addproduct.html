@@ -38,7 +38,7 @@
             color: #555;
         }
 
-        input, select {
+        .input {
             width: 100%;
             padding: 12px;
             margin-bottom: 20px;
@@ -50,7 +50,7 @@
             transition: border 0.3s ease;
         }
 
-        input:focus, select:focus {
+        .input:focus{
             border-color: #007bff;
             outline: none;
         }
@@ -133,7 +133,7 @@
                 <div style="padding-left: 30px; text-align: center; position: relative;">
                     <a href="cart.html">
                         <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
-                        Cart <div id="cart-count" class="cart-count" style="display: none;"><script>totalProductsInCart</script></div>
+                        Cart <div id="cart-count" class="cart-count" style="display: none;"></div>
                     </a>
                 </div>
                 </td>
@@ -141,7 +141,7 @@
                     <div style="padding-left: 30px; text-align: center; position: relative;">
                         <a href="wishlist.html">
                             <img src="images/like-2.png" alt="wishList" style="width: 30px; height: 30px;"><br>
-                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"><script>totalProductsInWishList</script></div>
+                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"></div>
                         </a>
                     </div>
                 </td>
@@ -155,14 +155,14 @@
                                 <img src="images/signin-av.png" alt="sign in"><br>Sign In
                             </a>
                             <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
-                                <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; border-radius: 5px;">
+                                <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
                                     <h5 style="margin: 0;">Sign Out</h5>
                                     <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
                                 </button>
                             </div>
                         </div>
                     </div>
-                </td>              
+                </td>  
             </tr>
         </table>
     </header>
@@ -183,22 +183,22 @@
 <div class="form-container">
     <form id="product-form">
         <label for="productName">Product Name:</label>
-        <input type="text" id="productName" required>
+        <input class="input" type="text" id="productName" required>
 
         <label for="oldPrice">Old Price:</label>
-        <input type="number" id="oldPrice" required>
+        <input class="input" type="number" id="oldPrice" required>
 
         <label for="newPrice">New Price:</label>
-        <input type="number" id="newPrice" required>
+        <input  class="input" type="number" id="newPrice" required>
 
         <label for="company">Company:</label>
-        <input type="text" id="company" required>
+        <input class="input" type="text" id="company" required>
 
         <label for="imageUrl">Image URL:</label>
-        <input  id="imageUrl" required>
+        <input  class="input" id="imageUrl" required>
 
         <label for="category">Category:</label>
-        <select id="category" required>
+        <select id="category" required class="input">
             <option value="Home Appliances">Home Appliances</option>
             <option value="TVs">TVs</option>
             <option value="Cameras">Cameras</option>
@@ -209,7 +209,7 @@
     </form>
 </div>
 
-<h2>Product List</h2>
+<h2>Added Products</h2>
 <div id="product-list" class="product-list"></div>
 
 <script>
@@ -228,7 +228,7 @@
                 <p>Old Price: ${product.oldPrice} SR</p>
                 <p>New Price: ${product.newPrice} SR</p>
                 <p>Category: ${product.category}</p>
-                <button onclick="deleteProduct(${index})">Delete</button>
+                <button onclick="deleteProduct(${index})"><b>Delete</b></button>
             `;
             productList.appendChild(productDiv);
         });
@@ -312,10 +312,10 @@
         <div class="footer-contact">
             <div class="social-media">
                 <h3>Find Us</h3>
-                <a href="#" target="_blank"><img src="images/social-media/twitter (1).png" alt="Twitter"></a>
-                <a href="#" target="_blank"><img src="images/social-media/facebook (1).png" alt="Facebook"></a>
-                <a href="#" target="_blank"><img src="images/social-media/tik-tok (1).png" alt="TikTok"></a>
-                <a href="#" target="_blank"><img src="images/social-media/instagram (1).png" alt="Instagram"></a>
+                <a href="https://x.com" target="_blank"><img src="images/social-media/twitter (1).png" alt="X"></a>
+                <a href="https://www.facebook.com" target="_blank"><img src="images/social-media/facebook (1).png" alt="Facebook"></a>
+                <a href="https://www.tiktok.com" target="_blank"><img src="images/social-media/tik-tok (1).png" alt="TikTok"></a>
+                <a href="https://www.instagram.com" target="_blank"><img src="images/social-media/instagram (1).png" alt="Instagram"></a>
             </div>
 
             <h3>Email: <a href="mailto:myEmail@example.com" class="footer-email">myEmail@example.com</a></h3>

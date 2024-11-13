@@ -31,7 +31,7 @@
     <header>
         <table class="header" border="0">
             <tr>
-                <td class="logo"><a href="#"><img src="images/logov2.png"  alt="e-store"></a></td>
+                <td class="logo"><a href="index.html"><img src="images/logov2.png"  alt="e-store"></a></td>
                 <td>
                     <div class="search">
                         <input type="text" id="searchInput" placeholder='search...'>
@@ -166,10 +166,10 @@
             <div class="footer-contact">
                 <div class="social-media">
                     <h3>Find Us</h3>
-                    <a href="#" target="_blank"><img src="images/social-media/twitter (1).png" alt="Twitter"></a>
-                    <a href="#" target="_blank"><img src="images/social-media/facebook (1).png" alt="Facebook"></a>
-                    <a href="#" target="_blank"><img src="images/social-media/tik-tok (1).png" alt="TikTok"></a>
-                    <a href="#" target="_blank"><img src="images/social-media/instagram (1).png" alt="Instagram"></a>
+                    <a href="https://x.com" target="_blank"><img src="images/social-media/twitter (1).png" alt="X"></a>
+                    <a href="https://www.facebook.com" target="_blank"><img src="images/social-media/facebook (1).png" alt="Facebook"></a>
+                    <a href="https://www.tiktok.com" target="_blank"><img src="images/social-media/tik-tok (1).png" alt="TikTok"></a>
+                    <a href="https://www.instagram.com" target="_blank"><img src="images/social-media/instagram (1).png" alt="Instagram"></a>
                 </div>
     
                 <h3>Email: <a href="mailto:myEmail@example.com" class="footer-email">myEmail@example.com</a></h3>
@@ -312,3 +312,28 @@
     </script>
 </body>
 </html>
+<script>
+    // Check the sign-in status on page load
+    const isSignedIn = localStorage.getItem('isSignedIn');
+
+    // Reset sign-in status when the page is being unloaded
+
+    // Update UI based on sign-in status
+    function updateSignInUI() {
+    const isSignedIn = localStorage.getItem('isSignedIn');
+    const avatarLink = document.getElementById('avatar-link');
+    const signinLink = document.getElementById('signin-link');
+
+    if (isSignedIn === 'true') {
+        avatarLink.style.display = 'block'; // Show the avatar
+        signinLink.style.display = 'none';   // Hide the sign-in link
+        avatarLink.href = 'profile.html';    // Change to the desired profile page
+    } else {
+        avatarLink.style.display = 'none';    // Hide the avatar
+        signinLink.style.display = 'block';    // Show the sign-in link
+    }
+}
+
+    // Call the function to update the UI
+    updateSignInUI();
+</script>
