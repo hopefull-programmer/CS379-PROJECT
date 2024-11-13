@@ -31,7 +31,7 @@
     <header>
         <table class="header" border="0">
             <tr>
-                <td class="logo"><a href="index.html"><img src="images/logov2.png"  alt="e-store"></a></td>
+                <td class="logo"><a href="#"><img src="images/logov2.png"  alt="e-store"></a></td>
                 <td>
                     <div class="search">
                         <input type="text" id="searchInput" placeholder='search...'>
@@ -188,6 +188,8 @@
     </footer>
 
     <script>
+        let totalProductsInCart = parseInt(localStorage.getItem('totalProductsInCart')) || 0;
+        let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
         // Sample cart products with quantities
         let cartProducts = [
             { id: 18, name: 'ONIX VACUUM CLEANER 21 LTR', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', rating: 4.5, quantity: 1 },
@@ -308,7 +310,24 @@
         }
 
         // Initialize the cart on page load
-        displayProducts(cartProducts);
+       
+
+        function updateCartIcon() {
+    const cartIcon = document.getElementById('cart-count'); // Get the cart count element
+    cartIcon.textContent = totalProductsInCart > 0 ? totalProductsInCart : ''; // Update the text content
+    cartIcon.style.display = totalProductsInCart > 0 ? 'block' : 'none'; // Show or hide cart count
+    localStorage.setItem('totalProductsInCart', totalProductsInCart); // Save to localStorage
+}
+
+function updateWishListIcon() {
+    const wishListIcon = document.getElementById('wishList-count'); // Get the wishlist count element
+    wishListIcon.textContent = totalProductsInWishList > 0 ? totalProductsInWishList : ''; // Update the text content
+    wishListIcon.style.display = totalProductsInWishList > 0 ? 'block' : 'none'; // Show or hide wishlist count
+    localStorage.setItem('totalProductsInWishList', totalProductsInWishList); // Save to localStorage
+}
+displayProducts(cartProducts);
+updateCartIcon();
+updateWishListIcon();
     </script>
 </body>
 </html>

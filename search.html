@@ -58,6 +58,8 @@ input[type="range"] {
         width: 100%;
     }
 }
+
+
     </style>
 </head>
 <body>
@@ -147,6 +149,14 @@ input[type="range"] {
                     <h3>Price Range</h3>
                     <input type="range" min="0" max="300" id="priceRange" value="300" step="10" oninput="updatePriceLabel()"><br>
                     <span id="priceLabel">0 SR - 300 SR</span>
+                </div>
+                <div class="star-rating-filter">
+                    <h3>Stars</h3>
+                    <i class="star" data-value="1">★</i>
+                    <i class="star" data-value="2">★</i>
+                    <i class="star" data-value="3">★</i>
+                    <i class="star" data-value="4">★</i>
+                    <i class="star" data-value="5">★</i>
                 </div>
             </div>
         
@@ -245,42 +255,41 @@ input[type="range"] {
 <script>
 
     let totalProductsInCart = parseInt(localStorage.getItem('totalProductsInCart')) || 0;
-    let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
-    
-    
-    // Function to update the cart count in the UI and localStorage
-    function updateCartIcon() {
-        const cartIcon = document.getElementById('cart-count'); // Get the cart count element
-        cartIcon.textContent = totalProductsInCart > 0 ? totalProductsInCart : ''; // Update the text content
-        cartIcon.style.display = totalProductsInCart > 0 ? 'block' : 'none'; // Show or hide cart count
-        localStorage.setItem('totalProductsInCart', totalProductsInCart); // Save to localStorage
+let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
+
+// Function to update the cart count in the UI and localStorage
+function updateCartIcon() {
+    const cartIcon = document.getElementById('cart-count'); // Get the cart count element
+    cartIcon.textContent = totalProductsInCart > 0 ? totalProductsInCart : ''; // Update the text content
+    cartIcon.style.display = totalProductsInCart > 0 ? 'block' : 'none'; // Show or hide cart count
+    localStorage.setItem('totalProductsInCart', totalProductsInCart); // Save to localStorage
+}
+
+function updateWishListIcon() {
+    const wishListIcon = document.getElementById('wishList-count'); // Get the wishlist count element
+    wishListIcon.textContent = totalProductsInWishList > 0 ? totalProductsInWishList : ''; // Update the text content
+    wishListIcon.style.display = totalProductsInWishList > 0 ? 'block' : 'none'; // Show or hide wishlist count
+    localStorage.setItem('totalProductsInWishList', totalProductsInWishList); // Save to localStorage
+}
+
+// Function to add products to the cart
+function buyProduct(productId) {
+    totalProductsInCart++; // Increment the total products in cart
+    updateCartIcon(); // Update the cart icon
+
+    // Change the button text to "Added to Cart"
+    const buyButton = document.querySelector(`#buy[data-product-id="${productId}"]`);
+    if (buyButton) {
+        buyButton.textContent = "Added to Cart";
+        buyButton.style.backgroundColor = "#4CAF50"; // Change button color to green
+        buyButton.disabled = true; // Optionally disable the button
     }
-    
-    function updateWishListIcon() {
-        const wishListIcon = document.getElementById('wishList-count'); // Get the wishlist count element
-        wishListIcon.textContent = totalProductsInWishList > 0 ? totalProductsInWishList : ''; // Update the text content
-        wishListIcon.style.display = totalProductsInWishList > 0 ? 'block' : 'none'; // Show or hide wishlist count
-        localStorage.setItem('totalProductsInWishList', totalProductsInWishList); // Save to localStorage
-    }
-    
-    
-    // Function to add products to the cart
-    function buyProduct(productId) {
-        totalProductsInCart++; // Increment the total products in cart
-        updateCartIcon(); // Update the cart icon
-    
-        // Change the button text to "Added to Cart"
-        const buyButton = document.querySelector(`#buy[data-product-id="${productId}"]`);
-        if (buyButton) {
-            buyButton.textContent = "Added to Cart";
-            buyButton.style.backgroundColor = "#4CAF50"; // Change button color to green
-            buyButton.disabled = true; // Optionally disable the button
-        }
-    
-        alert(`Product ${productId} purchased!`);
-    }
-    
-    function addWishList(productId) {
+
+    alert(`Product ${productId} purchased!`);
+}
+
+// Function to add products to the wishlist
+function addWishList(productId) {
     totalProductsInWishList++; // Increment the total products in wishlist
     updateWishListIcon(); // Update the wishlist icon
 
@@ -292,22 +301,24 @@ input[type="range"] {
 
     alert(`Product ${productId} added to WishList!`);
 }
-    
-     
-    
-    function performSearch() {
-        const searchInput = document.getElementById('searchInput').value;
-        if (searchInput) {
-            // Redirect to search.html with the search term as a query parameter
-            window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
-        } else {
-            alert("Please enter a search term.");
-        }
+
+// Function to handle search
+function performSearch() {
+    const searchInput = document.getElementById('searchInput').value;
+    if (searchInput) {
+        // Redirect to search.html with the search term as a query parameter
+        window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
+    } else {
+        alert("Please enter a search term.");
     }
-            // Function to display products in a specified container
-            function displayProducts(productArray, containerId) {
-    const productContainer = document.getElementById(containerId);
+}
+
+// Function to display products in a specified container
+function displayProducts(productArray) {
+    const productContainer = document.querySelector('.product-flex');
     productContainer.innerHTML = ''; // Clear previous products
+
+    console.log("Filtered products:", productArray); // Log the filtered products
 
     // Iterate over the product array and create a product card for each item
     productArray.forEach(product => {
@@ -315,14 +326,14 @@ input[type="range"] {
         productCard.className = 'product-card';
 
         // Generate the star rating for each product
-        const starsHtml = generateStars(product.rating); // Call generateStars to get the stars HTML
+        const starsHtml = generateStars(product.rating);
 
         productCard.innerHTML = `
             <a href="product-detail.html?id=${product.id}">
                 <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
                 <div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
-                ${starsHtml}
-            </div>
+                    ${starsHtml}
+                </div>
                 <h5 class="product-name">${product.name}</h5>
                 <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
                 <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
@@ -335,7 +346,6 @@ input[type="range"] {
                     Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
                 </button>
             </div>
-            
         `;
 
         // Append the product card to the container
@@ -343,13 +353,47 @@ input[type="range"] {
     });
 }
 
-
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
 
-// Function to filter and display results based on the search input
+let selectedStars = [];
+
+// Handle star click events
+document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', (e) => {
+        const selectedRating = parseInt(e.target.getAttribute('data-value'));
+
+        // Update the selectedStars array
+        selectedStars = Array.from({ length: selectedRating }, (_, i) => i + 1);
+
+        // Update the visual state of the stars
+        updateStars();
+
+        // Call the filter function to apply the filters
+        filterAndDisplayResults();
+    });
+});
+
+function updateStars() {
+    // Reset all stars to unselected
+    document.querySelectorAll('.star').forEach(star => {
+        star.classList.remove('selected');
+        star.style.color = ''; // Reset color
+    });
+
+    // Mark the selected stars as selected
+    document.querySelectorAll('.star').forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'));
+        if (starValue <= selectedStars.length) {
+            star.classList.add('selected');
+            star.style.color = 'gold'; // Set color to gold for selected stars
+        }
+    });
+}
+
+// Function to filter and display results based on selected filters
 document.getElementById('applyFilters').addEventListener('click', function() {
     filterAndDisplayResults(); // Call the filtering function when the button is clicked
 });
@@ -361,19 +405,30 @@ function filterAndDisplayResults() {
     const maxPrice = parseInt(document.getElementById('priceRange').value);
     const query = getQueryParam('query').toLowerCase(); // Ensure to get the search query
 
-    // Assuming `Products` is your array of products
+    console.log("Applying filters...");
+    console.log("Selected Categories:", selectedCategories);
+    console.log("Selected Companies:", selectedCompanies);
+    console.log("Max Price:", maxPrice);
+    console.log("Selected Stars:", selectedStars);
+
+    // Filter the products based on the query, category, company, price, and star ratings
     const filteredProducts = Products.filter(product => {
         const matchesQuery = product.name.toLowerCase().includes(query);
         const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(product.category);
         const matchesCompany = selectedCompanies.length === 0 || selectedCompanies.includes(product.company);
         const matchesPrice = product.newPrice <= maxPrice;
-        return matchesQuery && matchesCategory && matchesCompany && matchesPrice;
+
+        // Check if the product's rating matches the selected star ratings
+        const matchesStars = selectedStars.length === 0 || selectedStars.some(star => product.rating <= star);
+
+        return matchesQuery && matchesCategory && matchesCompany && matchesPrice && matchesStars;
     });
 
+    console.log("Filtered Products:", filteredProducts);
     displayProducts(filteredProducts); // Call to display filtered products
 }
 
-
+// Generate the star HTML (full, half, and empty stars)
 function generateStars(rating) {
     const fullStars = Math.floor(rating); // Number of full stars
     const hasHalfStar = rating % 1 !== 0; // Whether there's a half star
@@ -383,7 +438,7 @@ function generateStars(rating) {
 
     // Add full stars
     for (let i = 0; i < fullStars; i++) {
-        starsHtml += '<i class="fa-solid fa-star" style="color:gold;"></i>';
+        starsHtml += '<i class="fa-solid fa-star" style="color: gold;"></i>';
     }
 
     // Add half star if necessary
@@ -399,16 +454,6 @@ function generateStars(rating) {
     return starsHtml;
 }
 
-
-
-
-
-// Helper function to get query parameter from the URL
-function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-}
-
 // Call this function when the page loads to display the results
 window.onload = () => {
     const query = getQueryParam('query');
@@ -417,40 +462,8 @@ window.onload = () => {
     updateCartIcon();
     updateWishListIcon();
 };
-    
-function updatePriceLabel() {
-    const priceRange = document.getElementById('priceRange');
-    const maxPrice = priceRange.value; // Get the current value of the slider
-    const minPrice = 0; // Set minimum price (can also be dynamic if needed)
 
-    // Update the label with the current range
-    document.getElementById('priceLabel').textContent = `${minPrice} SR - ${maxPrice} SR`;
-}
 
-    
-           document.getElementById('avatar-link').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-        const signoutDiv = document.querySelector('.signin-out div'); // Select the sign-out button's container
-        signoutDiv.style.display = signoutDiv.style.display === 'none' ? 'flex' : 'none'; // Toggle visibility
-    });
-    
-    // Sign out functionality
-    document.getElementById('signout-button').addEventListener('click', function() {
-        localStorage.setItem('isSignedIn', 'false'); // Update sign-in status
-        alert('You have signed out.'); // Alert user
-        updateSignInUI(); // Update UI after signing out
-        const signoutDiv = document.querySelector('.signout');
-        document.getElementById('signout-container').style.display = 'none'; // Hide the sign-out button
-    });
-           
-    
-  
-    
-    
-    // Initialize by displaying all products
-    displayAllProducts();
-    updateCartIcon();
-    updateWishListIcon();
         </script>
 
 <script>

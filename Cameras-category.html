@@ -4,10 +4,7 @@
     <title>Cameras</title>
     <link rel="stylesheet" type="text/css" href="CSS/mystyle-main.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        
-        
-    </style> 
+
 </head>
 <body>
     <header>
@@ -93,6 +90,14 @@
                 <h3>Price Range</h3>
                 <input type="range" min="0" max="300" id="priceRange" value="300" step="10" oninput="updatePriceLabel()"><br>
                 <span id="priceLabel">0 SR - 300 SR</span>
+            </div>
+            <div class="star-rating-filter">
+                <h3>Stars</h3>
+                <i class="star" data-value="1">★</i>
+                <i class="star" data-value="2">★</i>
+                <i class="star" data-value="3">★</i>
+                <i class="star" data-value="4">★</i>
+                <i class="star" data-value="5">★</i>
             </div>
             <br>
             <button class="applyFilters" id="applyFilters">Apply Filters</button>
@@ -199,6 +204,18 @@ function updateWishListIcon() {
     localStorage.setItem('totalProductsInWishList', totalProductsInWishList); // Save to localStorage
 }
 
+
+function updatePriceLabel() {
+    const priceRange = document.getElementById('priceRange');
+    const maxPrice = priceRange.value; // Get the current value of the slider
+    const minPrice = 0; // Set minimum price (can also be dynamic if needed)
+
+    // Update the label with the current range
+    document.getElementById('priceLabel').textContent = `${minPrice} SR - ${maxPrice} SR`;
+}
+
+
+
 function addWishList(productId) {
     totalProductsInWishList++; // Increment the total products in wishlist
     updateWishListIcon(); // Update the wishlist icon
@@ -211,6 +228,92 @@ function addWishList(productId) {
 
     alert(`Product ${productId} added to WishList!`);
 }
+
+
+function performSearch() {
+    const searchInput = document.getElementById('searchInput').value;
+    if (searchInput) {
+        // Redirect to search.html with the search term as a query parameter
+        window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
+    } else {
+        alert("Please enter a search term.");
+    }
+}
+
+
+function applyFilters() {
+    const priceRange = document.getElementById('priceRange').value;
+    const selectedCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value);
+    const selectedCompanies = Array.from(document.querySelectorAll('.company-filter:checked')).map(cb => cb.value);
+    const selectedStars = parseInt(localStorage.getItem('rating') || 0); // Get the selected rating from localStorage
+
+    // Filter products based on price, category, company, and star rating
+    const filteredProducts = gamesConsloes_discount.filter(product => {
+        // Filter by price
+        const isWithinPrice = product.newPrice <= priceRange;
+        
+        // Filter by category (optional, can add more categories)
+        const isInCategory = selectedCategories.length === 0 || selectedCategories.includes('Cameras');
+        
+        // Filter by company
+        const isInCompany = selectedCompanies.length === 0 || selectedCompanies.includes(product.company);
+        
+        // Filter by star rating (show only products with rating <= selectedStars)
+        const isWithinRating = selectedStars === 0 || product.rating <= selectedStars; // Fix here: we use `<=` to show products with equal or fewer stars
+
+        return isWithinPrice && isInCategory && isInCompany && isWithinRating;
+    });
+
+    displayProducts(filteredProducts, 'gamesConsoles-container'); // Update product display
+}
+
+// Handle star click event
+// Handle star click event
+function handleStarClick(event) {
+    const clickedStarValue = parseInt(event.target.getAttribute('data-value'));
+
+    // Get all the stars
+    const stars = document.querySelectorAll('.star-rating-filter .star');
+
+    // Loop through all stars and fill them up if the value is less than or equal to clicked star
+    stars.forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'));
+
+        // Fill stars up to the clicked value
+        if (starValue <= clickedStarValue) {
+            star.classList.add('filled');  // Add 'filled' class for stars equal to or less than clicked value
+        } else {
+            star.classList.remove('filled');  // Remove 'filled' class for remaining stars
+        }
+    });
+
+    // Store the rating in localStorage
+    localStorage.setItem('rating', clickedStarValue);
+    console.log(`User selected: ${clickedStarValue} stars`);
+
+    // Apply the filter with the selected rating (optional)
+    applyFilters();
+}
+
+// Add click event listener to each star in the filter section
+document.querySelectorAll('.star-rating-filter .star').forEach(star => {
+    star.addEventListener('click', handleStarClick);
+});
+
+// Initialize the rating state from localStorage on page load (if applicable)
+window.addEventListener('load', () => {
+    const storedRating = parseInt(localStorage.getItem('rating')) || 0;
+    const stars = document.querySelectorAll('.star-rating-filter .star');
+    stars.forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'));
+        if (starValue <= storedRating) {
+            star.classList.add('filled');  // Fill stars based on the stored rating
+        } else {
+            star.classList.remove('filled');
+        }
+    });
+});
+
 
 // Function to add products to the cart
 function buyProduct(productId) {
@@ -238,6 +341,7 @@ const gamesConsloes_discount = [
         { id: 17, name: 'Alpha 7R V Full Frame Mirrorless Interchangeable Lens Camera With 61.0MP Full-Frame Back-Illuminated Exmor R CMOS Sensor, Black', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/17-c.png', discount: 20, company: 'Sony', category: 'Cameras', rating: 3.5  },
 ];
 
+
         // Function to display products in a specified container
         function displayProducts(productArray, containerId) {
     const productContainer = document.getElementById(containerId);
@@ -255,8 +359,8 @@ const gamesConsloes_discount = [
             <a href="product-detail.html?id=${product.id}">
                 <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
                 <div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
-                ${starsHtml}
-            </div>
+                    ${starsHtml}
+                </div>
                 <h5 class="product-name">${product.name}</h5>
                 <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
                 <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
@@ -269,7 +373,6 @@ const gamesConsloes_discount = [
                     Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
                 </button>
             </div>
-            
         `;
 
         // Append the product card to the container
@@ -281,7 +384,31 @@ const gamesConsloes_discount = [
 // Apply filters when the button is clicked
 document.getElementById('applyFilters').addEventListener('click', applyFilters);
 
+function handleStarClick(event) {
+    const clickedStarValue = parseInt(event.target.getAttribute('data-value'));
 
+    // Get all the stars
+    const stars = document.querySelectorAll('.star-rating-filter .star');
+
+    // Loop through all stars and fill them up if the value is less than or equal to clicked star
+    stars.forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'));
+        if (starValue <= clickedStarValue) {
+            star.textContent = '★';  // Filled star
+        } else {
+            star.textContent = '☆';  // Empty star
+        }
+    });
+
+    // Optionally, you can store the rating in localStorage or send to the server
+    localStorage.setItem('rating', clickedStarValue);
+    console.log(`User rated: ${clickedStarValue} stars`);
+}
+
+// Add click event listener to each star in the filter section
+document.querySelectorAll('.star-rating-filter .star').forEach(star => {
+    star.addEventListener('click', handleStarClick);
+});
 
         // Function to display all products in their respective categories
         function displayAllProducts() {
@@ -319,49 +446,16 @@ document.getElementById('applyFilters').addEventListener('click', applyFilters);
     return starsHtml;
 }
 
-
-       function updatePriceLabel() {
-    const priceRange = document.getElementById('priceRange');
-    const maxPrice = priceRange.value; // Get the current value of the slider
-    const minPrice = 0; // Set minimum price (can also be dynamic if needed)
-
-    // Update the label with the current range
-    document.getElementById('priceLabel').textContent = `${minPrice} SR - ${maxPrice} SR`;
-}
-
+       
 
 // Function to update the cart count in the UI and localStorage
-
-
-
-
-function applyFilters() {
-    const priceRange = document.getElementById('priceRange').value;
-    const selectedCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value);
-    const selectedCompanies = Array.from(document.querySelectorAll('.company-filter:checked')).map(cb => cb.value);
-    
-    // Filter products based on price, category, and company
-    const filteredProducts = gamesConsloes_discount.filter(product => {
-        // Filter by price
-        const isWithinPrice = product.newPrice <= priceRange;
-        
-        // Filter by category (optional, can add more categories)
-        const isInCategory = selectedCategories.length === 0 || selectedCategories.includes('Game Consoles'); // Can be extended with more categories
-        
-        // Filter by company (example companies: Sony, Microsoft, etc.)
-        const isInCompany = selectedCompanies.length === 0 || selectedCompanies.includes(product.company);
-        
-        return isWithinPrice && isInCategory && isInCompany;
-    });
-    
-    displayProducts(filteredProducts, 'gamesConsoles-container'); // Update product display
-}
 
 
 // Initialize by displaying all products
 displayAllProducts();  
 updateCartIcon();
 updateWishListIcon();
+
 
 document.getElementById('avatar-link').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link behavior
@@ -484,3 +578,4 @@ document.getElementById('prev-ad').addEventListener('click', () => {
 // Initial start of the ad interval
 startAdInterval();
 </script>
+

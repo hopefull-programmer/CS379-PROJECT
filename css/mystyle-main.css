@@ -938,3 +938,14 @@ button:hover {
 .about-us p{
     font-size: 23px;
 }
+
+.star-rating-filter .star {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ccc; /* Default empty star color (gray) */
+    transition: color 0.3s ease; /* Smooth transition */
+}
+
+.star-rating-filter .star.filled {
+    color: gold; /* Color for filled stars (gold) */
+}
