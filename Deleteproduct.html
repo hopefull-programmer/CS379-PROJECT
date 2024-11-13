@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="CSS/mystyle-main.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Delete Product</title>
+</head>
+<body>
+    <header>
+        <table class="header" border="0">
+            <tr>
+                <td class="logo"><a href="index.html"><img src="images/logov2.png"  alt="e-store"></a></td>
+                <td>
+                    <div class="search">
+                        <input type="text" id="searchInput" placeholder='search...'>
+                        <button type="submit" onclick="performSearch()"><img src="images/search-solid.svg" alt="search"></button>
+                    </div>
+                </td>
+               <td>
+                <div style="padding-left: 30px; text-align: center; position: relative;">
+                    <a href="cart.html">
+                        <img src="images/shopping-cart-3.png" alt="CART" style="width: 30px; height: 30px;"><br>
+                        Cart <div id="cart-count" class="cart-count" style="display: none;"></div>
+                    </a>
+                </div>
+                </td>
+                <td>
+                    <div style="padding-left: 30px; text-align: center; position: relative;">
+                        <a href="wishlist.html">
+                            <img src="images/like-2.png" alt="wishList" style="width: 30px; height: 30px;"><br>
+                            WishList <div id="wishList-count" class="wishList-count" style="display: none;"></div>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div style="display: flex; align-items: center; justify-content: flex-end; position: relative; width: 100%; margin:auto;">
+                        <a href="#" id="avatar-link" style="margin-right: 10px; display: none;">
+                            <img src="images/profile.png" alt="my profile" style="height:50px; width:50px;">
+                        </a>
+                        <div class="signin-out">
+                            <a href="signin.html" id="signin-link">
+                                <img src="images/signin-av.png" alt="sign in"><br>Sign In
+                            </a>
+                            <div style="display: none; position: absolute; top: 60px; left: -10px; width: 120px;">
+                                <button id="signout-button" style="display: flex; align-items: center; background-color: rgb(4, 120, 221); border: none; color: white; padding: 5px; border-radius: 5px;">
+                                    <h3 style="margin: 0;">Sign Out</h3>
+                                    <img src="images/logout.png" alt="sign out" style="width: 30px; height: 30px; margin-left: 5px;">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </td>  
+            </tr>
+        </table>
+    </header>
+
+    <div class="nav-container">
+        <nav>
+            <table class="categories" border="0">
+                <tr>
+                    <td class="c-item"><h4><a href="HA.html">Home Appliances</a></h4></td>
+                    <td class="c-item"><h4><a href="TV.html">TV's</a></h4></td>
+                    <td class="c-item"><h4><a href="Cameras-category.html">Cameras</a></h4></td>
+                    <td class="c-item"><h4><a href="GC-category.html">Games Consoles</a></h4></td>
+                </tr>
+            </table>
+        </nav>
+    </div>
+
+    <div style="flex-grow: 1; padding: 20px;">
+        <div class="category-title">Delete Product</div>
+        <div class="product-flex" id="all-products"></div>
+        <button id="commit-deletion" onclick="commitDeletion()" style="padding: 10px 20px; background-color: red; color: white; font-size: 16px; margin-top: 20px;">
+            Commit Deletion
+        </button>
+        
+    </div>
+
+    <script>
+        let totalProductsInCart = parseInt(localStorage.getItem('totalProductsInCart')) || 0;
+        let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
+
+        const Products = [
+{ id: 1, name: 'PlayStation 5 Console (Disc Version) With Controller', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/pic.png', discount: 20, company: 'Sony', category: 'GameConsoles', rating: 4  },
+  { id: 2, name: 'PlayStation 5 Pro-Console ( Official KSA Version )', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/pro.png', discount: 25, company: 'Sony', category: 'GameConsoles' , rating: 2.5 },
+  { id: 3, name: 'PlayStation 5 Slim Console (International Version) Digital Edition With Controller', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/slim.png', discount: 22.22, company: 'Sony', category: 'GameConsoles', rating: 3 },
+  { id: 4, name: 'Steam Deck OLED 1 TB Handheld Console', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/steam.png', discount: 20, company: 'Valve', category: 'GameConsoles', rating: 3  },
+  { id: 5, name: 'Nintendo Switch OLED - 7-inch OLED Display & Adjustable Kickstand', oldPrice: 75, newPrice: 60, imageUrl: 'images/gs-products/nin.png', discount: 20, company: 'Nintendo', category: 'GameConsoles' , rating: 3.5 },
+  { id: 6, name: 'Xbox Series X 1TB Console (Disc Version) With Controller', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/xbox.png', discount: 25, company: 'Microsoft', category: 'GameConsoles', rating: 4  },
+  { id: 7, name: 'atari Flashback9 Deluxe With 110 Built-In Games', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/atari.png', discount: 9.09, company: 'Atari', category: 'GameConsoles' , rating: 4.5 },
+  { id: 8, name: 'gameboy 400-In-1 MIni Handheld Gaming Console', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/gameboy.png', discount: 20, company: 'Nintendo', category: 'GameConsoles', rating: 5  },
+  { id: 9, name: 'Portable PSP Handheld Console - 4.3-inch Display, 8GB Storage, Black', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/psp.png', discount: 23.53, company: 'Sony', category: 'GameConsoles', rating: 4  },
+  { id: 10, name: 'PlayStation 4 Slim 500GB Console With Controller', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/ps4.png', discount: 20, company: 'Sony', category: 'GameConsoles' , rating: 4.5 },
+  { id: 11, name: 'EOS 2000D DSLR Camera With 18-55 DC Lens 24.1 MP APS-C Sensor Optical Viewfinder', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/11.png', discount: 20, company: 'Canon', category: 'Cameras' , rating: 4 },
+  { id: 12, name: 'EOS 4000D DSLR With EF-S 18-55mm F/3.5-5.6 III Lens 18MP Built-In Wi-Fi Black', oldPrice: 78, newPrice: 60, imageUrl: 'images/pic/18-c.png', discount: 20, company: 'Canon', category: 'Cameras', rating: 3.5  },
+  { id: 13, name: 'Alpha 7 Iv Full-Frame Mirrorless Interchangeable Lens Camera, 33 Mega Pixel Full-Frame Back-Illuminated Exmor R cmos Image Sensor, Ilce-7M4', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/13.png', discount: 22.22, company: 'Sony', category: 'Cameras', rating: 3  },
+  { id: 14, name: 'FUJIFILM Digital Camera X-T5 Black - XF16-80MM Kit', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/14.png', discount: 20, company: 'Fujifilm', category: 'Cameras', rating: 4.5  },
+  { id: 15, name: 'Nikon Z 7II Mirrorless Camera - High-Resolution 45.7MP, 10fps Continuous', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/15.png', discount: 20, company: 'Nikon', category: 'Cameras', rating: 4  },
+  { id: 16, name: 'Lumix EOS 5D Mark IV DSLR Camera With EF 24-105mm IS USM Lens Fast Versatile Full Frame Camera 30.4 MP 4K Wi-Fi GPS', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/16.png', discount: 20, company: 'Canon', category: 'Cameras' , rating: 4 },
+  { id: 17, name: 'Alpha 7R V Full Frame Mirrorless Interchangeable Lens Camera With 61.0MP Full-Frame Back-Illuminated Exmor R CMOS Sensor, Black', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/17-c.png', discount: 20, company: 'Sony', category: 'Cameras', rating: 3.5  },
+  { id: 18, name: 'ONIX VACUUM CLEANER 21 LTR - Powerful 2200W Input', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20, company: 'Onix', category: 'HomeAppliances', rating: 4.5 },
+  { id: 19, name: 'elba Load Washing Machine ThinQ WiFi 9 kg', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/2.png', discount: 25, company: 'Elba', category: 'HomeAppliances' },
+  { id: 20, name: 'HISENSE Refrigerator 7 Cuft Freezer 1.8 Cuft Inverter Color Silver 211 kW', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/3.png', discount: 22.22, company: 'Hisense', category: 'HomeAppliances' , rating: 4 },
+  { id: 21, name: 'KOOLEN 30 Liter Digital Microwave Oven, 900 Watts Power, 11 Power Levels, 6/7 Auto Menu, With Grill Function, Mirror Finish Door 30 L 900 W', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/4.png', discount: 20, company: 'Koolen', category: 'HomeAppliances', rating: 3.5  },
+  { id: 22, name: 'GLEM GAS Gas Oven 5 Burners Jumbo 90X60 Steel', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/fur.png', discount: 20, company: 'Glem Gas', category: 'HomeAppliances' },
+  { id: 23, name: 'KENWOOD Blender, Ice Crush Function, Multi Mill, Grinder, 2 Speeds, 2 L 500 W', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/6.png', discount: 25, company: 'Kenwood', category: 'HomeAppliances', rating: 3  },
+  { id: 24, name: 'Philips Easy Speed Steam Iron 220 ml 2000 W', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/iron.png', discount: 9.09, company: 'Philips', category: 'HomeAppliances' , rating: 2 },
+  { id: 25, name: 'LC Countertop Electric Kettle 500ml 500.0 ml', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/8.png', discount: 20, company: 'LC', category: 'HomeAppliances' , rating: 2.5 },
+  { id: 26, name: 'Techno Best 2 Slice Electric Toaster/Efficient Breakfast Toasting/Breakfast machine with Browning control/Plastic 650 W', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/9.png', discount: 23.53, company: 'Techno Best', category: 'HomeAppliances', rating: 1.5  },
+  { id: 27, name: 'Rebune Coffee Machine - 1.2L Capacity, 1050W Power, Premium Brewing', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/10.png', discount: 20, company: 'Rebune', category: 'HomeAppliances', rating: 4  },
+  { id: 28, name: 'LG 4K Ultra HD Smart LED TV 65 inch', oldPrice: 800, newPrice: 640, imageUrl: 'images/pic/17.png', discount: 20, company: 'LG', category: 'TV', rating: 4 },
+  { id: 29, name: 'Samsung QLED 55 inch Smart TV with 4K Resolution', oldPrice: 750, newPrice: 600, imageUrl: 'images/pic/18.png', discount: 20, company: 'Samsung', category: 'TV', rating: 4  },
+  { id: 30, name: 'Sony Bravia 65 inch LED 4K UHD Smart TV', oldPrice: 1000, newPrice: 800, imageUrl: 'images/pic/19.png', discount: 20, company: 'Sony', category: 'TV', rating: 5  },
+  { id: 31, name: '55 Inch 4K UHD Smart TV | 60HZ55-Inch 4K UHD Smart TV - 60Hz, Smart TV with Streaming Support', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/20.png', discount: 25, company: 'Generic', category: 'TV' , rating: 3 },
+  { id: 32, name: '55" 4K UHD LED Smart Google TV - HDR, Google Assistant, Ultra HD', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/21.png', discount: 9.09, company: 'Generic', category: 'TV' , rating: 3.5 },
+  { id: 33, name: '65 Inch TV 4K QLED Pro Dolby Vision Atmos Onkyo 2.1CH Slim & Uni-body Google TV, 120HZ', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/22.png', discount: 20, company: 'Generic', category: 'TV', rating: 3.5  },
+  {id: 34,name: 'TCL 40 Inch 2K Ultra HD Smart Android LED TV With Free Wall Mount - Frameless Design', oldPrice: 150, newPrice: 112.50,imageUrl: 'images/pic/23.png',discount: 25, company: 'TCL', category: 'TV' , rating: 3 }    
+];
+
+
+
+        let deletedProducts = JSON.parse(localStorage.getItem('deletedProducts')) || [];
+        let selectedForDeletion = [];
+
+        // Function to display the products
+        function displayProducts(productArray) {
+            const productContainer = document.getElementById('all-products');
+            productContainer.innerHTML = ''; // Clear the current display
+
+            productArray.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+
+                const starsHtml = generateStars(product.rating);
+
+                productCard.innerHTML = `
+                      <input type="checkbox" class="delete-checkbox" data-product-id="${product.id}" onclick="toggleSelection(${product.id})">
+                    <a href="product-detail.html?id=${product.id}">
+                        <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+                        <div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
+                            ${starsHtml}
+                        </div>
+                        <h5 class="product-name">${product.name}</h5>
+                        <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
+                        <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
+                    </a>
+                `;
+
+                productContainer.appendChild(productCard);
+            });
+        }
+
+        // Function to generate star ratings
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+            let starsHtml = '';
+
+            for (let i = 0; i < fullStars; i++) {
+                starsHtml += '<i class="fa-solid fa-star" style="color:gold;"></i>';
+            }
+
+            if (hasHalfStar) {
+                starsHtml += '<i class="fa-solid fa-star-half-alt" style="color: gold;"></i>';
+            }
+
+            for (let i = 0; i < emptyStars; i++) {
+                starsHtml += '<i class="fa-regular fa-star" style="color: gold;"></i>';
+            }
+
+            return starsHtml;
+        }
+
+        // Toggle the selection of products for deletion
+        function toggleSelection(productId) {
+    const checkbox = document.querySelector(`input[data-product-id="${productId}"]`);
+    if (checkbox.checked) {
+        selectedForDeletion.push(productId); // Add product to deletion list
+    } else {
+        selectedForDeletion = selectedForDeletion.filter(id => id !== productId); // Remove from deletion list
+    }
+    console.log(selectedForDeletion); // To check the selected products in the console
+}
+
+        // Commit deletion of selected products
+        function commitDeletion() {
+    if (selectedForDeletion.length === 0) {
+        alert('Please select products to delete.');
+        return;
+    }
+
+    // Remove selected products from Products array
+    selectedForDeletion.forEach(productId => {
+        const index = Products.findIndex(product => product.id === productId);
+        if (index > -1) {
+            Products.splice(index, 1); // Remove product from array
+        }
+    });
+
+    // Clear the selection and update the UI
+    selectedForDeletion = []; // Reset the selection
+    alert('Selected products have been deleted.');
+
+    // Re-render the product list
+    displayAllProducts();
+}
+
+function displayAllProducts() {
+    displayProducts(Products, 'all-products');
+}
+
+// Call this function when the page loads to show the products
+displayAllProducts();
+    </script>
+</body>
+</html>
+
+
+<script>
+    // Check the sign-in status on page load
+    const isSignedIn = localStorage.getItem('isSignedIn');
+
+    // Reset sign-in status when the page is being unloaded
+
+    // Update UI based on sign-in status
+    function updateSignInUI() {
+    const isSignedIn = localStorage.getItem('isSignedIn');
+    const avatarLink = document.getElementById('avatar-link');
+    const signinLink = document.getElementById('signin-link');
+
+    if (isSignedIn === 'true') {
+        avatarLink.style.display = 'block'; // Show the avatar
+        signinLink.style.display = 'none';   // Hide the sign-in link
+        avatarLink.href = 'profile.html';    // Change to the desired profile page
+    } else {
+        avatarLink.style.display = 'none';    // Hide the avatar
+        signinLink.style.display = 'block';    // Show the sign-in link
+    }
+}
+
+    // Call the function to update the UI
+    updateSignInUI();
+</script>
+
