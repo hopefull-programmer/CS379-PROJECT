@@ -21,6 +21,10 @@
     display: flex;
     justify-content: space-between;
 }
+
+.img-rating{
+    display: inline;
+}
     </style>
 </head>
 
@@ -99,8 +103,8 @@
         let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
 
         const cartProducts = [
-        { id: 1, name: 'PlayStation 5 Console (Disc Version) With Controller', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/pic.png', discount: 20 },
-        { id: 17, name: 'Alpha 7R V Full Frame Mirrorless Interchangeable Lens Camera With 61.0MP Full-Frame Back-Illuminated Exmor R CMOS Sensor, Black', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/17-c.png', discount: 20 },
+        { id: 18, name: 'ONIX VACUUM CLEANER 21 LTR - Powerful 2200W Input', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20, company: 'Onix', category: 'HomeAppliances', rating: 4.5 },
+        {id: 34,name: 'TCL 40 Inch 2K Ultra HD Smart Android LED TV With Free Wall Mount - Frameless Design', oldPrice: 150, newPrice: 112.50,imageUrl: 'images/pic/23.png',discount: 25, company: 'TCL', category: 'TV' , rating: 3 }    
         ];
 
         function displayProducts(productArray) {
@@ -127,7 +131,9 @@
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card-c';
                 productCard.innerHTML = `
-                    <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+                    <div class="img-rating"><img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;"><div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
+                            ${generateStars(product.rating)}  <!-- Call the generateStars function here -->
+                             </div></div>
                     <div class="cart-product-details">
                         <div class="product-name"><h3>${product.name}</h3></div>
                         <div id="product-price">
@@ -143,6 +149,31 @@
                 productContainer.appendChild(productCard);
             });
         }
+
+        function generateStars(rating) {
+    const fullStars = Math.floor(rating); // Number of full stars
+    const hasHalfStar = rating % 1 !== 0; // Whether there's a half star
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // Remaining empty stars
+
+    let starsHtml = '';
+
+    // Add full stars
+    for (let i = 0; i < fullStars; i++) {
+        starsHtml += '<i class="fa-solid fa-star" style="color:gold;"></i>';
+    }
+
+    // Add half star if necessary
+    if (hasHalfStar) {
+        starsHtml += '<i class="fa-solid fa-star-half-alt" style="color: gold;"></i>';
+    }
+
+    // Add empty stars
+    for (let i = 0; i < emptyStars; i++) {
+        starsHtml += '<i class="fa-regular fa-star" style="color: gold;"></i>';
+    }
+
+    return starsHtml;
+}
 
         function addToCart(productId) {
             const product = cartProducts.find(item => item.id === productId);
