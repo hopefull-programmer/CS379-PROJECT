@@ -70,12 +70,13 @@ color: #4790df;
 .c-item {
     padding: 0 70px
     }
+    
     .c-item a {
         color: aliceblue; 
         font-size: 18px; 
         text-decoration: none; 
         padding: 10px; 
-        transition: color 0.2s ease;
+        transition: color 0.3s ease;
        
     }
     .c-item a:hover {
@@ -355,19 +356,26 @@ div.signin a{
 
 #avatar-link img {
     transition: opacity 0.3s; /* Smooth transition */
+
 }
 
 #avatar-link:hover img {
     opacity: 0.7; /* Change opacity on hover */
 }
 
-
+.sign-in-out{
+    text-align: center;
+    display: inline-block;
+    justify-content: center;
+    padding-left: 20px;
+}
 
 #avatar-link:hover + .signout {
     display: block; /* Show on hover over the avatar */
 }
 #signout-button {
     transition: opacity 0.3s; /* Smooth transition */
+    align-items: center;
 }
 
 #signout-button:hover {
@@ -378,7 +386,7 @@ div.signin a{
     display: flex; /* Ensure the content is centered */
     align-items: center; /* Vertically center the items */
     justify-content: center; /* Horizontally center the items */
-      text-align: center;                     /* Transition for scaling */
+    text-align: center;                     /* Transition for scaling */
     border-radius: 5px; /* Optional: Adds rounded corners */
     padding: 5px; /* Add padding for better interaction */
 }
@@ -513,15 +521,15 @@ div.signin a{
 }
 
 button {
-    font-size:20px;
     margin: 5px;
-    padding: 10px;
+    padding: 5px;
     border: none;
     border-radius: 45px;
     background-color: #007bff;
     color: white;
     cursor: pointer;
 }
+
 
 #wish{
     font-size: 30px;
@@ -879,7 +887,7 @@ button {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 5px 2px;
     border-radius: 50px;
     cursor: pointer;
 }
