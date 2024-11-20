@@ -10,7 +10,7 @@
     <center>
         <div id="hiddenMessage" style="display: none; color: #ffffff; font-size: 18px;"></div>
         <div class="sign-in">
-            <img src="images/logov2.png" alt="logo">
+            <a href="index.html" class="logo-link"><img src="images/logov2.png" alt="logo"></a>
             <form id="signin-form" onsubmit="handleSignIn(event)">
                 <div class="signin-field">
                     <p>UserName</p>
@@ -48,13 +48,14 @@
                 <div class="links">
                     <button type="submit" style="font-size: 20px;">Sign In</button>
                     <span>Don't Have an Account? &nbsp;<a href="signup.html">Sign Up</a></span>
+                    <div class="back-to-home">
+                      </div>
                 </div>
+
             </form>
         </div>
     </center>
-    
-    
-    
+
     <script>
         function handleSignIn(event) {
             event.preventDefault(); // Prevent the form from submitting normally

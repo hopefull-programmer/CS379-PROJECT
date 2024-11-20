@@ -348,11 +348,8 @@ window.addEventListener('load', () => {
     const stars = document.querySelectorAll('.star-rating-filter .star');
     stars.forEach(star => {
         const starValue = parseInt(star.getAttribute('data-value'));
-        if (starValue <= storedRating) {
+       
             star.classList.add('filled');  // Fill stars based on the stored rating
-        } else {
-            star.classList.remove('filled');
-        }
     });
 });
 
@@ -565,62 +562,3 @@ document.getElementById('signout-button').addEventListener('click', function() {
     updateSignInUI();
 </script>
 
-<script>
-  const adImages = [
-    "images/ad's/ad-2-e2.jpg",
-    "images/ad's/ad-3-2e.jpg",
-    "images/ad's/ad-4-2e.jpg",
-    "images/ad's/ad-5-2e.jpg",
-    "images/ad's/ad-6-2e.jpg",
-    "images/ad's/ad-1-2e.jpg",
-];
-let currentAdIndex = 0;
-let adInterval = 5000; // Time in milliseconds
-let adTimeout; // Variable to hold the timeout ID
-
-function changeAdImage() {
-    currentAdIndex = (currentAdIndex + 1) % adImages.length; // Cycle through the images
-    const adImage = document.getElementById('ad-image');
-    adImage.style.opacity = 0; // Fade out
-
-    setTimeout(() => {
-        adImage.src = adImages[currentAdIndex]; // Change the image
-        adImage.style.opacity = 1; // Fade in
-    }, 1000); // Delay for fade effect
-}
-
-function startAdInterval() {
-    adTimeout = setInterval(changeAdImage, adInterval);
-}
-
-function stopAdInterval() {
-    clearInterval(adTimeout);
-}
-
-// Change the ad image when the next button is clicked
-document.getElementById('next-ad').addEventListener('click', () => {
-    stopAdInterval(); // Stop the interval
-    changeAdImage();  // Change the ad immediately
-    adInterval = 8000; // Set longer interval
-    startAdInterval(); // Restart the interval
-});
-
-// Change the ad image when the previous button is clicked
-document.getElementById('prev-ad').addEventListener('click', () => {
-    stopAdInterval(); // Stop the interval
-    currentAdIndex = (currentAdIndex - 1 + adImages.length) % adImages.length; // Go to previous ad
-    const adImage = document.getElementById('ad-image');
-    adImage.style.opacity = 0; // Fade out
-
-    setTimeout(() => {
-        adImage.src = adImages[currentAdIndex]; // Change the image
-        adImage.style.opacity = 1; // Fade in
-    }, 1000); // Delay for fade effect
-
-    adInterval = 8000; // Set longer interval
-    startAdInterval(); // Restart the interval
-});
-
-// Initial start of the ad interval
-startAdInterval();
-</script>

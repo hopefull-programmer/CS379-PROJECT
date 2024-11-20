@@ -9,22 +9,129 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <style>
-         .product-card-c {
-    background: rgb(255, 255, 255);
-    border-radius: 5px;
-    border: 2px solid #d8d8d8; 
-    padding: 10px;
-    margin: 10px;
-    width:50%; 
-    text-align: left;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0); 
+.cart-product-card-c {
+    width: 50%;
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: space-between;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    position: relative; /* Allow absolute positioning of the button container */
 }
 
-.img-rating{
-    display: inline;
+
+.product-name-c a{
+    color: #181818;
+    text-decoration: none;
 }
+
+.img-rating-c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.product-image-c {
+    width: 150px;
+    height: auto;
+}
+
+.rating-c {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.cart-product-details-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.product-name-c h3 {
+    font-size: 25px;
+    margin: 0;
+}
+
+#product-price-c {
+    margin-top: 10px;
+}
+
+.old-price-c {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.new-price-c {
+    font-size: 25px;
+    color: #005ed8;
+    font-weight: bold;
+}
+
+.product-quantity-c {
+    display: flex;
+    align-items: center;
+    position: absolute; /* Positioning buttons at the bottom-right of the card */
+    bottom: 10px;
+    right: 10px;
+}
+
+.product-quantity-c button {
+    justify-content: right;
+    border: 1px solid #ddd;
+    padding: 8px 18px; /* Increased padding for better button appearance */
+    cursor: pointer;
+    font-size: 25px; /* Adjusted font size for better visibility */
+    margin: 0 5px;
+    border-radius: 15px;
+}
+
+/* Specific button styles */
+.remove-c {
+    background-color: #ffffff; /* Red color */
+    color: white;
+}
+
+.remove-c:hover {
+    background-color: #f3f3f3;
+}
+
+.decrease-c {
+    background-color: #f4f4f4; /* Light gray */
+    color: #555; /* Darker text color */
+}
+
+.decrease-c:hover {
+    background-color: #ddd; /* Darker on hover */
+}
+
+.decrease-c:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+    color: #bbb; /* Lighter color for disabled button */
+}
+
+.increase-c {
+    background-color: #4caf50; /* Green color */
+    color: white;
+    font-size: 15px;
+}
+
+.increase-c:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.product-quantity-c span {
+    font-size: 25px;
+    margin: 0 10px;
+}
+
     </style>
 </head>
 
@@ -128,8 +235,8 @@
         let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
 
         const cartProducts = [
-        { id: 18, name: 'ONIX VACUUM CLEANER 21 LTR - Powerful 2200W Input', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20, company: 'Onix', category: 'HomeAppliances', rating: 4.5 },
-        {id: 34,name: 'TCL 40 Inch 2K Ultra HD Smart Android LED TV With Free Wall Mount - Frameless Design', oldPrice: 150, newPrice: 112.50,imageUrl: 'images/pic/23.png',discount: 25, company: 'TCL', category: 'TV' , rating: 3 }    
+        { id: 18, name: 'ONIX VACUUM CLEANER 21 LTR', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', rating: 4.5, quantity: 1 },
+            { id: 34, name: 'TCL 40 Inch 2K Ultra HD TV', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/23.png', rating: 3, quantity: 2 }
         ];
 
         function displayProducts(productArray) {
@@ -156,20 +263,32 @@
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card-c';
                 productCard.innerHTML = `
-                    <div class="img-rating"><img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;"><div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
-                            ${generateStars(product.rating)}  <!-- Call the generateStars function here -->
-                             </div></div>
-                    <div class="cart-product-details">
-                        <div class="product-name"><h3>${product.name}</h3></div>
-                        <div id="product-price">
-                            <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
-                            <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
-                            <div class="product-quantity">
-                                <button class="remove" onclick="removeFromCart(${product.id})"><i class="fa-solid fa-trash"></i></button>
-                                <button class="increase" onclick="addToCart(${product.id})">Add To Cart</button>
-                            </div>
-                        </div>
-                    </div>
+                     <div class="cart-product-card-c">
+    <div class="img-rating-c">
+        <a href="product-detail.html?id=${product.id}">
+        <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image-c" style="width: 150px;">
+        </a>
+        <div class="rating-c" style="display: flex; align-items: center; margin-top: 10px;">
+            ${generateStars(product.rating)}
+        </div>
+    </div>
+
+    <div class="cart-product-details-c">
+        <div class="product-name-c">
+            <a href="product-detail.html?id=${product.id}">
+            <h3>${product.name}</h3>
+            </a>
+        </div>
+        <div id="product-price-c">
+            <p class="old-price-c">${product.oldPrice.toFixed(2)} SR</p>
+            <p class="new-price-c">${product.newPrice.toFixed(2)} SR</p>
+            <div class="product-quantity-c">
+                <button class="remove-c" onclick="removeFromCart(${product.id})"><i class="fa-solid fa-trash" style="color:red;"></i></button>
+                <button class="increase-c" onclick="addToCart(${product.id})">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
                 `;
                 productContainer.appendChild(productCard);
             });
@@ -404,11 +523,6 @@ const isSignedIn = localStorage.getItem('isSignedIn');
 </body>
 </html>
 
-
-
-
-  
-   
 
 
    

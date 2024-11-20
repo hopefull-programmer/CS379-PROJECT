@@ -347,11 +347,8 @@ window.addEventListener('load', () => {
     const stars = document.querySelectorAll('.star-rating-filter .star');
     stars.forEach(star => {
         const starValue = parseInt(star.getAttribute('data-value'));
-        if (starValue <= storedRating) {
+       
             star.classList.add('filled');  // Fill stars based on the stored rating
-        } else {
-            star.classList.remove('filled');
-        }
     });
 });
 

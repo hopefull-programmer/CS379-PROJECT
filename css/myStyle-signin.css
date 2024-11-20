@@ -1,9 +1,10 @@
 body {
-    background-color: #7ebbc4; 
+    background-color: #8fbcff; 
     font-family: Arial, sans-serif;
 }
 
 .sign-in{
+    margin-top: 100px;
     background-color: rgb(253, 253, 253);
     width: 500px;
     height: 800px;
@@ -21,7 +22,6 @@ div.sign-in form{
     display:inline;
     height: 50px;
 }
-
 
 
 .password-row {
@@ -123,9 +123,10 @@ div.signin-field input{
 }
 
 .payment{
+    margin-top: 100px;
     background-color: rgb(253, 253, 253);
     width: 900px;
-    height: 800px;
+    height: 850px;
     box-shadow: 10px 10px 5px rgba(49, 49, 49, 0.514);
     border-radius: 15px;
     display: flex;

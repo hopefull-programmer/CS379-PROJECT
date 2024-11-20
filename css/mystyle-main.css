@@ -137,6 +137,8 @@ div.search input[type=text]:focus {
     
 }
 
+
+
 div.offers img{
 padding: 70px 50px;
 
@@ -149,7 +151,7 @@ padding: 70px 50px;
     font-family: 'Arial', sans-serif;
     justify-content: center;
     padding: 30px 30px;
-    margin-top: 200px;
+    margin-top: 400px;
 }
 
 .footer-logo{
@@ -613,6 +615,7 @@ button:hover {
     justify-content: space-around;
 }
 
+
 .wishlist-title{
     font-size: 24px;
     margin: 30px 0 30px 40px ;
@@ -660,7 +663,7 @@ button:hover {
     border: none;
     cursor: pointer;
     width: 80%;
-    font-size: 20px;
+    font-size: 25px;
     justify-content: center;
 }
 
@@ -670,7 +673,7 @@ button:hover {
     margin-top: 20px;           /* Add some space above */
 }
 #pay-button:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
 }
 
 #product-price{ 

@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-
+    
                 <div class="section">
                     <h1>Payment Information</h1>
                     <div class="table-row">
@@ -77,13 +77,11 @@
                             <label for="mada">
                                 <img src="images/payment-methods/mada.png" alt="MADA">
                             </label>
-                        
                             <!-- PayPal -->
                             <input type="radio" id="paypal" name="payment-method" value="paypal">
                             <label for="paypal">
                                 <img src="images/payment-methods/paypal.png" alt="PayPal">
                             </label>
-                        
                             <!-- Visa -->
                             <input type="radio" id="visa" name="payment-method" value="visa">
                             <label for="visa">
@@ -156,11 +154,14 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <button type="submit" class="submit-button">Pay Now</button>
+    
+            <div class="links" style="position: relative; top: -110px;">
+                <button type="submit" style="font-size: 30px;  width: 30%; border-radius: 15px;">Pay Now</button>
+                <a href="index.html"><span style="font-size: 20px;">Return to Main Page</span></a>
             </div>
         </form>
     </center>
+    
 
 <script>
     function selectPaymentMethod(paymentMethod) {
