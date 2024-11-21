@@ -97,40 +97,40 @@
 
     <script>
       const Products = [
-      { id: 1, name: 'PlayStation 5 Console (Disc Version) With Controller', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/pic.png', discount: 20, company: 'Sony', category: 'GameConsoles', rating: 4  },
-        { id: 2, name: 'PlayStation 5 Pro-Console ( Official KSA Version )', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/pro.png', discount: 25, company: 'Sony', category: 'GameConsoles' , rating: 2.5 },
-        { id: 3, name: 'PlayStation 5 Slim Console (International Version) Digital Edition With Controller', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/slim.png', discount: 22.22, company: 'Sony', category: 'GameConsoles', rating: 3 },
-        { id: 4, name: 'Steam Deck OLED 1 TB Handheld Console', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/steam.png', discount: 20, company: 'Valve', category: 'GameConsoles', rating: 3  },
-        { id: 5, name: 'Nintendo Switch OLED - 7-inch OLED Display & Adjustable Kickstand', oldPrice: 75, newPrice: 60, imageUrl: 'images/gs-products/nin.png', discount: 20, company: 'Nintendo', category: 'GameConsoles' , rating: 3.5 },
-        { id: 6, name: 'Xbox Series X 1TB Console (Disc Version) With Controller', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/xbox.png', discount: 25, company: 'Microsoft', category: 'GameConsoles', rating: 4  },
-        { id: 7, name: 'atari Flashback9 Deluxe With 110 Built-In Games', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/atari.png', discount: 9.09, company: 'Atari', category: 'GameConsoles' , rating: 4.5 },
-        { id: 8, name: 'gameboy 400-In-1 MIni Handheld Gaming Console', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/gameboy.png', discount: 20, company: 'Nintendo', category: 'GameConsoles', rating: 5  },
-        { id: 9, name: 'Portable PSP Handheld Console - 4.3-inch Display, 8GB Storage, Black', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/psp.png', discount: 23.53, company: 'Sony', category: 'GameConsoles', rating: 4  },
-        { id: 10, name: 'PlayStation 4 Slim 500GB Console With Controller', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/ps4.png', discount: 20, company: 'Sony', category: 'GameConsoles' , rating: 4.5 },
-        { id: 11, name: 'EOS 2000D DSLR Camera With 18-55 DC Lens 24.1 MP APS-C Sensor Optical Viewfinder', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/11.png', discount: 20, company: 'Canon', category: 'Cameras' , rating: 4 },
-        { id: 12, name: 'EOS 4000D DSLR With EF-S 18-55mm F/3.5-5.6 III Lens 18MP Built-In Wi-Fi Black', oldPrice: 78, newPrice: 60, imageUrl: 'images/pic/18-c.png', discount: 20, company: 'Canon', category: 'Cameras', rating: 3.5  },
-        { id: 13, name: 'Alpha 7 Iv Full-Frame Mirrorless Interchangeable Lens Camera, 33 Mega Pixel Full-Frame Back-Illuminated Exmor R cmos Image Sensor, Ilce-7M4', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/13.png', discount: 22.22, company: 'Sony', category: 'Cameras', rating: 3  },
-        { id: 14, name: 'FUJIFILM Digital Camera X-T5 Black - XF16-80MM Kit', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/14.png', discount: 20, company: 'Fujifilm', category: 'Cameras', rating: 4.5  },
-        { id: 15, name: 'Nikon Z 7II Mirrorless Camera - High-Resolution 45.7MP, 10fps Continuous', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/15.png', discount: 20, company: 'Nikon', category: 'Cameras', rating: 4  },
-        { id: 16, name: 'Lumix EOS 5D Mark IV DSLR Camera With EF 24-105mm IS USM Lens Fast Versatile Full Frame Camera 30.4 MP 4K Wi-Fi GPS', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/16.png', discount: 20, company: 'Canon', category: 'Cameras' , rating: 4 },
-        { id: 17, name: 'Alpha 7R V Full Frame Mirrorless Interchangeable Lens Camera With 61.0MP Full-Frame Back-Illuminated Exmor R CMOS Sensor, Black', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/17-c.png', discount: 20, company: 'Sony', category: 'Cameras', rating: 3.5  },
-        { id: 18, name: 'ONIX VACUUM CLEANER 21 LTR - Powerful 2200W Input', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20, company: 'Onix', category: 'HomeAppliances', rating: 4.5 },
-        { id: 19, name: 'elba Load Washing Machine ThinQ WiFi 9 kg', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/2.png', discount: 25, company: 'Elba', category: 'HomeAppliances' },
-        { id: 20, name: 'HISENSE Refrigerator 7 Cuft Freezer 1.8 Cuft Inverter Color Silver 211 kW', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/3.png', discount: 22.22, company: 'Hisense', category: 'HomeAppliances' , rating: 4 },
-        { id: 21, name: 'KOOLEN 30 Liter Digital Microwave Oven, 900 Watts Power, 11 Power Levels, 6/7 Auto Menu, With Grill Function, Mirror Finish Door 30 L 900 W', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/4.png', discount: 20, company: 'Koolen', category: 'HomeAppliances', rating: 3.5  },
-        { id: 22, name: 'GLEM GAS Gas Oven 5 Burners Jumbo 90X60 Steel', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/fur.png', discount: 20, company: 'Glem Gas', category: 'HomeAppliances' },
-        { id: 23, name: 'KENWOOD Blender, Ice Crush Function, Multi Mill, Grinder, 2 Speeds, 2 L 500 W', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/6.png', discount: 25, company: 'Kenwood', category: 'HomeAppliances', rating: 3  },
-        { id: 24, name: 'Philips Easy Speed Steam Iron 220 ml 2000 W', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/iron.png', discount: 9.09, company: 'Philips', category: 'HomeAppliances' , rating: 2 },
-        { id: 25, name: 'LC Countertop Electric Kettle 500ml 500.0 ml', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/8.png', discount: 20, company: 'LC', category: 'HomeAppliances' , rating: 2.5 },
-        { id: 26, name: 'Techno Best 2 Slice Electric Toaster/Efficient Breakfast Toasting/Breakfast machine with Browning control/Plastic 650 W', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/9.png', discount: 23.53, company: 'Techno Best', category: 'HomeAppliances', rating: 1.5  },
-        { id: 27, name: 'Rebune Coffee Machine - 1.2L Capacity, 1050W Power, Premium Brewing', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/10.png', discount: 20, company: 'Rebune', category: 'HomeAppliances', rating: 4  },
-        { id: 28, name: 'LG 4K Ultra HD Smart LED TV 65 inch', oldPrice: 500, newPrice: 299, imageUrl: 'images/pic/17.png', discount: 20, company: 'LG', category: 'TV', rating: 4 },
-        { id: 29, name: 'Samsung QLED 55 inch Smart TV with 4K Resolution', oldPrice: 299, newPrice: 150, imageUrl: 'images/pic/18.png', discount: 20, company: 'Samsung', category: 'TV', rating: 4  },
-        { id: 30, name: 'Sony Bravia 65 inch LED 4K UHD Smart TV', oldPrice: 300, newPrice: 230, imageUrl: 'images/pic/19.png', discount: 20, company: 'Sony', category: 'TV', rating: 5  },
-        { id: 31, name: '55 Inch 4K UHD Smart TV | 60HZ55-Inch 4K UHD Smart TV - 60Hz, Smart TV with Streaming Support', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/20.png', discount: 25, company: 'Generic', category: 'TV' , rating: 3 },
-        { id: 32, name: '55" 4K UHD LED Smart Google TV - HDR, Google Assistant, Ultra HD', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/21.png', discount: 9.09, company: 'Generic', category: 'TV' , rating: 3.5 },
-        { id: 33, name: '65 Inch TV 4K QLED Pro Dolby Vision Atmos Onkyo 2.1CH Slim & Uni-body Google TV, 120HZ', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/22.png', discount: 20, company: 'Generic', category: 'TV', rating: 3.5  },
-        {id: 34,name: 'TCL 40 Inch 2K Ultra HD Smart Android LED TV With Free Wall Mount - Frameless Design', oldPrice: 150, newPrice: 112.50,imageUrl: 'images/pic/23.png',discount: 25, company: 'TCL', category: 'TV' , rating: 3 }    
+      { id: 1, name: 'PlayStation 5 Console (Disc Version) With Controller', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/pic.png', discount: 20, company: 'Sony', category: 'GameConsoles', rating: 4,features: ['Ultra-high-speed SSD', 'Ray tracing technology', 'Supports physical discs', 'DualSense wireless controller'], description: 'Experience next-gen gaming with ultra-fast load times and immersive graphics on the PlayStation 5 Disc Version.'  },
+        { id: 2, name: 'PlayStation 5 Pro-Console ( Official KSA Version )', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/pro.png', discount: 25, company: 'Sony', category: 'GameConsoles' , rating: 2.5,features: ['Enhanced GPU for superior graphics', 'WiFi 6 compatibility', 'Supports 4K Ultra HD', 'DualSense controller with haptic feedback'],description: 'The PlayStation 5 Pro offers enhanced performance and stunning visuals for a premium gaming experience.' },
+        { id: 3, name: 'PlayStation 5 Slim Console (International Version) Digital Edition With Controller', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/slim.png', discount: 22.22, company: 'Sony', category: 'GameConsoles', rating: 3,features: ['Slim and compact design', 'Digital-only edition', 'Ultra-high-speed SSD', 'DualSense wireless controller'], description: 'The PlayStation 5 Slim Digital Edition combines portability with next-gen performance for all-digital gaming.' },
+        { id: 4, name: 'Steam Deck OLED 1 TB Handheld Console', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/steam.png', discount: 20, company: 'Valve', category: 'GameConsoles', rating: 3,features: ['1 TB storage capacity', '7-inch OLED touchscreen', 'Portable PC gaming', 'Custom AMD APU'],description: 'The Steam Deck OLED delivers powerful portable gaming with a stunning touchscreen display.'   },
+        { id: 5, name: 'Nintendo Switch OLED - 7-inch OLED Display & Adjustable Kickstand', oldPrice: 75, newPrice: 60, imageUrl: 'images/gs-products/nin.png', discount: 20, company: 'Nintendo', category: 'GameConsoles' , rating: 3.5,features: ['7-inch OLED screen', 'Adjustable kickstand', '64 GB internal storage', 'Dock with wired LAN port'],description: 'Enjoy vibrant visuals and versatile play styles with the Nintendo Switch OLED model.' },
+        { id: 6, name: 'Xbox Series X 1TB Console (Disc Version) With Controller', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/xbox.png', discount: 25, company: 'Microsoft', category: 'GameConsoles', rating: 4,features: ['1 TB storage', 'Supports 4K Ultra HD', 'Disc version', 'Xbox Wireless Controller'],description: 'Experience high-performance gaming with the Xbox Series X, designed for 4K Ultra HD gameplay.' },
+        { id: 7, name: 'atari Flashback9 Deluxe With 110 Built-In Games', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/atari.png', discount: 9.09, company: 'Atari', category: 'GameConsoles' , rating: 4.5,features: ['110 built-in classic games', 'Two wireless controllers', 'Plug-and-play setup', 'Compact and retro design'],description: 'Relive retro gaming glory with the Atari Flashback 9 Deluxe, featuring 110 classic games.' },
+        { id: 8, name: 'gameboy 400-In-1 MIni Handheld Gaming Console', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/gameboy.png', discount: 20, company: 'Nintendo', category: 'GameConsoles', rating: 5,features: ['400 preloaded games', 'Compact handheld design', 'Rechargeable battery', 'High-resolution LCD screen'],description: 'The Gameboy 400-in-1 Mini Console brings a nostalgic touch with hundreds of preloaded games in a compact design.'  },
+        { id: 9, name: 'Portable PSP Handheld Console - 4.3-inch Display, 8GB Storage, Black', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/psp.png', discount: 23.53, company: 'Sony', category: 'GameConsoles', rating: 4,features: ['4.3-inch display', '8GB internal storage', 'Rechargeable battery', 'Compact and lightweight'],description: 'The Portable PSP Handheld Console offers gaming on the go with a lightweight design and vibrant display.' },
+        { id: 10, name: 'PlayStation 4 Slim 500GB Console With Controller', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/ps4.png', discount: 20, company: 'Sony', category: 'GameConsoles' , rating: 4.5,features: ['500GB storage', 'Slim design', 'DualShock 4 controller', 'HDR support'],description: 'The PlayStation 4 Slim offers a sleek design and outstanding performance for console gaming enthusiasts.' },
+        { id: 11, name: 'EOS 2000D DSLR Camera With 18-55 DC Lens 24.1 MP APS-C Sensor Optical Viewfinder', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/11.png', discount: 20, company: 'Canon', category: 'Cameras' , rating: 4,features: ['24.1 MP APS-C sensor', 'Optical viewfinder', 'Built-in WiFi', 'Includes 18-55mm lens'], description: 'Capture high-quality images with the Canon EOS 2000D, designed for aspiring photographers.'  },
+        { id: 12, name: 'EOS 4000D DSLR With EF-S 18-55mm F/3.5-5.6 III Lens 18MP Built-In Wi-Fi Black', oldPrice: 78, newPrice: 60, imageUrl: 'images/pic/18-c.png', discount: 20, company: 'Canon', category: 'Cameras', rating: 3.5,features: ['18 MP sensor', 'Built-in WiFi', 'Compact design', 'Includes 18-55mm lens'],description: 'The Canon EOS 4000D offers ease of use and impressive image quality for beginners.',  },
+        { id: 13, name: 'Alpha 7 Iv Full-Frame Mirrorless Interchangeable Lens Camera, 33 Mega Pixel Full-Frame Back-Illuminated Exmor R cmos Image Sensor, Ilce-7M4', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/13.png', discount: 22.22, company: 'Sony', category: 'Cameras', rating: 3,features: ['33 MP full-frame sensor', 'Interchangeable lens system', 'Back-illuminated Exmor R CMOS', 'Compact mirrorless body'],description: 'The Sony Alpha 7 IV is a versatile full-frame mirrorless camera perfect for professionals and enthusiasts alike.'   },
+        { id: 14, name: 'FUJIFILM Digital Camera X-T5 Black - XF16-80MM Kit', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/14.png', discount: 20, company: 'Fujifilm', category: 'Cameras', rating: 4.5,features: ['XF16-80mm kit lens', 'Backlit CMOS sensor', 'Retro design', 'Advanced autofocus system'],description: 'The Fujifilm X-T5 combines vintage aesthetics with cutting-edge camera technology for exceptional photography.' },
+        { id: 15, name: 'Nikon Z 7II Mirrorless Camera - High-Resolution 45.7MP, 10fps Continuous', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/15.png', discount: 20, company: 'Nikon', category: 'Cameras', rating: 4,features: ['45.7 MP resolution', '10fps continuous shooting', 'Mirrorless design', 'High-speed autofocus'],description: 'The Nikon Z 7II offers ultra-high resolution and professional-grade performance for serious photographers.' },
+        { id: 16, name: 'Lumix EOS 5D Mark IV DSLR Camera With EF 24-105mm IS USM Lens Fast Versatile Full Frame Camera 30.4 MP 4K Wi-Fi GPS', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/16.png', discount: 20, company: 'Canon', category: 'Cameras' , rating: 4,features: ['30.4 MP full-frame sensor', 'EF 24-105mm IS USM lens', '4K video capability', 'Built-in GPS'],description: 'The Canon EOS 5D Mark IV is a powerful full-frame DSLR ideal for both photography and videography.' },
+        { id: 17, name: 'Alpha 7R V Full Frame Mirrorless Interchangeable Lens Camera With 61.0MP Full-Frame Back-Illuminated Exmor R CMOS Sensor, Black', oldPrice: 77, newPrice: 60, imageUrl: 'images/pic/17-c.png', discount: 20, company: 'Sony', category: 'Cameras', rating: 3.5,features: ['61 MP full-frame sensor', 'Interchangeable lens system', 'Compact mirrorless design', 'Back-illuminated Exmor R CMOS'],description: 'The Sony Alpha 7R V delivers incredible resolution and detail, perfect for professional photography.'},
+        { id: 18, name: 'ONIX VACUUM CLEANER 21 LTR - Powerful 2200W Input', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/1.png', discount: 20, company: 'Onix', category: 'HomeAppliances', rating: 4.5 ,features: ['21 L capacity', '2200W input power', 'Compact design', 'Powerful suction'],description: 'The Onix Vacuum Cleaner combines high power and large capacity for efficient cleaning.'},
+        { id: 19, name: 'elba Load Washing Machine ThinQ WiFi 9 kg', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/2.png', discount: 25, company: 'Elba', category: 'HomeAppliances',rating:4,features: ['9 kg load capacity', 'ThinQ WiFi connectivity', 'Energy efficient', 'Multiple wash cycles'],description: 'The Elba Washing Machine offers smart washing features and large capacity for busy households.' },
+        { id: 20, name: 'HISENSE Refrigerator 7 Cuft Freezer 1.8 Cuft Inverter Color Silver 211 kW', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/3.png', discount: 22.22, company: 'Hisense', category: 'HomeAppliances' , rating: 4,features: ['7 cu ft fridge', '1.8 cu ft freezer', 'Inverter technology', 'Energy-efficient design'] ,description: 'The Hisense Refrigerator provides ample storage and energy efficiency for everyday use.'},
+        { id: 21, name: 'KOOLEN 30 Liter Digital Microwave Oven, 900 Watts Power, 11 Power Levels, 6/7 Auto Menu, With Grill Function, Mirror Finish Door 30 L 900 W', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/4.png', discount: 20, company: 'Koolen', category: 'HomeAppliances', rating: 3.5,features: ['30 L capacity', '900W power', '11 power levels', 'Grill function'],description: 'The Koolen Microwave Oven combines grilling and microwave functions for versatile cooking.'  },
+        { id: 22, name: 'GLEM GAS Gas Oven 5 Burners Jumbo 90X60 Steel', oldPrice: 75, newPrice: 60, imageUrl: 'images/pic/fur.png', discount: 20, company: 'Glem Gas', category: 'HomeAppliances',rating:3.5,features: ['5 burners', 'Jumbo oven', 'Stainless steel finish', 'Gas-powered design'],description: 'The Glem Gas Oven is a robust and spacious appliance for professional-grade cooking.' },
+        { id: 23, name: 'KENWOOD Blender, Ice Crush Function, Multi Mill, Grinder, 2 Speeds, 2 L 500 W', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/6.png', discount: 25, company: 'Kenwood', category: 'HomeAppliances', rating: 3,features: ['2 L blender jar', 'Ice-crush function', '500W power', 'Multi-mill grinder'] ,description: 'The Kenwood Blender handles a variety of blending tasks with ease and precision.' },
+        { id: 24, name: 'Philips Easy Speed Steam Iron 220 ml 2000 W', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/iron.png', discount: 9.09, company: 'Philips', category: 'HomeAppliances' , rating: 2,features: ['220 ml water tank', '2000W power', 'Non-stick soleplate', 'Steam burst option'] ,description: 'The Philips Steam Iron ensures smooth ironing with efficient steam output and high power.'},
+        { id: 25, name: 'LC Countertop Electric Kettle 500ml 500.0 ml', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/8.png', discount: 20, company: 'LC', category: 'HomeAppliances' , rating: 2.5, features: ['500ml capacity', 'Compact design', 'Quick boil function', 'Energy-efficient'],description: 'The LC Electric Kettle is a handy and efficient tool for quick and safe boiling.' },
+        { id: 26, name: 'Techno Best 2 Slice Electric Toaster/Efficient Breakfast Toasting/Breakfast machine with Browning control/Plastic 650 W', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/9.png', discount: 23.53, company: 'Techno Best', category: 'HomeAppliances', rating: 1.5, features: ['2-slice toaster', 'Browning control', '650W power', 'Compact plastic body'], description: 'The Techno Best Toaster ensures perfect toast every time with adjustable browning control.'  },
+        { id: 27, name: 'Rebune Coffee Machine - 1.2L Capacity, 1050W Power, Premium Brewing', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/10.png', discount: 20, company: 'Rebune', category: 'HomeAppliances', rating: 4,features: ['1.2L capacity', '1050W power', 'Compact design', 'Premium brewing'],description: 'The Rebune Coffee Machine offers premium brewing for coffee enthusiasts.'},
+        { id: 28, name: 'LG 4K Ultra HD Smart LED TV 65 inch', oldPrice: 500, newPrice: 299, imageUrl: 'images/pic/17.png', discount: 20, company: 'LG', category: 'TV', rating: 4,features: ['65-inch 4K UHD display', 'Smart TV features', 'Ultra HD resolution', 'HDR support'],description: 'The LG 4K Ultra HD TV delivers a stunning visual experience with advanced smart features.' },
+        { id: 29, name: 'Samsung QLED 55 inch Smart TV with 4K Resolution', oldPrice: 299, newPrice: 150, imageUrl: 'images/pic/18.png', discount: 20, company: 'Samsung', category: 'TV', rating: 4,features: ['55-inch QLED screen', '4K resolution', 'Smart TV functionality', 'Vivid color reproduction'],description: 'The Samsung QLED TV offers vibrant colors and smart features for an immersive viewing experience.'  },
+        { id: 30, name: 'Sony Bravia 65 inch LED 4K UHD Smart TV', oldPrice: 300, newPrice: 230, imageUrl: 'images/pic/19.png', discount: 20, company: 'Sony', category: 'TV', rating: 5, features: ['65-inch display', '4K UHD resolution', 'Smart TV features', 'HDR technology'],description: 'The Sony Bravia TV combines stunning visuals with smart features for unparalleled entertainment.'  },
+        { id: 31, name: '55 Inch 4K UHD Smart TV | 60HZ55-Inch 4K UHD Smart TV - 60Hz, Smart TV with Streaming Support', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/20.png', discount: 25, company: 'Generic', category: 'TV' , rating: 3,features: ['55-inch 4K UHD display', '60Hz refresh rate', 'Smart streaming support', 'Affordable design'] , description: 'This affordable Smart TV offers 4K UHD resolution and smooth streaming capabilities.'},
+        { id: 32, name: '55" 4K UHD LED Smart Google TV - HDR, Google Assistant, Ultra HD', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/21.png', discount: 9.09, company: 'Generic', category: 'TV' , rating: 3.5 ,features: ['55-inch 4K UHD screen', 'Google Assistant integration', 'HDR support', 'Ultra HD clarity'],description: 'The 55-inch Smart Google TV provides seamless integration with streaming apps and crystal-clear visuals.'},
+        { id: 33, name: '65 Inch TV 4K QLED Pro Dolby Vision Atmos Onkyo 2.1CH Slim & Uni-body Google TV, 120HZ', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/22.png', discount: 20, company: 'Generic', category: 'TV', rating: 3.5,features: ['65-inch QLED Pro display', '120Hz refresh rate', 'Dolby Vision Atmos', 'Onkyo 2.1CH sound'],description: 'This premium TV delivers outstanding visuals and immersive sound with Dolby Vision and Atmos support.'},
+        {id: 34,name: 'TCL 40 Inch 2K Ultra HD Smart Android LED TV With Free Wall Mount - Frameless Design', oldPrice: 150, newPrice: 112.50,imageUrl: 'images/pic/23.png',discount: 25, company: 'TCL', category: 'TV' , rating: 3, features: ['40-inch 2K Ultra HD display', 'Frameless design', 'Android Smart TV', 'Wall-mount included'],description: 'The Frameless Smart TV combines sleek design with Android-powered streaming for modern living rooms.' }    
     ];
 
         // Get the product ID from URL parameters
@@ -143,29 +143,40 @@
         // Display product information
         if (product) {
             const productDetailContainer = document.getElementById('product-detail-container');
-            productDetailContainer.innerHTML = `
-               <center> <div class="product-details">
-                    <div class="img"><img src="${product.imageUrl}" alt="${product.name}" style="width: 100%; border-radius: 10px;"></div>
-                    <div class="details">
-                        <h1 class="product-name-d">${product.name}</h1>
-                                  <div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
-    ${generateStars(product.rating)}  <!-- Call the generateStars function here -->
-</div>
-                        <h4 class="old-price">${product.oldPrice.toFixed(2)} SR</h4>
-                        <h3 class="new-price">${product.newPrice.toFixed(2)} SR</h3>
-                        <h3 style="color: black;">Description</h3>
-                        <h4 class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus illo recusandae pariatur. Animi quisquam vero ipsam voluptatum dolorum iure fugiat incidunt aspernatur, eos, iusto porro eius nisi. Distinctio, blanditiis sapiente.</h4>
-                        <div class="buttons">
-                        <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
+            productDetailContainer.innerHTML = productDetailContainer.innerHTML = `
+    <center>
+        <div class="product-details">
+            <div class="img">
+                <img src="${product.imageUrl}" alt="${product.name}" style="width: 100%; border-radius: 10px;">
+            </div>
+            <div class="details">
+                <h1 class="product-name-d">${product.name}</h1>
+                <div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
+                    ${generateStars(product.rating)}  <!-- Call the generateStars function here -->
+                </div>
+                <h4 class="old-price">${product.oldPrice.toFixed(2)} SR</h4>
+                <h3 class="new-price">${product.newPrice.toFixed(2)} SR</h3>
+                <h3 style="color: black;">Description</h3>
+                <h4 class="description">${product.description}</h4>
+                <h4 style="color: black;">Category: <span style="color: rgb(36, 36, 36);;">${product.category}</span></h4>
+                <h4 style="color: black;">Company: <span style="color:rgb(36, 36, 36);;">${product.company}</span></h4>
+                <h3 style="color: black;">Features:</h3>
+                <ul class="features" style="padding-left: 20px; color:rgb(36, 36, 36);;">
+                    ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+                <div class="buttons">
+                    <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
                         <i class="fa-regular fa-heart"></i>
-                        </button>
-                        <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:18px;">
-                             Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
-                           </button>
-                        </div>
-                    </div>
-                </div></center>
-            `;
+                    </button>
+                    <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:18px;">
+                        Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </center>
+`;
+
         } else {
             document.getElementById('product-detail-container').innerHTML = '<center><h1>Sorry, Product not found</h1></center>';
         }
