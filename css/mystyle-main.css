@@ -409,10 +409,17 @@ div.signin a{
 }
 
 
-.category-title {
+.category-title,a.category-link {
+    color: #333;
     font-size: 28px;
     margin: 20px 30px;
     font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s ease ;
+}
+
+.category-link:hover text{
+    color: #6b6b6b;
 }
 
 .category-container {
@@ -430,8 +437,9 @@ div.signin a{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;/* Space between cards */
-}
+    align-items: end;
+    justify-content: space-around;/* Space between cards */
+} 
 
 .product-image {
     width: 150px;  /* Set a fixed width */
@@ -960,3 +968,4 @@ button:hover {
 .star-rating-filter .star.filled {
     color: gold; /* Color for filled stars (gold) */
 }
+

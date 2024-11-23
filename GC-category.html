@@ -229,65 +229,50 @@
     </footer>
     <script>
         // Global arrays to hold products for each category
-    
+
         let totalProductsInCart = parseInt(localStorage.getItem('totalProductsInCart')) || 0;
-    let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
-    
-    const gamesConsloes_discount = [
-    
-    { id: 1, name: 'PlayStation 5 Console (Disc Version) With Controller', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/pic.png', discount: 20, company: 'Sony', category: 'GameConsoles', rating: 4  },
-            { id: 2, name: 'PlayStation 5 Pro-Console ( Official KSA Version )', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/pro.png', discount: 25, company: 'Sony', category: 'GameConsoles' , rating: 2.5 },
-            { id: 3, name: 'PlayStation 5 Slim Console (International Version) Digital Edition With Controller', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/slim.png', discount: 22.22, company: 'Sony', category: 'GameConsoles', rating: 3 },
-            { id: 4, name: 'Steam Deck OLED 1 TB Handheld Console', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/steam.png', discount: 20, company: 'Valve', category: 'GameConsoles', rating: 3  },
-            { id: 5, name: 'Nintendo Switch OLED - 7-inch OLED Display & Adjustable Kickstand', oldPrice: 75, newPrice: 60, imageUrl: 'images/gs-products/nin.png', discount: 20, company: 'Nintendo', category: 'GameConsoles' , rating: 3.5 },
-            { id: 6, name: 'Xbox Series X 1TB Console (Disc Version) With Controller', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/xbox.png', discount: 25, company: 'Microsoft', category: 'GameConsoles', rating: 4  },
-            { id: 7, name: 'atari Flashback9 Deluxe With 110 Built-In Games', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/atari.png', discount: 9.09, company: 'Atari', category: 'GameConsoles' , rating: 4.5 },
-            { id: 8, name: 'gameboy 400-In-1 MIni Handheld Gaming Console', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/gameboy.png', discount: 20, company: 'Nintendo', category: 'GameConsoles', rating: 5  },
-            { id: 9, name: 'Portable PSP Handheld Console - 4.3-inch Display, 8GB Storage, Black', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/psp.png', discount: 23.53, company: 'Sony', category: 'GameConsoles', rating: 4  },
-            { id: 10, name: 'PlayStation 4 Slim 500GB Console With Controller', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/ps4.png', discount: 20, company: 'Sony', category: 'GameConsoles' , rating: 4.5 },
-    ];
-    
-    // Function to update the cart count in the UI and localStorage
-    function updateCartIcon() {
+let totalProductsInWishList = parseInt(localStorage.getItem('totalProductsInWishList')) || 0;
+
+// Function to update the cart count in the UI and localStorage
+function updateCartIcon() {
     const cartIcon = document.getElementById('cart-count'); // Get the cart count element
     cartIcon.textContent = totalProductsInCart > 0 ? totalProductsInCart : ''; // Update the text content
     cartIcon.style.display = totalProductsInCart > 0 ? 'block' : 'none'; // Show or hide cart count
     localStorage.setItem('totalProductsInCart', totalProductsInCart); // Save to localStorage
-    }
-    
-    function updateWishListIcon() {
+}
+
+function updateWishListIcon() {
     const wishListIcon = document.getElementById('wishList-count'); // Get the wishlist count element
     wishListIcon.textContent = totalProductsInWishList > 0 ? totalProductsInWishList : ''; // Update the text content
     wishListIcon.style.display = totalProductsInWishList > 0 ? 'block' : 'none'; // Show or hide wishlist count
     localStorage.setItem('totalProductsInWishList', totalProductsInWishList); // Save to localStorage
-    }
-    
-    
-    function updatePriceLabel() {
+}
+
+
+function updatePriceLabel() {
     const priceRange = document.getElementById('priceRange');
     const maxPrice = priceRange.value; // Get the current value of the slider
     const minPrice = 0; // Set minimum price (can also be dynamic if needed)
-    
+
     // Update the label with the current range
     document.getElementById('priceLabel').textContent = `${minPrice} SR - ${maxPrice} SR`;
-    }
-    
-    
-    
-    function addWishList(productId) {
+}
+
+
+
+function addWishList(productId) {
     totalProductsInWishList++; // Increment the total products in wishlist
     updateWishListIcon(); // Update the wishlist icon
-    
+
     // Change the heart icon to "like-solid"
     const heartButton = document.querySelector(`#wish[data-product-id="${productId}"]`);
     if (heartButton) {
         heartButton.innerHTML = '<i class="fa-solid fa-heart" style="color: #0b48a3;"></i>'; // Change to solid heart
     }
-    
-    }
-    
-    
-    function performSearch() {
+}
+
+
+function performSearch() {
     const searchInput = document.getElementById('searchInput').value;
     if (searchInput) {
         // Redirect to search.html with the search term as a query parameter
@@ -295,15 +280,15 @@
     } else {
         alert("Please enter a search term.");
     }
-    }
-    
-    
-    function applyFilters() {
+}
+
+
+function applyFilters() {
     const priceRange = document.getElementById('priceRange').value;
     const selectedCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.value);
     const selectedCompanies = Array.from(document.querySelectorAll('.company-filter:checked')).map(cb => cb.value);
     const selectedStars = parseInt(localStorage.getItem('rating') || 0); // Get the selected rating from localStorage
-    
+
     // Filter products based on price, category, company, and star rating
     const filteredProducts = gamesConsloes_discount.filter(product => {
         // Filter by price
@@ -317,98 +302,14 @@
         
         // Filter by star rating (show only products with rating <= selectedStars)
         const isWithinRating = selectedStars === 0 || product.rating <= selectedStars; // Fix here: we use `<=` to show products with equal or fewer stars
-    
+
         return isWithinPrice && isInCategory && isInCompany && isWithinRating;
     });
-    
+
     displayProducts(filteredProducts, 'gamesConsoles-container'); // Update product display
-    }
-    
-    function handleStarClick(event) {
-    const clickedStarValue = parseInt(event.target.getAttribute('data-value'));
-    
-    // Get all the stars
-    const stars = document.querySelectorAll('.star-rating-filter .star');
-    
-    // Loop through all stars and fill them up if the value is less than or equal to clicked star
-    stars.forEach(star => {
-        const starValue = parseInt(star.getAttribute('data-value'));
-        if (starValue <= clickedStarValue) {
-            star.textContent = '★';  // Filled star
-        } else {
-            star.textContent = '☆';  // Empty star
-        }
-    });
-    
-    // Store the rating in localStorage and trigger the filter
-    localStorage.setItem('rating', clickedStarValue);
-    console.log(`User rated: ${clickedStarValue} stars`);
-    
-    // Apply the filters after updating the rating
-    applyFilters();
-    }
-    
-    
-    // Function to add products to the cart
-    function buyProduct(productId) {
-    totalProductsInCart++; // Increment the total products in cart
-    updateCartIcon(); // Update the cart icon
-
-    // Change the button text to "Added to Cart"
-    const buyButton = document.querySelector(`#buy[data-product-id="${productId}"]`);
-    if (buyButton) {
-        buyButton.textContent = "Added to Cart";
-        buyButton.textContent.fontsize = "23px";
-        buyButton.style.backgroundColor = "#4CAF50"; // Change button color to green
-        buyButton.disabled = true; // Optionally disable the button
-    }
-
 }
-    
-    
-        // Function to display products in a specified container
-        function displayProducts(productArray, containerId) {
-    const productContainer = document.getElementById(containerId);
-    productContainer.innerHTML = ''; // Clear previous products
-    
-    // Iterate over the product array and create a product card for each item
-    productArray.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-    
-        // Generate the star rating for each product
-        const starsHtml = generateStars(product.rating); // Call generateStars to get the stars HTML
-    
-        productCard.innerHTML = `
-            <a href="product-detail.html?id=${product.id}">
-                <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
-                <div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
-                    ${starsHtml}
-                </div>
-                <h3 class="product-name">${product.name}</h3>
-                <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
-                <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
-            </a>
-            <div style="display:flex;">
-                <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:18px;">
-                    Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
-                </button>
-            </div>
-        `;
-    
-        // Append the product card to the container
-        productContainer.appendChild(productCard);
-    });
-    }
-    
-    
-    // Apply filters when the button is clicked
-    document.getElementById('applyFilters').addEventListener('click', applyFilters);
-    
-    function handleStarClick(event) {
+
+function handleStarClick(event) {
     const clickedStarValue = parseInt(event.target.getAttribute('data-value'));
 
     // Get all the stars
@@ -439,6 +340,18 @@ document.querySelectorAll('.star-rating-filter .star').forEach(star => {
     star.addEventListener('click', handleStarClick);
 });
 
+document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', (e) => {
+        const selectedRating = parseInt(e.target.getAttribute('data-value'));
+
+        // Update the selectedStars array
+        selectedStars = Array.from({ length: selectedRating }, (_, i) => i + 1);
+
+        // Update the visual state of the stars
+        updateStars();
+    });
+});
+
 // Initialize the rating state from localStorage on page load (if applicable)
 window.addEventListener('load', () => {
     const storedRating = parseInt(localStorage.getItem('rating')) || 0;
@@ -449,69 +362,171 @@ window.addEventListener('load', () => {
             star.classList.add('filled');  // Fill stars based on the stored rating
     });
 });
+
+
+
+// Function to add products to the cart
+function buyProduct(productId) {
+    totalProductsInCart++; // Increment the total products in cart
+    updateCartIcon(); // Update the cart icon
+
+    // Change the button text to "Added to Cart"
+    const buyButton = document.querySelector(`#buy[data-product-id="${productId}"]`);
+    if (buyButton) {
+        buyButton.textContent = "Added to Cart";
+        buyButton.textContent.fontsize = "23px";
+        buyButton.style.backgroundColor = "#4CAF50"; // Change button color to green
+        buyButton.disabled = true; // Optionally disable the button
+    }
+}
+
+
+const gamesConsloes_discount = [
+    
+    { id: 1, name: 'PlayStation 5 Console (Disc Version) With Controller', oldPrice: 100, newPrice: 80, imageUrl: 'images/pic/pic.png', discount: 20, company: 'Sony', category: 'GameConsoles', rating: 4  },
+            { id: 2, name: 'PlayStation 5 Pro-Console ( Official KSA Version )', oldPrice: 150, newPrice: 112.50, imageUrl: 'images/pic/pro.png', discount: 25, company: 'Sony', category: 'GameConsoles' , rating: 2.5 },
+            { id: 3, name: 'PlayStation 5 Slim Console (International Version) Digital Edition With Controller', oldPrice: 90, newPrice: 70, imageUrl: 'images/pic/slim.png', discount: 22.22, company: 'Sony', category: 'GameConsoles', rating: 3 },
+            { id: 4, name: 'Steam Deck OLED 1 TB Handheld Console', oldPrice: 200, newPrice: 160, imageUrl: 'images/pic/steam.png', discount: 20, company: 'Valve', category: 'GameConsoles', rating: 3  },
+            { id: 5, name: 'Nintendo Switch OLED - 7-inch OLED Display & Adjustable Kickstand', oldPrice: 75, newPrice: 60, imageUrl: 'images/gs-products/nin.png', discount: 20, company: 'Nintendo', category: 'GameConsoles' , rating: 3.5 },
+            { id: 6, name: 'Xbox Series X 1TB Console (Disc Version) With Controller', oldPrice: 120, newPrice: 90, imageUrl: 'images/pic/xbox.png', discount: 25, company: 'Microsoft', category: 'GameConsoles', rating: 4  },
+            { id: 7, name: 'atari Flashback9 Deluxe With 110 Built-In Games', oldPrice: 55, newPrice: 50, imageUrl: 'images/pic/atari.png', discount: 9.09, company: 'Atari', category: 'GameConsoles' , rating: 4.5 },
+            { id: 8, name: 'gameboy 400-In-1 MIni Handheld Gaming Console', oldPrice: 300, newPrice: 240, imageUrl: 'images/pic/gameboy.png', discount: 20, company: 'Nintendo', category: 'GameConsoles', rating: 5  },
+            { id: 9, name: 'Portable PSP Handheld Console - 4.3-inch Display, 8GB Storage, Black', oldPrice: 85, newPrice: 65, imageUrl: 'images/pic/psp.png', discount: 23.53, company: 'Sony', category: 'GameConsoles', rating: 4  },
+            { id: 10, name: 'PlayStation 4 Slim 500GB Console With Controller', oldPrice: 110, newPrice: 88, imageUrl: 'images/pic/ps4.png', discount: 20, company: 'Sony', category: 'GameConsoles' , rating: 4.5 },
+    ];
+
+
+        // Function to display products in a specified container
+        function displayProducts(productArray, containerId) {
+    const productContainer = document.getElementById(containerId);
+    productContainer.innerHTML = ''; // Clear previous products
+
+    // Iterate over the product array and create a product card for each item
+    productArray.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+
+        // Generate the star rating for each product
+        const starsHtml = generateStars(product.rating); // Call generateStars to get the stars HTML
+
+        productCard.innerHTML = `
+            <a href="product-detail.html?id=${product.id}">
+                <img src="${product.imageUrl}" alt="Product ${product.id}" class="product-image" style="width: 150px;">
+                <div class="rating" style="display: flex; align-items: center; margin-top: 10px;">
+                    ${starsHtml}
+                </div>
+                <h3 class="product-name">${product.name}</h3>
+                <p class="old-price">${product.oldPrice.toFixed(2)} SR</p>
+                <p class="new-price">${product.newPrice.toFixed(2)} SR</p>
+            </a>
+            <div style="display:flex;">
+                <button id="wish" data-product-id="${product.id}" onclick="addWishList(${product.id})" style="border-radius:50px;">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <button id="buy" data-product-id="${product.id}" onclick="buyProduct(${product.id})" style="width:80%; font-size:18px;">
+                    Add to Cart &nbsp;<i class="fa-sharp fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+        `;
+
+        // Append the product card to the container
+        productContainer.appendChild(productCard);
+    });
+}
+
+
+// Apply filters when the button is clicked
+document.getElementById('applyFilters').addEventListener('click', applyFilters);
+
+function handleStarClick(event) {
+    const clickedStarValue = parseInt(event.target.getAttribute('data-value'));
+
+    // Get all the stars
+    const stars = document.querySelectorAll('.star-rating-filter .star');
+
+    // Loop through all stars and fill them up if the value is less than or equal to clicked star
+    stars.forEach(star => {
+        const starValue = parseInt(star.getAttribute('data-value'));
+        if (starValue <= clickedStarValue) {
+            star.textContent = '★';  // Filled star
+        } else {
+            star.textContent = '☆';  // Empty star
+        }
+    });
+
+    // Optionally, you can store the rating in localStorage or send to the server
+    localStorage.setItem('rating', clickedStarValue);
+    console.log(`User rated: ${clickedStarValue} stars`);
+}
+
+// Add click event listener to each star in the filter section
+
         // Function to display all products in their respective categories
         function displayAllProducts() {
             displayProducts(gamesConsloes_discount, 'gamesConsoles-container');
         }
-    
+
         // Functions for button actions
         function addToWishlist(productId) {
             alert(`Product ${productId} added to wishlist!`);
         }
-    
-    
+
+
         function generateStars(rating) {
     const fullStars = Math.floor(rating); // Number of full stars
     const hasHalfStar = rating % 1 !== 0; // Whether there's a half star
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // Remaining empty stars
-    
+
     let starsHtml = '';
-    
+
     // Add full stars
     for (let i = 0; i < fullStars; i++) {
         starsHtml += '<i class="fa-solid fa-star" style="color:gold;"></i>';
     }
-    
+
     // Add half star if necessary
     if (hasHalfStar) {
         starsHtml += '<i class="fa-solid fa-star-half-alt" style="color: gold;"></i>';
     }
-    
+
     // Add empty stars
     for (let i = 0; i < emptyStars; i++) {
         starsHtml += '<i class="fa-regular fa-star" style="color: gold;"></i>';
     }
-    
+
     return starsHtml;
-    }
-    
+}
+
        
-    
-    // Function to update the cart count in the UI and localStorage
-    
-    
-    // Initialize by displaying all products
-    displayAllProducts();  
-    updateCartIcon();
-    updateWishListIcon();
-    
-    
-    document.getElementById('avatar-link').addEventListener('click', function(event) {
+
+// Function to update the cart count in the UI and localStorage
+
+
+// Initialize by displaying all products
+displayAllProducts();  
+updateCartIcon();
+updateWishListIcon();
+
+
+document.getElementById('avatar-link').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default link behavior
     const signoutDiv = document.querySelector('.signin-out div'); // Select the sign-out button's container
     signoutDiv.style.display = signoutDiv.style.display === 'none' ? 'flex' : 'none'; // Toggle visibility
-    });
-    
-    // Sign out functionality
-    document.getElementById('signout-button').addEventListener('click', function() {
+});
+
+// Sign out functionality
+document.getElementById('signout-button').addEventListener('click', function() {
     localStorage.setItem('isSignedIn', 'false'); // Update sign-in status
     alert('You have signed out.'); // Alert user
     updateSignInUI(); // Update UI after signing out
     const signoutDiv = document.querySelector('.signout');
     document.getElementById('signout-container').style.display = 'none'; // Hide the sign-out button
-    });
+});
+       
+    </script>
+    <script>
 
-    const isSignedIn = localStorage.getItem('isSignedIn');
+const isSignedIn = localStorage.getItem('isSignedIn');
     const isAdmin = localStorage.getItem('isAdmin');
     // Reset sign-in status when the page is being unloaded
 
@@ -549,6 +564,8 @@ window.addEventListener('load', () => {
 
     // Call the function to update the UI
     updateSignInUI();
-       
     </script>
+   
+       
+
 
