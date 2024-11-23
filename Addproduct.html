@@ -283,15 +283,6 @@
 
     renderProducts();
 
-    function performSearch() {
-    const searchInput = document.getElementById('searchInput').value;
-    if (searchInput) {
-        // Redirect to search.html with the search term as a query parameter
-        window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
-    } else {
-        alert("Please enter a search term.");
-    }
-}
 
 </script>
 
@@ -426,4 +417,17 @@ const isSignedIn = localStorage.getItem('isSignedIn');
 
     // Call the function to update the UI
     updateSignInUI();
+</script>
+
+<script>
+        function performSearch() {
+    const searchInput = document.getElementById('searchInput').value;
+    if (searchInput) {
+        // Redirect to search.html with the search term as a query parameter
+        window.location.href = `search.html?query=${encodeURIComponent(searchInput)}`;
+    } else {
+        alert("Please enter a search term.");
+    }
+}
+
 </script>
