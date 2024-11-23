@@ -384,6 +384,7 @@ function getQueryParam(param) {
 
 let selectedStars = [];
 
+
 // Handle star click events
 document.querySelectorAll('.star').forEach(star => {
     star.addEventListener('click', (e) => {
@@ -394,11 +395,9 @@ document.querySelectorAll('.star').forEach(star => {
 
         // Update the visual state of the stars
         updateStars();
-
-        // Call the filter function to apply the filters
-        filterAndDisplayResults();
     });
 });
+
 
 function updateStars() {
     // Reset all stars to unselected
@@ -483,10 +482,14 @@ window.onload = () => {
     const query = getQueryParam('query');
     document.getElementById('resultsTitle').textContent = `Search Results for: ${query}`;
     filterAndDisplayResults(); // Show the filtered results based on the search
+
+    // Do not apply the star filter automatically here
+    selectedStars = []; // No stars selected initially
+    updateStars(); // Ensure no stars are highlighted initially
+
     updateCartIcon();
     updateWishListIcon();
 };
-
 
         </script>
 

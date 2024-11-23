@@ -340,6 +340,18 @@ document.querySelectorAll('.star-rating-filter .star').forEach(star => {
     star.addEventListener('click', handleStarClick);
 });
 
+document.querySelectorAll('.star').forEach(star => {
+    star.addEventListener('click', (e) => {
+        const selectedRating = parseInt(e.target.getAttribute('data-value'));
+
+        // Update the selectedStars array
+        selectedStars = Array.from({ length: selectedRating }, (_, i) => i + 1);
+
+        // Update the visual state of the stars
+        updateStars();
+    });
+});
+
 // Initialize the rating state from localStorage on page load (if applicable)
 window.addEventListener('load', () => {
     const storedRating = parseInt(localStorage.getItem('rating')) || 0;
@@ -447,9 +459,6 @@ function handleStarClick(event) {
 }
 
 // Add click event listener to each star in the filter section
-document.querySelectorAll('.star-rating-filter .star').forEach(star => {
-    star.addEventListener('click', handleStarClick);
-});
 
         // Function to display all products in their respective categories
         function displayAllProducts() {
