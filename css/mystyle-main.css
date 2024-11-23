@@ -15,7 +15,7 @@ body {
 .header {
     margin: 0;
     padding: 0px 30px; 
-    background-color: #0e6bd6;
+    background-color: #0c63e7;
     display: flex; 
     align-items: center;
     justify-content: space-between;
@@ -61,7 +61,7 @@ color: #4790df;
 .categories {
     display: flex;  /* Enable flexbox layout */
     justify-content: center;  /* Center items horizontally */
-    background-color: #0b40a3;
+    background-color: #0a85ed;
     text-decoration: none;
     margin: 0;
     width: 100%;
@@ -146,7 +146,7 @@ padding: 70px 50px;
 
 /* Global footer styles */
 .footer {
-    background-color: #0e6bd6;
+    background-color: #0c63e7;
     color: #fff;
     font-family: 'Arial', sans-serif;
     justify-content: center;
